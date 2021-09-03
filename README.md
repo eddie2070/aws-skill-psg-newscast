@@ -11,8 +11,18 @@ This entire architecture can be deployed via the CDK/CloudFormation provided her
 
 ## Architecture
 
-<img src="https://github.com/eddie2070/rasp-aws-iot-temperature/blob/main/img/Temperature-sensor.png?raw=true"/>
+<img src="https://github.com/eddie2070/aws-skill-psg-newscast/blob/main/img/PSGNewscast%20-%20Page%202.png?raw=true"/>
 
 ### Notes
 
 The Alexa developer skill deployment has not been automated yet. We provide the interaction model definition that can be imported.
+
+Current intents:
+* Last Results
+* Next Game
+* Position in the leaderboard
+
+<img src="https://github.com/eddie2070/aws-skill-psg-newscast/blob/main/img/skill-multimodal-welcome.png?raw=true"/>
+<img src="https://github.com/eddie2070/aws-skill-psg-newscast/blob/main/img/skill-multimodal-lastresults.png?raw=true"/>
+<img src="https://github.com/eddie2070/aws-skill-psg-newscast/blob/main/img/skill-multimodal-nextgame.png?raw=true"/>
+<img src="https://github.com/eddie2070/aws-skill-psg-newscast/blob/main/img/skill-multimodal-leaderboard.png?raw=true"/>
