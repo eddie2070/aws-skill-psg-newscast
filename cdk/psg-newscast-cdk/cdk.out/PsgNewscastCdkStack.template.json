@@ -1,0 +1,1192 @@
+{
+  "Resources": {
+    "PSGNewscastmomenttzlayer25BDAE27": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "Content": {
+          "S3Bucket": {
+            "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3Bucket6BAAA5D6"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "CompatibleRuntimes": [
+          "nodejs10.x",
+          "nodejs12.x"
+        ],
+        "Description": "A layer with moment timezone"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/moment-tz-layer/Resource",
+        "aws:asset:path": "asset.45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5",
+        "aws:asset:property": "Content"
+      }
+    },
+    "PSGNewscastlambdalayerxray9068F0FE": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "Content": {
+          "S3Bucket": {
+            "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3Bucket6BAAA5D6"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "CompatibleRuntimes": [
+          "nodejs8.10",
+          "nodejs12.x",
+          "nodejs14.x"
+        ],
+        "Description": "A layer with xray"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-layer-xray/Resource",
+        "aws:asset:path": "asset.45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5",
+        "aws:asset:property": "Content"
+      }
+    },
+    "PSGNewscastServiceRole3524ADCE": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscast/ServiceRole/Resource"
+      }
+    },
+    "PSGNewscast892BE789": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3Bucket744550B8"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3VersionKey36B26C4F"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3VersionKey36B26C4F"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "PSGNewscastServiceRole3524ADCE",
+            "Arn"
+          ]
+        },
+        "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "PSGNewscastlambdalayerxray9068F0FE"
+          },
+          "arn:aws:lambda:us-east-1:173334852312:layer:ask-sdk-for-nodejs:4"
+        ],
+        "Runtime": "nodejs14.x",
+        "Timeout": 10
+      },
+      "DependsOn": [
+        "PSGNewscastServiceRole3524ADCE"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscast/Resource",
+        "aws:asset:path": "asset.d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945",
+        "aws:asset:property": "Code"
+      }
+    },
+    "PSGNewscastlambdadispatcherServiceRole661804EF": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambdadispatcher/ServiceRole/Resource"
+      }
+    },
+    "PSGNewscastlambdadispatcherServiceRoleDefaultPolicyC179B3FF": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "states:SendTaskSuccess",
+                "states:ListStateMachines",
+                "states:SendTaskFailure",
+                "states:ListActivities",
+                "states:SendTaskHeartbeat"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "states:*",
+              "Effect": "Allow",
+              "Resource": [
+                "arn:aws:states:us-east-1:753451452012:stateMachine:PSGNewscast-MyStateMachineStandard",
+                "arn:aws:states:us-east-1:753451452012:stateMachine:PSGNewscast-MyStateMachineStandard:*",
+                "arn:aws:states:us-east-1:753451452012:execution:PSGNewscast-MyStateMachineStandard:*"
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PSGNewscastlambdadispatcherServiceRoleDefaultPolicyC179B3FF",
+        "Roles": [
+          {
+            "Ref": "PSGNewscastlambdadispatcherServiceRole661804EF"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambdadispatcher/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "PSGNewscastlambdadispatcher6DF5A2D7": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3Bucket218E45F7"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3VersionKey1E40D280"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3VersionKey1E40D280"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "PSGNewscastlambdadispatcherServiceRole661804EF",
+            "Arn"
+          ]
+        },
+        "Handler": "index.handler",
+        "Runtime": "nodejs14.x",
+        "Timeout": 10
+      },
+      "DependsOn": [
+        "PSGNewscastlambdadispatcherServiceRoleDefaultPolicyC179B3FF",
+        "PSGNewscastlambdadispatcherServiceRole661804EF"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambdadispatcher/Resource",
+        "aws:asset:path": "asset.e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd",
+        "aws:asset:property": "Code"
+      }
+    },
+    "PSGNewscastlambdalastresultsscoreServiceRole906EB895": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-lastresults-score/ServiceRole/Resource"
+      }
+    },
+    "PSGNewscastlambdalastresultsscoreServiceRoleDefaultPolicy21B230C9": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:ListContributorInsights",
+                "dynamodb:DescribeReservedCapacityOfferings",
+                "dynamodb:ListGlobalTables",
+                "dynamodb:ListTables",
+                "dynamodb:DescribeReservedCapacity",
+                "dynamodb:ListBackups",
+                "dynamodb:PurchaseReservedCapacityOfferings",
+                "dynamodb:DescribeLimits",
+                "dynamodb:ListExports",
+                "dynamodb:ListStreams"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "dynamodb:*",
+              "Effect": "Allow",
+              "Resource": "DDBTablePSGNewscastARN"
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PSGNewscastlambdalastresultsscoreServiceRoleDefaultPolicy21B230C9",
+        "Roles": [
+          {
+            "Ref": "PSGNewscastlambdalastresultsscoreServiceRole906EB895"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-lastresults-score/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "PSGNewscastlambdalastresultsscore981E2CC1": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3BucketC8C394E0"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3VersionKeyCA9F365C"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3VersionKeyCA9F365C"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "PSGNewscastlambdalastresultsscoreServiceRole906EB895",
+            "Arn"
+          ]
+        },
+        "Handler": "index.handler",
+        "Runtime": "nodejs10.x",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "PSGNewscastlambdalastresultsscoreServiceRoleDefaultPolicy21B230C9",
+        "PSGNewscastlambdalastresultsscoreServiceRole906EB895"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-lastresults-score/Resource",
+        "aws:asset:path": "asset.ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3",
+        "aws:asset:property": "Code"
+      }
+    },
+    "PSGNewscastlambdanextgameServiceRoleEE3E0463": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-nextgame/ServiceRole/Resource"
+      }
+    },
+    "PSGNewscastlambdanextgameServiceRoleDefaultPolicy5BF6BFB1": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:ListContributorInsights",
+                "dynamodb:DescribeReservedCapacityOfferings",
+                "dynamodb:ListGlobalTables",
+                "dynamodb:ListTables",
+                "dynamodb:DescribeReservedCapacity",
+                "dynamodb:ListBackups",
+                "dynamodb:PurchaseReservedCapacityOfferings",
+                "dynamodb:DescribeLimits",
+                "dynamodb:ListExports",
+                "dynamodb:ListStreams"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "dynamodb:*",
+              "Effect": "Allow",
+              "Resource": "DDBTablePSGNewscastARN"
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PSGNewscastlambdanextgameServiceRoleDefaultPolicy5BF6BFB1",
+        "Roles": [
+          {
+            "Ref": "PSGNewscastlambdanextgameServiceRoleEE3E0463"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-nextgame/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "PSGNewscastlambdanextgame8C34E176": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3BucketB5E6D262"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3VersionKeyC1795E2F"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3VersionKeyC1795E2F"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "PSGNewscastlambdanextgameServiceRoleEE3E0463",
+            "Arn"
+          ]
+        },
+        "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "PSGNewscastmomenttzlayer25BDAE27"
+          }
+        ],
+        "Runtime": "nodejs10.x",
+        "Timeout": 10
+      },
+      "DependsOn": [
+        "PSGNewscastlambdanextgameServiceRoleDefaultPolicy5BF6BFB1",
+        "PSGNewscastlambdanextgameServiceRoleEE3E0463"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-nextgame/Resource",
+        "aws:asset:path": "asset.3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec",
+        "aws:asset:property": "Code"
+      }
+    },
+    "PSGNewscastlambdaleaderboardServiceRoleD2C5AD00": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-leaderboard/ServiceRole/Resource"
+      }
+    },
+    "PSGNewscastlambdaleaderboardServiceRoleDefaultPolicy395F7E09": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:ListContributorInsights",
+                "dynamodb:DescribeReservedCapacityOfferings",
+                "dynamodb:ListGlobalTables",
+                "dynamodb:ListTables",
+                "dynamodb:DescribeReservedCapacity",
+                "dynamodb:ListBackups",
+                "dynamodb:PurchaseReservedCapacityOfferings",
+                "dynamodb:DescribeLimits",
+                "dynamodb:ListExports",
+                "dynamodb:ListStreams"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "dynamodb:*",
+              "Effect": "Allow",
+              "Resource": "DDBTablePSGNewscastARN"
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PSGNewscastlambdaleaderboardServiceRoleDefaultPolicy395F7E09",
+        "Roles": [
+          {
+            "Ref": "PSGNewscastlambdaleaderboardServiceRoleD2C5AD00"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-leaderboard/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "PSGNewscastlambdaleaderboard2DA7209C": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3Bucket7C9C9036"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "PSGNewscastlambdaleaderboardServiceRoleD2C5AD00",
+            "Arn"
+          ]
+        },
+        "Handler": "index.handler",
+        "Runtime": "nodejs10.x",
+        "Timeout": 8
+      },
+      "DependsOn": [
+        "PSGNewscastlambdaleaderboardServiceRoleDefaultPolicy395F7E09",
+        "PSGNewscastlambdaleaderboardServiceRoleD2C5AD00"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-leaderboard/Resource",
+        "aws:asset:path": "asset.9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe",
+        "aws:asset:property": "Code"
+      }
+    },
+    "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardrole600EFED4": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "states.",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ".amazonaws.com"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/StepFunctions-PSGNewscast-MyStateMachineStandard-role/Resource"
+      }
+    },
+    "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardroleDefaultPolicy6019E25B": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-lastresults-score:*",
+                "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-nextgame:*",
+                "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-leaderboard:*"
+              ]
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardroleDefaultPolicy6019E25B",
+        "Roles": [
+          {
+            "Ref": "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardrole600EFED4"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/StepFunctions-PSGNewscast-MyStateMachineStandard-role/DefaultPolicy/Resource"
+      }
+    },
+    "PSGNewscastCDKPSGNewscastMyStateMachineStandard8046FD1F": {
+      "Type": "AWS::StepFunctions::StateMachine",
+      "Properties": {
+        "RoleArn": "StatesARN",
+        "DefinitionString": "{\n                \"Comment\": \"Example of a workflow which invokes your Lambda function, implements retries, and catches errors. Learn more at https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-creating-lambda-state-machine.html\",\n                \"StartAt\": \"Choice\",\n                \"States\": {\n                  \"Choice\": {\n                    \"Type\": \"Choice\",\n                    \"Choices\": [\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"LastResultsIntent\",\n                        \"Next\": \"Step 1: Invoke Lambda function\"\n                      },\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"NextGameIntent\",\n                        \"Next\": \"Lambda Invoke\"\n                      },\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"Welcome\",\n                        \"Next\": \"Pass\"\n                      },\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"StandingsIntent\",\n                        \"Next\": \"Lambda Invoke Standings\"\n                      }\n                    ],\n                    \"Default\": \"Step 3\"\n                  },\n                  \"Lambda Invoke\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::lambda:invoke\",\n                    \"Parameters\": {\n                      \"FunctionName\": \"arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-nextgame\",\n                      \"Payload\": {\n                        \"Input.$\": \"$\"\n                      }\n                    },\n                    \"Retry\": [\n                      {\n                        \"ErrorEquals\": [\n                          \"Lambda.ServiceException\",\n                          \"Lambda.AWSLambdaException\",\n                          \"Lambda.SdkClientException\"\n                        ],\n                        \"IntervalSeconds\": 2,\n                        \"MaxAttempts\": 6,\n                        \"BackoffRate\": 2\n                      }\n                    ],\n                    \"End\": true\n                  },\n                  \"Pass\": {\n                    \"Type\": \"Pass\",\n                    \"End\": true,\n                    \"Result\": {\n                      \"Payload\": {\n                        \"lastresults\": \"Welcome to PSG news. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.\"\n                      }\n                    }\n                  },\n                  \"Step 1: Invoke Lambda function\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::lambda:invoke\",\n                    \"Parameters\": {\n                      \"FunctionName\": \"arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-lastresults-score\",\n                      \"Payload\": {\n                        \"Input.$\": \"$\"\n                      }\n                    },\n                    \"Retry\": [\n                      {\n                        \"Comment\": \"Use Retry fields to retry a Lambda function after an error occurs. Learn more at https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-retrying-after-an-error\",\n                        \"ErrorEquals\": [\n                          \"Lambda.ServiceException\",\n                          \"Lambda.TooManyRequestsException\",\n                          \"Lambda.AWSLambdaException\",\n                          \"Lambda.SdkClientException\"\n                        ],\n                        \"IntervalSeconds\": 2,\n                        \"MaxAttempts\": 6,\n                        \"BackoffRate\": 2\n                      }\n                    ],\n                    \"Catch\": [\n                      {\n                        \"Comment\": \"Use Catch fields to catch errors and revert to fallback states. https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-fallback-states\",\n                        \"ErrorEquals\": [\n                          \"States.ALL\"\n                        ],\n                        \"Next\": \"Fallback state\"\n                      }\n                    ],\n                    \"End\": true\n                  },\n                  \"Step 3\": {\n                    \"Comment\": \"Use Pass states as placeholders for future states\",\n                    \"Type\": \"Pass\",\n                    \"End\": true\n                  },\n                  \"Fallback state\": {\n                    \"Comment\": \"Handle Lambda exceptions here\",\n                    \"Type\": \"Pass\",\n                    \"Next\": \"Fail\"\n                  },\n                  \"Fail\": {\n                    \"Type\": \"Fail\"\n                  },\n                  \"Lambda Invoke Standings\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::lambda:invoke\",\n                    \"Parameters\": {\n                      \"FunctionName\": \"arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-leaderboard\",\n                      \"Payload\": {\n                        \"Input.$\": \"$\"\n                      }\n                    },\n                    \"Retry\": [\n                      {\n                        \"ErrorEquals\": [\n                          \"Lambda.ServiceException\",\n                          \"Lambda.AWSLambdaException\",\n                          \"Lambda.SdkClientException\"\n                        ],\n                        \"IntervalSeconds\": 2,\n                        \"MaxAttempts\": 6,\n                        \"BackoffRate\": 2\n                      }\n                    ],\n                    \"End\": true\n                  }\n                }\n              }",
+        "StateMachineName": "CDK-PSGNewscast-MyStateMachineStandard"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/CDK-PSGNewscast-MyStateMachineStandard"
+      }
+    },
+    "PSGNewscastPSGNewscastddbBE6AF493": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "ID",
+            "KeyType": "HASH"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "ID",
+            "AttributeType": "S"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        },
+        "TableName": "PSGNewscast",
+        "TimeToLiveSpecification": {
+          "AttributeName": "TTL",
+          "Enabled": true
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb/Resource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAE1VQy07DMBD8Fu7uloCEOEIrcQJRBcR9Y2+Lm8SuvGtQZOXfsZ1WKqeZ0c7OPhpITfMItzdP+Msrbfq19oEgfQjqXm29YwlRi9ru3XuUU6xshwFHEgpFtMQ+Bk2FZ7+xYr2bVXPXXKemQtKAY2cQ0itOFL4ocLaWvn/6JTot58KFz4rvV8hMwvBcIGvYRN2TbJBJWRwhtX6oW1Tc+cHqqW5bWU4QOu3PeQy5kG8UekP9bR0pMzkcvekgfWK35FQyz2r5SB2bWw7WHa4eczl/zkbnDcGR1z/NA5SfHtnaVYhO7EjQLvgH6GyFfXEBAAA="
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/CDKMetadata/Default"
+      },
+      "Condition": "CDKMetadataAvailable"
+    }
+  },
+  "Outputs": {
+    "PSGNewscastStatesARNF584D477": {
+      "Description": "Step Functions ARN",
+      "Value": {
+        "Fn::GetAtt": [
+          "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardrole600EFED4",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "StatesARN"
+      }
+    },
+    "PSGNewscastDDBTablePSGNewscastARNEA225497": {
+      "Description": "DynamoDB Table ARN",
+      "Value": {
+        "Fn::GetAtt": [
+          "PSGNewscastPSGNewscastddbBE6AF493",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "DDBTablePSGNewscastARN"
+      }
+    }
+  },
+  "Parameters": {
+    "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3Bucket6BAAA5D6": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5\""
+    },
+    "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5\""
+    },
+    "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5ArtifactHashEBAE52F3": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5\""
+    },
+    "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3Bucket744550B8": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945\""
+    },
+    "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3VersionKey36B26C4F": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945\""
+    },
+    "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945ArtifactHash2D25D0A8": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945\""
+    },
+    "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3Bucket218E45F7": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd\""
+    },
+    "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3VersionKey1E40D280": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd\""
+    },
+    "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdArtifactHashF16FC760": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd\""
+    },
+    "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3BucketC8C394E0": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3\""
+    },
+    "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3VersionKeyCA9F365C": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3\""
+    },
+    "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3ArtifactHash835A0130": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3\""
+    },
+    "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3BucketB5E6D262": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec\""
+    },
+    "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3VersionKeyC1795E2F": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec\""
+    },
+    "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecArtifactHashB3170C42": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec\""
+    },
+    "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3Bucket7C9C9036": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe\""
+    },
+    "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe\""
+    },
+    "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feArtifactHash2964C13C": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe\""
+    }
+  },
+  "Conditions": {
+    "CDKMetadataAvailable": {
+      "Fn::Or": [
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "af-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ca-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-northwest-1"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-3"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "me-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "sa-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-2"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
