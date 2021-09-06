@@ -20,6 +20,66 @@
             "id": "PSGNewscast",
             "path": "PsgNewscastCdkStack/PSGNewscast",
             "children": {
+              "PSGNewscastddb": {
+                "id": "PSGNewscastddb",
+                "path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                      "aws:cdk:cloudformation:props": {
+                        "keySchema": [
+                          {
+                            "attributeName": "ID",
+                            "keyType": "HASH"
+                          }
+                        ],
+                        "attributeDefinitions": [
+                          {
+                            "attributeName": "ID",
+                            "attributeType": "S"
+                          }
+                        ],
+                        "provisionedThroughput": {
+                          "readCapacityUnits": 5,
+                          "writeCapacityUnits": 5
+                        },
+                        "tableName": "AlexaSkillPSG",
+                        "timeToLiveSpecification": {
+                          "attributeName": "TTL",
+                          "enabled": true
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
+                      "version": "1.121.0"
+                    }
+                  },
+                  "ScalingRole": {
+                    "id": "ScalingRole",
+                    "path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb/ScalingRole",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.121.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-dynamodb.Table",
+                  "version": "1.121.0"
+                }
+              },
+              "DDBTablePSGNewscastARN": {
+                "id": "DDBTablePSGNewscastARN",
+                "path": "PsgNewscastCdkStack/PSGNewscast/DDBTablePSGNewscastARN",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnOutput",
+                  "version": "1.118.0"
+                }
+              },
               "moment-tz-layer": {
                 "id": "moment-tz-layer",
                 "path": "PsgNewscastCdkStack/PSGNewscast/moment-tz-layer",
@@ -68,7 +128,7 @@
                       "aws:cdk:cloudformation:props": {
                         "content": {
                           "s3Bucket": {
-                            "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3Bucket6BAAA5D6"
+                            "Ref": "AssetParameters5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4S3Bucket29EDBD03"
                           },
                           "s3Key": {
                             "Fn::Join": [
@@ -81,7 +141,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                                          "Ref": "AssetParameters5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4S3VersionKey802A6E22"
                                         }
                                       ]
                                     }
@@ -94,7 +154,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                                          "Ref": "AssetParameters5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4S3VersionKey802A6E22"
                                         }
                                       ]
                                     }
@@ -170,7 +230,7 @@
                       "aws:cdk:cloudformation:props": {
                         "content": {
                           "s3Bucket": {
-                            "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3Bucket6BAAA5D6"
+                            "Ref": "AssetParameters5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4S3Bucket29EDBD03"
                           },
                           "s3Key": {
                             "Fn::Join": [
@@ -183,7 +243,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                                          "Ref": "AssetParameters5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4S3VersionKey802A6E22"
                                         }
                                       ]
                                     }
@@ -196,7 +256,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParameters45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5S3VersionKeyE975C0D2"
+                                          "Ref": "AssetParameters5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4S3VersionKey802A6E22"
                                         }
                                       ]
                                     }
@@ -330,7 +390,7 @@
                       "aws:cdk:cloudformation:props": {
                         "code": {
                           "s3Bucket": {
-                            "Ref": "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3Bucket744550B8"
+                            "Ref": "AssetParameters0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6S3Bucket1BC1B481"
                           },
                           "s3Key": {
                             "Fn::Join": [
@@ -343,7 +403,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3VersionKey36B26C4F"
+                                          "Ref": "AssetParameters0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6S3VersionKey7E7321EF"
                                         }
                                       ]
                                     }
@@ -356,7 +416,7 @@
                                       "Fn::Split": [
                                         "||",
                                         {
-                                          "Ref": "AssetParametersd5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945S3VersionKey36B26C4F"
+                                          "Ref": "AssetParameters0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6S3VersionKey7E7321EF"
                                         }
                                       ]
                                     }
@@ -391,6 +451,25 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-lambda.Function",
+                  "version": "1.121.0"
+                }
+              },
+              "alexatolambda": {
+                "id": "alexatolambda",
+                "path": "PsgNewscastCdkStack/PSGNewscast/alexatolambda",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Ref": "PSGNewscast892BE789"
+                    },
+                    "principal": "alexa-appkit.amazon.com",
+                    "eventSourceToken": "12456080-6c72-4e47-9e57-8099b9c3920e"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.CfnPermission",
                   "version": "1.121.0"
                 }
               },
@@ -689,7 +768,12 @@
                                     {
                                       "Action": "dynamodb:*",
                                       "Effect": "Allow",
-                                      "Resource": "DDBTablePSGNewscastARN"
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "PSGNewscastPSGNewscastddbBE6AF493",
+                                          "Arn"
+                                        ]
+                                      }
                                     },
                                     {
                                       "Action": [
@@ -907,7 +991,12 @@
                                     {
                                       "Action": "dynamodb:*",
                                       "Effect": "Allow",
-                                      "Resource": "DDBTablePSGNewscastARN"
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "PSGNewscastPSGNewscastddbBE6AF493",
+                                          "Arn"
+                                        ]
+                                      }
                                     },
                                     {
                                       "Action": [
@@ -1130,7 +1219,12 @@
                                     {
                                       "Action": "dynamodb:*",
                                       "Effect": "Allow",
-                                      "Resource": "DDBTablePSGNewscastARN"
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "PSGNewscastPSGNewscastddbBE6AF493",
+                                          "Arn"
+                                        ]
+                                      }
                                     },
                                     {
                                       "Action": [
@@ -1270,6 +1364,172 @@
                   "version": "1.121.0"
                 }
               },
+              "lambda-twit": {
+                "id": "lambda-twit",
+                "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit/ServiceRole",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-iam.CfnRole",
+                          "version": "1.121.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.Role",
+                      "version": "1.121.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.AssetStaging",
+                          "version": "1.121.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit/Code/AssetBucket",
+                        "children": {
+                          "Notifications": {
+                            "id": "Notifications",
+                            "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit/Code/AssetBucket/Notifications",
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/core.Construct",
+                              "version": "1.121.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-s3.BucketBase",
+                          "version": "1.121.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-s3-assets.Asset",
+                      "version": "1.121.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "PsgNewscastCdkStack/PSGNewscast/lambda-twit/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Ref": "AssetParameters28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4S3Bucket3BBC69C0"
+                          },
+                          "s3Key": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::Select": [
+                                    0,
+                                    {
+                                      "Fn::Split": [
+                                        "||",
+                                        {
+                                          "Ref": "AssetParameters28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4S3VersionKey4007AF33"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Select": [
+                                    1,
+                                    {
+                                      "Fn::Split": [
+                                        "||",
+                                        {
+                                          "Ref": "AssetParameters28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4S3VersionKey4007AF33"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          }
+                        },
+                        "role": {
+                          "Fn::GetAtt": [
+                            "PSGNewscastlambdatwitServiceRole12E30BE2",
+                            "Arn"
+                          ]
+                        },
+                        "environment": {
+                          "variables": {
+                            "twit": "PSGTalk"
+                          }
+                        },
+                        "functionName": "PSGNewscast-livetweet",
+                        "handler": "index.handler",
+                        "layers": [
+                          {
+                            "Ref": "PSGNewscastmomenttzlayer25BDAE27"
+                          }
+                        ],
+                        "runtime": "nodejs10.x",
+                        "timeout": 10
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+                      "version": "1.121.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-lambda.Function",
+                  "version": "1.121.0"
+                }
+              },
               "StepFunctions-PSGNewscast-MyStateMachineStandard-role": {
                 "id": "StepFunctions-PSGNewscast-MyStateMachineStandard-role",
                 "path": "PsgNewscastCdkStack/PSGNewscast/StepFunctions-PSGNewscast-MyStateMachineStandard-role",
@@ -1373,7 +1633,12 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::StepFunctions::StateMachine",
                   "aws:cdk:cloudformation:props": {
-                    "roleArn": "StatesARN",
+                    "roleArn": {
+                      "Fn::GetAtt": [
+                        "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardrole600EFED4",
+                        "Arn"
+                      ]
+                    },
                     "definitionString": "{\n                \"Comment\": \"Example of a workflow which invokes your Lambda function, implements retries, and catches errors. Learn more at https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-creating-lambda-state-machine.html\",\n                \"StartAt\": \"Choice\",\n                \"States\": {\n                  \"Choice\": {\n                    \"Type\": \"Choice\",\n                    \"Choices\": [\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"LastResultsIntent\",\n                        \"Next\": \"Step 1: Invoke Lambda function\"\n                      },\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"NextGameIntent\",\n                        \"Next\": \"Lambda Invoke\"\n                      },\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"Welcome\",\n                        \"Next\": \"Pass\"\n                      },\n                      {\n                        \"Variable\": \"$.intentname\",\n                        \"StringEquals\": \"StandingsIntent\",\n                        \"Next\": \"Lambda Invoke Standings\"\n                      }\n                    ],\n                    \"Default\": \"Step 3\"\n                  },\n                  \"Lambda Invoke\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::lambda:invoke\",\n                    \"Parameters\": {\n                      \"FunctionName\": \"arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-nextgame\",\n                      \"Payload\": {\n                        \"Input.$\": \"$\"\n                      }\n                    },\n                    \"Retry\": [\n                      {\n                        \"ErrorEquals\": [\n                          \"Lambda.ServiceException\",\n                          \"Lambda.AWSLambdaException\",\n                          \"Lambda.SdkClientException\"\n                        ],\n                        \"IntervalSeconds\": 2,\n                        \"MaxAttempts\": 6,\n                        \"BackoffRate\": 2\n                      }\n                    ],\n                    \"End\": true\n                  },\n                  \"Pass\": {\n                    \"Type\": \"Pass\",\n                    \"End\": true,\n                    \"Result\": {\n                      \"Payload\": {\n                        \"lastresults\": \"Welcome to PSG news. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.\"\n                      }\n                    }\n                  },\n                  \"Step 1: Invoke Lambda function\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::lambda:invoke\",\n                    \"Parameters\": {\n                      \"FunctionName\": \"arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-lastresults-score\",\n                      \"Payload\": {\n                        \"Input.$\": \"$\"\n                      }\n                    },\n                    \"Retry\": [\n                      {\n                        \"Comment\": \"Use Retry fields to retry a Lambda function after an error occurs. Learn more at https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-retrying-after-an-error\",\n                        \"ErrorEquals\": [\n                          \"Lambda.ServiceException\",\n                          \"Lambda.TooManyRequestsException\",\n                          \"Lambda.AWSLambdaException\",\n                          \"Lambda.SdkClientException\"\n                        ],\n                        \"IntervalSeconds\": 2,\n                        \"MaxAttempts\": 6,\n                        \"BackoffRate\": 2\n                      }\n                    ],\n                    \"Catch\": [\n                      {\n                        \"Comment\": \"Use Catch fields to catch errors and revert to fallback states. https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-fallback-states\",\n                        \"ErrorEquals\": [\n                          \"States.ALL\"\n                        ],\n                        \"Next\": \"Fallback state\"\n                      }\n                    ],\n                    \"End\": true\n                  },\n                  \"Step 3\": {\n                    \"Comment\": \"Use Pass states as placeholders for future states\",\n                    \"Type\": \"Pass\",\n                    \"End\": true\n                  },\n                  \"Fallback state\": {\n                    \"Comment\": \"Handle Lambda exceptions here\",\n                    \"Type\": \"Pass\",\n                    \"Next\": \"Fail\"\n                  },\n                  \"Fail\": {\n                    \"Type\": \"Fail\"\n                  },\n                  \"Lambda Invoke Standings\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::lambda:invoke\",\n                    \"Parameters\": {\n                      \"FunctionName\": \"arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-leaderboard\",\n                      \"Payload\": {\n                        \"Input.$\": \"$\"\n                      }\n                    },\n                    \"Retry\": [\n                      {\n                        \"ErrorEquals\": [\n                          \"Lambda.ServiceException\",\n                          \"Lambda.AWSLambdaException\",\n                          \"Lambda.SdkClientException\"\n                        ],\n                        \"IntervalSeconds\": 2,\n                        \"MaxAttempts\": 6,\n                        \"BackoffRate\": 2\n                      }\n                    ],\n                    \"End\": true\n                  }\n                }\n              }",
                     "stateMachineName": "CDK-PSGNewscast-MyStateMachineStandard"
                   }
@@ -1381,66 +1646,6 @@
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-stepfunctions.CfnStateMachine",
                   "version": "1.121.0"
-                }
-              },
-              "PSGNewscastddb": {
-                "id": "PSGNewscastddb",
-                "path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
-                      "aws:cdk:cloudformation:props": {
-                        "keySchema": [
-                          {
-                            "attributeName": "ID",
-                            "keyType": "HASH"
-                          }
-                        ],
-                        "attributeDefinitions": [
-                          {
-                            "attributeName": "ID",
-                            "attributeType": "S"
-                          }
-                        ],
-                        "provisionedThroughput": {
-                          "readCapacityUnits": 5,
-                          "writeCapacityUnits": 5
-                        },
-                        "tableName": "PSGNewscast",
-                        "timeToLiveSpecification": {
-                          "attributeName": "TTL",
-                          "enabled": true
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-dynamodb.CfnTable",
-                      "version": "1.121.0"
-                    }
-                  },
-                  "ScalingRole": {
-                    "id": "ScalingRole",
-                    "path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb/ScalingRole",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.121.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-dynamodb.Table",
-                  "version": "1.121.0"
-                }
-              },
-              "DDBTablePSGNewscastARN": {
-                "id": "DDBTablePSGNewscastARN",
-                "path": "PsgNewscastCdkStack/PSGNewscast/DDBTablePSGNewscastARN",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.118.0"
                 }
               }
             },
@@ -1453,13 +1658,13 @@
             "id": "AssetParameters",
             "path": "PsgNewscastCdkStack/AssetParameters",
             "children": {
-              "45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5": {
-                "id": "45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5",
-                "path": "PsgNewscastCdkStack/AssetParameters/45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5",
+              "5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4": {
+                "id": "5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4",
+                "path": "PsgNewscastCdkStack/AssetParameters/5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "PsgNewscastCdkStack/AssetParameters/45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5/S3Bucket",
+                    "path": "PsgNewscastCdkStack/AssetParameters/5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.118.0"
@@ -1467,7 +1672,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "PsgNewscastCdkStack/AssetParameters/45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5/S3VersionKey",
+                    "path": "PsgNewscastCdkStack/AssetParameters/5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.118.0"
@@ -1475,7 +1680,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "PsgNewscastCdkStack/AssetParameters/45bc6aa4a1e70d6846834a187163737870aadc620384fb70f9ad40ecbbc7c1e5/ArtifactHash",
+                    "path": "PsgNewscastCdkStack/AssetParameters/5e215e14a5cd8bb8d829e2eb2234392275dc27f71a03c9d0ec2618dd526545f4/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.118.0"
@@ -1487,13 +1692,13 @@
                   "version": "1.118.0"
                 }
               },
-              "d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945": {
-                "id": "d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945",
-                "path": "PsgNewscastCdkStack/AssetParameters/d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945",
+              "0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6": {
+                "id": "0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6",
+                "path": "PsgNewscastCdkStack/AssetParameters/0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "PsgNewscastCdkStack/AssetParameters/d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945/S3Bucket",
+                    "path": "PsgNewscastCdkStack/AssetParameters/0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6/S3Bucket",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.118.0"
@@ -1501,7 +1706,7 @@
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "PsgNewscastCdkStack/AssetParameters/d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945/S3VersionKey",
+                    "path": "PsgNewscastCdkStack/AssetParameters/0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6/S3VersionKey",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.118.0"
@@ -1509,7 +1714,7 @@
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "PsgNewscastCdkStack/AssetParameters/d5f5b676aee2091d51b094d78b3a32a6738dc25e76a6ec5adce0db41b4744945/ArtifactHash",
+                    "path": "PsgNewscastCdkStack/AssetParameters/0e698997f9dae44500be5b2199d93add3e2ee2171b9a58ab3fc8a4be52a063b6/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.118.0"
@@ -1646,6 +1851,40 @@
                   "ArtifactHash": {
                     "id": "ArtifactHash",
                     "path": "PsgNewscastCdkStack/AssetParameters/9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe/ArtifactHash",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.118.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.118.0"
+                }
+              },
+              "28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4": {
+                "id": "28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4",
+                "path": "PsgNewscastCdkStack/AssetParameters/28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "PsgNewscastCdkStack/AssetParameters/28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4/S3Bucket",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.118.0"
+                    }
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "PsgNewscastCdkStack/AssetParameters/28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4/S3VersionKey",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnParameter",
+                      "version": "1.118.0"
+                    }
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "PsgNewscastCdkStack/AssetParameters/28697e99a03e424e4e33fe000740d37eb8ef46c58a39762d7b0e893211c289b4/ArtifactHash",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.CfnParameter",
                       "version": "1.118.0"

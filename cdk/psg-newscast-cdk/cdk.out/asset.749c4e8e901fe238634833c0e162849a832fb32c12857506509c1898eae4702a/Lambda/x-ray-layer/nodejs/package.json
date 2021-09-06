@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "atomic-batcher": "^1.0.2",
+    "aws-xray-sdk": "^3.3.3",
+    "cls-hooked": "^4.2.2",
+    "pkginfo": "^0.4.1",
+    "semver": "^7.3.5"
+  }
+}

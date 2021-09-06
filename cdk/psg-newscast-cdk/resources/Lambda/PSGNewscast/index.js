@@ -47,6 +47,7 @@ const WelcomeIntentHandler = {
 
         return handlerInput.responseBuilder
             .withSimpleCard('PSG News', "Welcome to PSG Newscast") // <--
+            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
             .speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.")
             .reprompt(repromptText)
             .getResponse();
@@ -167,6 +168,59 @@ const StandingsIntentHandler = {
     }
 };
 
+const MusicIntentHandler = {
+    canHandle(handlerInput) {
+        console.log("handlerInput2: ", handlerInput.requestEnvelope.request);
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name === 'MusicIntent';
+    },
+    async handle(handlerInput) {
+            console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
+            const repromptText = '';
+            
+            //return WelcomeIntentHandler.handle(handlerInput);
+
+        return handlerInput.responseBuilder
+
+            .withSimpleCard('PSG News', "PSG Intro") // <--
+            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
+            .speak("<audio src='https://psgnewscast-skill2021.s3.amazonaws.com/PSG_Intro.mp3'/>. ")
+            .reprompt(repromptText)
+            .getResponse();
+        
+    }
+};
+
+const TwitIntentHandler = {
+    canHandle(handlerInput) {
+        console.log("handlerInput2: ", handlerInput.requestEnvelope.request);
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name === 'TwitIntent';
+    },
+    async handle(handlerInput) {
+            console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
+            const repromptText = '';
+            var paramslbd = {
+                FunctionName: 'PSGNewscast-dispatcher', /* required */
+                Payload: JSON.stringify({'sessionState': {'intent': {'name': 'TwitIntent'}}})
+            };
+            console.log("track001");
+            var displast = await lambda.invoke(paramslbd).promise();
+            console.log("displast: ",JSON.parse(displast.Payload));
+            
+            //return WelcomeIntentHandler.handle(handlerInput);
+
+        return handlerInput.responseBuilder
+
+            .withSimpleCard('PSG News', "PSG Intro") // <--
+            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
+            .speak(JSON.parse(displast.Payload).messages[0].content.conc)
+            .reprompt(repromptText)
+            .getResponse();
+        
+    }
+};
+
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -189,7 +243,7 @@ const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
             && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
-                || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
+                || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent' || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.FallbackIntent');
     },
     handle(handlerInput) {
         const speechText = '<lang xml:lang="en-US">Bye bye</lang>';
@@ -257,6 +311,8 @@ exports.handler = Alexa.SkillBuilders.custom()
         LastResultsIntentHandler,
         NextGameIntentHandler,
         StandingsIntentHandler,
+        MusicIntentHandler,
+        TwitIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
