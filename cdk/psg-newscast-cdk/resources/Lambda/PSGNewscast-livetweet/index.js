@@ -46,7 +46,7 @@ exports.handler = async (event, context, callback) => {
         console.log("jsonlivetweets2:", jsonlivetweets2);
         var conc = "Here is the latest news on Paris Saint Germain. First news! ".concat(jsonlivetweets1,". Second news! ", jsonlivetweets2,". Third news! ", jsonlivetweets3,". Fourth news! ", jsonlivetweets4);
         console.log("conc: ",conc);
-        var tweetslist = '[{"text": '+ jsonlivetweets1+'},{"text": '+ jsonlivetweets2+'},{"text": '+ jsonlivetweets3+'},{"text": '+ jsonlivetweets4+'}]';
+        var tweetslist = '[{"text": "'+ jsonlivetweets1+'"},{"text": "'+ jsonlivetweets2+'"},{"text": "'+ jsonlivetweets3+'"},{"text": "'+ jsonlivetweets4+'"}]';
         return {
           "lastresults": {
               conc,

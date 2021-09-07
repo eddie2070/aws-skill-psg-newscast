@@ -207,13 +207,15 @@ const TwitIntentHandler = {
             console.log("track001");
             var displast = await lambda.invoke(paramslbd).promise();
             console.log("displast: ",JSON.parse(displast.Payload));
+            console.log("displast: ",JSON.parse(displast.Payload).messages[0].content);
+            var plot3 = JSON.parse(displast.Payload).messages[0].content.livetweet.tweetslist;
+            console.log("plot3: ",plot3);
             
             //return WelcomeIntentHandler.handle(handlerInput);
 
         return handlerInput.responseBuilder
 
-            .withSimpleCard('PSG News', "PSG Intro") // <--
-            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
+            .withNewsCard('PSG News','{"listdata":'+plot3+'}')            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
             .speak(JSON.parse(displast.Payload).messages[0].content.conc)
             .reprompt(repromptText)
             .getResponse();
@@ -321,6 +323,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestInterceptors(require('./resultscard').APLHomeCardRequestInterceptor) // <---
     .addRequestInterceptors(require('./nextcard').APLHomeCardRequestInterceptor) // <---
     .addRequestInterceptors(require('./standingscard').APLHomeCardRequestInterceptor) // <---
+    .addRequestInterceptors(require('./newscard').APLHomeCardRequestInterceptor) // <---
     .addErrorHandlers(
         ErrorHandler)
     .lambda();
