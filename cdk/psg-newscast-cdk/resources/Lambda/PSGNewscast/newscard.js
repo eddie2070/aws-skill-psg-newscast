@@ -126,6 +126,11 @@ const APLDoc =
                 "backgroundColorOverlay": "True",
                 "headerTitle": "Latest News for PSG - (source @PSGTalk)",
                 "headerBackButton": true,
+                "headerBackButtonCommand": [	
+                    {"type":"SendEvent","arguments":["goBack"],
+                    "components": [ "idForTheTextComponent"]
+                }
+            ],
                 "backgroundImageSource": "https://w0.peakpx.com/wallpaper/26/11/HD-wallpaper-psg-french-football-club-logo-blue-fabric-background-t-shirt-emblem-paris-saint-germain-france-football.jpg",
                 "listItems": "${sourcing.listdata}",
                 "touchForward": true,

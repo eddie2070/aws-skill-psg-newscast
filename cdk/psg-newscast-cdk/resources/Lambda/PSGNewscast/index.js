@@ -4,19 +4,32 @@ var AWSXRay = require('aws-xray-sdk');
 var lexruntimev2 = new AWS.LexRuntimeV2({
   service: new AWS.LexRuntimeV2()
 });
+var documentClient = new AWS.DynamoDB.DocumentClient();
 
 
 AWSXRay.captureAWSClient(lexruntimev2);
 
 var lambda = new AWS.Lambda();
 
-var params = {
-  botAliasId: 'TSTALIASID', /* required */
-  botId: 'CXEPMHBC6Z', /* required */
-  localeId: 'en_US', /* required */
-  sessionId: '123456',//Math.floor(Date.now() /1000).toString() /* required */,
-  text: 'Welcome'
+var ddbcheckfn = async (id) => {
+    var ddbcheckparams = {
+            Key: {
+                "ID": id
+            }, 
+            TableName: "PSGNewscast"
+        };
+    var ddbcheck  = await documentClient.get(ddbcheckparams).promise();
+    console.log('ddbcheck: ', ddbcheck);
+    return ddbcheck;
 };
+
+// var params = {
+//   botAliasId: 'TSTALIASID', /* required */
+//   botId: 'CXEPMHBC6Z', /* required */
+//   localeId: 'en_US', /* required */
+//   sessionId: '123456',//Math.floor(Date.now() /1000).toString() /* required */,
+//   text: 'Welcome'
+// };
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -25,7 +38,7 @@ const LaunchRequestHandler = {
     },
     async handle(handlerInput) {
       //var lexresp = await lexruntimev2.recognizeText(params).promise();
-      const repromptText = '';
+      const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.';
       //console.log("lexresp: ", lexresp.messages[0].content);
         return handlerInput.responseBuilder
             .withSimpleCard('PSG Newscast', "Welcome to PSG Newscast") // <--
@@ -43,7 +56,7 @@ const WelcomeIntentHandler = {
     },
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
-            const repromptText = '';
+            const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.';
 
         return handlerInput.responseBuilder
             .withSimpleCard('PSG News', "Welcome to PSG Newscast") // <--
@@ -65,28 +78,44 @@ const LastResultsIntentHandler = {
             //var lexresp = await lexruntimev2.recognizeText({botAliasId: 'TSTALIASID', botId: 'CXEPMHBC6Z', localeId: 'en_US', sessionId: Math.floor(Date.now() /1000).toString(),text: handlerInput.requestEnvelope.request.intent.name }).promise();
             //var lexresp = await lexruntimev2.recognizeText({botAliasId: 'TSTALIASID', botId: 'CXEPMHBC6Z', localeId: 'en_US', sessionId: '123456',text: handlerInput.requestEnvelope.request.intent.name }).promise();
             const repromptText = '';
-            var paramslbd = {
-                FunctionName: 'PSGNewscast-dispatcher', /* required */
-                Payload: JSON.stringify({'sessionState': {'intent': {'name': 'LastResultsIntent'}}})
-            };
-            var displast = await lambda.invoke(paramslbd).promise();
-            console.log("displast: ",JSON.parse(displast.Payload));
-            var homescore = JSON.parse(displast.Payload).messages[0].content.score.homescore;
-            var awayscore = JSON.parse(displast.Payload).messages[0].content.score.awayscore;
-            var hometeamlogo = JSON.parse(displast.Payload).messages[0].content.score.hometeamlogo;
-            var awayteamlogo = JSON.parse(displast.Payload).messages[0].content.score.awayteamlogo;
-            var journey = JSON.parse(displast.Payload).messages[0].content.score.journey;
-            var jsoncompetition = JSON.parse(displast.Payload).messages[0].content.score.jsoncompetition;
-            var jsongamedate = JSON.parse(displast.Payload).messages[0].content.score.jsongamedate;
-            console.log("homescore: ",homescore);
-            console.log("awayscore: ",awayscore);
+            var checkddblast = await ddbcheckfn("lastresults");
+            console.log("checkddblast: ",checkddblast);
+            if (JSON.stringify(checkddblast) === "{}") {
+                var paramslbd = {
+                    FunctionName: 'PSGNewscast-dispatcher', /* required */
+                    Payload: JSON.stringify({'sessionState': {'intent': {'name': 'LastResultsIntent'}}})
+                };
+                var displast = await lambda.invoke(paramslbd).promise();
+                console.log("displast: ",JSON.parse(displast.Payload));
+                var homescore = JSON.parse(displast.Payload).messages[0].content.score.homescore;
+                var awayscore = JSON.parse(displast.Payload).messages[0].content.score.awayscore;
+                var hometeamlogo = JSON.parse(displast.Payload).messages[0].content.score.hometeamlogo;
+                var awayteamlogo = JSON.parse(displast.Payload).messages[0].content.score.awayteamlogo;
+                var journey = JSON.parse(displast.Payload).messages[0].content.score.journey;
+                var jsoncompetition = JSON.parse(displast.Payload).messages[0].content.score.jsoncompetition;
+                var jsongamedate = JSON.parse(displast.Payload).messages[0].content.score.jsongamedate;
+                console.log("homescore: ",homescore);
+                console.log("awayscore: ",awayscore);
+                var speak = JSON.parse(displast.Payload).messages[0].content.conc
             //console.log("lexresp2: ", lexresp);
+            } else {
+                var homescore = checkddblast.Item.score.scoredata.homescore;
+                console.log("eeee: ", homescore);
+                var awayscore = checkddblast.Item.score.scoredata.awayscore;
+                var hometeamlogo = checkddblast.Item.score.scoredata.hometeamlogo;
+                var awayteamlogo = checkddblast.Item.score.scoredata.awayteamlogo;
+                var journey = checkddblast.Item.score.scoredata.journey;
+                var jsoncompetition = checkddblast.Item.score.scoredata.jsoncompetition;
+                var jsongamedate = checkddblast.Item.score.scoredata.jsongamedate;
+                var speak = checkddblast.Item.output.conc;
+            }
+
         
         return handlerInput.responseBuilder
             //.withSimpleCard('PSG News', lexresp.messages[0].content) // <--
             .withResultsCard('PSG News','{"homescore": "'+homescore+'", "awayscore": "'+awayscore+'", "hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'"}') // <--
-            .speak(JSON.parse(displast.Payload).messages[0].content.conc)
-            .reprompt(repromptText)
+            .speak(speak)
+            .reprompt(speak)
             .getResponse();
     }
 };
@@ -100,26 +129,43 @@ const NextGameIntentHandler = {
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
-            var paramslbd = {
-                FunctionName: 'PSGNewscast-dispatcher', /* required */
-                Payload: JSON.stringify({'sessionState': {'intent': {'name': 'NextGameIntent'}}})
-            };
-            console.log("track001");
-            var displast = await lambda.invoke(paramslbd).promise();
-            console.log("displast: ",JSON.parse(displast.Payload));
-            console.log("displast2: ",JSON.parse(displast.Payload).messages[0].content);
-            var hometeamlogo = JSON.parse(displast.Payload).messages[0].content.nextgame.hometeamlogo;
-            var awayteamlogo = JSON.parse(displast.Payload).messages[0].content.nextgame.awayteamlogo;
-            var journey = JSON.parse(displast.Payload).messages[0].content.nextgame.journey;
-            var jsoncompetition = JSON.parse(displast.Payload).messages[0].content.nextgame.jsoncompetition;
-            var jsongamedate = JSON.parse(displast.Payload).messages[0].content.nextgame.jsongamedate;
-            var jsongamestadium = JSON.parse(displast.Payload).messages[0].content.nextgame.jsongamestadium;
+            var checkddbnext = await ddbcheckfn("nextgame");
+            console.log("checkddbnext: ",checkddbnext);
+             if (JSON.stringify(checkddbnext) === "{}") {
+                var paramslbd = {
+                    FunctionName: 'PSGNewscast-dispatcher', /* required */
+                    Payload: JSON.stringify({'sessionState': {'intent': {'name': 'NextGameIntent'}}})
+                };
+                console.log("track001");
+                var displast = await lambda.invoke(paramslbd).promise();
+                console.log("displast: ",JSON.parse(displast.Payload));
+                console.log("displast2: ",JSON.parse(displast.Payload).messages[0].content);
+                var hometeamlogo = JSON.parse(displast.Payload).messages[0].content.nextgame.hometeamlogo;
+                var awayteamlogo = JSON.parse(displast.Payload).messages[0].content.nextgame.awayteamlogo;
+                var journey = JSON.parse(displast.Payload).messages[0].content.nextgame.journey;
+                var jsoncompetition = JSON.parse(displast.Payload).messages[0].content.nextgame.jsoncompetition;
+                var jsongamedate = JSON.parse(displast.Payload).messages[0].content.nextgame.jsongamedate;
+                var jsongamestadium = JSON.parse(displast.Payload).messages[0].content.nextgame.jsongamestadium;
+                var jsongamenexthome = JSON.parse(displast.Payload).messages[0].content.nextgame.jsongamenexthome;
+                var jsongamenextaway = JSON.parse(displast.Payload).messages[0].content.nextgame.jsongamenextaway;
+                var speak = JSON.parse(displast.Payload).messages[0].content.conc;
+             } else {
+                var hometeamlogo = checkddbnext.Item.nextgame.nextgamedata.hometeamlogo;
+                var awayteamlogo = checkddbnext.Item.nextgame.nextgamedata.awayteamlogo;
+                var journey = checkddbnext.Item.nextgame.nextgamedata.journey;
+                var jsoncompetition = checkddbnext.Item.nextgame.nextgamedata.jsoncompetition;
+                var jsongamedate = checkddbnext.Item.nextgame.nextgamedata.jsongamedate;
+                var jsongamestadium = checkddbnext.Item.nextgame.nextgamedata.jsongamestadium;
+                var jsongamenexthome = checkddbnext.Item.nextgame.nextgamedata.jsongamenexthome;
+                var jsongamenextaway = checkddbnext.Item.nextgame.nextgamedata.jsongamenextaway;
+                var speak = checkddbnext.Item.output.conc;
+             }
         
         return handlerInput.responseBuilder
             //.withSimpleCard('PSG News', lexresp.messages[0].content) // <--
-            .withNextCard('PSG News','{"hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'", "jsongamestadium": "'+jsongamestadium+'"}') // <--
-            .speak(JSON.parse(displast.Payload).messages[0].content.conc)
-            .reprompt(repromptText)
+            .withNextCard('PSG News','{"hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'", "jsongamestadium": "'+jsongamestadium+'","jsongamenexthome": "'+jsongamenexthome+'", "jsongamenextaway":"'+jsongamenextaway+'"}') // <--
+            .speak(speak)
+            .reprompt(speak)
             .getResponse();
     }
 };
@@ -163,7 +209,7 @@ const StandingsIntentHandler = {
             //.withStandingsCard('PSG News','{"listdata": '+JSON.parse(displast.Payload).messages[0].content.standings+'}') // <--
             //.withStandingsCard('PSG News','"listTemplate1ListData": {"listId": "lt1Sample","type": "list","listPage": {"listItems": [{"score": 15,"listItemIdentifier": "1","ordinalNumber": 1,"text": "PSG","position": 1,"token": "1"}]},"totalNumberOfItems": 1}')
             .speak(JSON.parse(displast.Payload).messages[0].content.conc)
-            .reprompt(repromptText)
+            .reprompt(JSON.parse(displast.Payload).messages[0].content.conc)
             .getResponse();
     }
 };
@@ -184,8 +230,8 @@ const MusicIntentHandler = {
 
             .withSimpleCard('PSG News', "PSG Intro") // <--
             //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
-            .speak("<audio src='https://psgnewscast-skill2021.s3.amazonaws.com/PSG_Intro.mp3'/>. ")
-            .reprompt(repromptText)
+            .speak("<audio src='https://psgnewscast-skill2021.s3.amazonaws.com/PSG_Intro.mp3'/> ")
+            .reprompt("<audio src='https://psgnewscast-skill2021.s3.amazonaws.com/PSG_Intro.mp3'/> ")
             .getResponse();
         
     }
@@ -217,7 +263,7 @@ const TwitIntentHandler = {
 
             .withNewsCard('PSG News','{"listdata":'+plot3+'}')            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
             .speak(JSON.parse(displast.Payload).messages[0].content.conc)
-            .reprompt(repromptText)
+            .reprompt(JSON.parse(displast.Payload).messages[0].content.conc)
             .getResponse();
         
     }
@@ -272,7 +318,10 @@ const SessionEndedRequestHandler = {
 // handler chain below.
 const IntentReflectorHandler = {
     canHandle(handlerInput) {
+        console.log("handlerInputReflector: ", handlerInput.requestEnvelope.request);
+        console.log("handlerInputReflectorarg: ", handlerInput.requestEnvelope.request.arguments[0]);
         return handlerInput.requestEnvelope.request.type === 'IntentRequest';
+
     },
     handle(handlerInput) {
         const intentName = handlerInput.requestEnvelope.request.intent.name;
@@ -282,6 +331,23 @@ const IntentReflectorHandler = {
             .speak(speechText)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
+    }
+};
+
+const GoBackHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'Alexa.Presentation.APL.UserEvent'
+        && handlerInput.requestEnvelope.request.arguments[0] === 'goBack';
+    },
+    async handle(handlerInput) {
+            //console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
+         return handlerInput.responseBuilder
+            .withSimpleCard('PSG News', "Welcome to PSG Newscast") // <--
+            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
+            .speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.")
+            .reprompt("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.")
+            .getResponse();
+        
     }
 };
 
@@ -318,6 +384,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
+        GoBackHandler,
         IntentReflectorHandler)
     .addRequestInterceptors(require('./aplcard').APLHomeCardRequestInterceptor) // <---
     .addRequestInterceptors(require('./resultscard').APLHomeCardRequestInterceptor) // <---

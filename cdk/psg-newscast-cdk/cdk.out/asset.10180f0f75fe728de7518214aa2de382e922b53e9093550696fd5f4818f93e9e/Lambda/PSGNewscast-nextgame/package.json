@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^0.21.1",
-    "jsonpath": "^1.1.1",
-    "number-to-words": "^1.2.4"
-  }
-}

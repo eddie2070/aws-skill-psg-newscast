@@ -18,8 +18,16 @@ var emojiStrip = require('emoji-strip');
 var twitterScreenName = require('twitter-screen-name');
 
 exports.handler = async (event, context, callback) => {
-    //const response = await axios.get(url, { headers })
-    //console.log(response.data);
+  var params = {
+    Key: {
+        "ID": "news"
+    }, 
+    TableName: "PSGNewscast"
+};
+//var ddbcheck = await dynamodb.getItem(params).promise();
+var ddbcheck  = await documentClient.get(params).promise();
+console.log("ddbcheck: ", ddbcheck);
+if (JSON.stringify(ddbcheck) === "{}") {
     var T = new Twit(config); //this is the object of twit which will help us to call functions inside it
     //var params = {from:'PSG_English', until:'2018-09-24', count: 10}; // this is the param variable which will have key and value,the key is the keyword which we are interested in searching and count is the count of it
     var params = {from:process.env.twit, count: 10, tweet_mode: 'extended'}; // this is the param variable which will have key and value,the key is the keyword which we are interested in searching and count is the count of it
@@ -29,7 +37,7 @@ exports.handler = async (event, context, callback) => {
     .catch(function (err) {
       console.log('caught error', err.stack)
     })
-    .then(function (result) {
+    .then(async function (result) {
       var tweets = result
         console.log("tweets:", tweets);
         let jsontweet = JSON.stringify(tweets);
@@ -47,6 +55,29 @@ exports.handler = async (event, context, callback) => {
         var conc = "Here is the latest news on Paris Saint Germain. First news! ".concat(jsonlivetweets1,". Second news! ", jsonlivetweets2,". Third news! ", jsonlivetweets3,". Fourth news! ", jsonlivetweets4);
         console.log("conc: ",conc);
         var tweetslist = '[{"text": "'+ jsonlivetweets1+'"},{"text": "'+ jsonlivetweets2+'"},{"text": "'+ jsonlivetweets3+'"},{"text": "'+ jsonlivetweets4+'"}]';
+
+        var paramsddb = {
+          Item: {
+              "ID": "news",
+              "output": {
+                conc
+              },
+              "livetweet":{
+                tweetslist
+              },
+              'UpdateTime': Math.floor(Date.now() /1000) ,
+              'TTL':  Math.floor(Date.now()/1000 + 600) ,
+          }, 
+          ReturnConsumedCapacity: "TOTAL",
+          TableName: "PSGNewscast"
+      };
+        console.log("paramsddb: ",paramsddb);
+        var ddbput = await documentClient.put(paramsddb).promise();
+        //if (err) console.log(err, err.stack); // an error occurred
+        //else     console.log(data);           // successful response
+        //});
+        console.log("ddbput: ",ddbput);
+
         return {
           "lastresults": {
               conc,
@@ -57,9 +88,19 @@ exports.handler = async (event, context, callback) => {
       }; 
 
     });
+
     console.log("conc2: ",tweetfind);
     return tweetfind;
-
+} else {
+  console.log("output from ddbcheck: ", ddbcheck.Item);
+  console.log("tweetslist from ddbcheck: ", ddbcheck.Item.livetweet.tweetslist);
+  return {
+      'lastresults': {
+          'conc': ddbcheck.Item.output.conc,
+          'livetweet': ddbcheck.Item.livetweet
+      }
+  };
+}
 
     /* var tweetfind = T.get('search/tweets', params,function (err, reply) {
         var tweets = reply

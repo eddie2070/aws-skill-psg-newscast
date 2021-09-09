@@ -148,7 +148,13 @@ const APLDoc =
                                         {
                                             "type": "AlexaHeader",
                                             "headerTitle": "Position in the leaderboard",
-                                            "headerAttributionImage": "${logo}"
+                                            "headerAttributionImage": "${logo}",
+                                            "headerBackButton": true,
+                                            "headerBackButtonCommand": [	
+                                                {"type":"SendEvent","arguments":["goBack"],
+                                                "components": [ "idForTheTextComponent"]
+                                                }
+                                            ],
                                         },
                                         {
                                             "direction": "row",

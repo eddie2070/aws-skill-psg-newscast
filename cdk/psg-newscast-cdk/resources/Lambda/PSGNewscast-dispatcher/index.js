@@ -20,18 +20,19 @@ async function dispatch(intentRequest, callback) {
     //var sessionAttributes = get_session_attributes(intentRequest);
     //const apiKey = process.env.apiKey;
     console.log("intentname: ",intentRequest.sessionState.intent.name);
+    var sfname= 'testing'+Date.now();
     var params = {
         stateMachineArn: 'arn:aws:states:us-east-1:753451452012:stateMachine:PSGNewscast-MyStateMachineStandard', /* required */
-        input: '{\"intentname\": \"'+intentRequest.sessionState.intent.name+'\"}',
-        name: 'testing'+Date.now(),
+        input: '{\"intentname\": \"'+intentRequest.sessionState.intent.name+'\", "token": "'+sfname+'"}',
+        name: sfname,
         traceHeader: 'test'
     };
     console.log("params: ", params);
     console.log("date1: ", Date.now());
-    var sfoutput = stepfunctions.startExecution(params).promise()
+        var sfoutput = stepfunctions.startExecution(params).promise()
         .then(async data => {
             console.log('==> data: ', data);
-            await new Promise(r => setTimeout(r, 4500));
+            await new Promise(r => setTimeout(r, 8000));
             return stepfunctions.describeExecution({ executionArn: data.executionArn }).promise();
         })
         .then(result => {
@@ -43,7 +44,7 @@ async function dispatch(intentRequest, callback) {
             var sessionAttributes = get_session_attributes(intentRequest);
             callback(close(intentRequest,sessionAttributes, 'Fulfilled',
                 {'contentType': 'PlainText', 'content': resultparse.lastresults}));
-           return {
+          return {
                 statusCode: 200,
                 message: JSON.stringify(result)
             };
@@ -58,7 +59,6 @@ async function dispatch(intentRequest, callback) {
     console.log("sfoutput: ",sfoutput);
     console.log("date2: ", Date.now());
     //const apiKey = process.env.apiKey;
-
 }
 
 

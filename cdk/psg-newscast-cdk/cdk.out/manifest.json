@@ -19,13 +19,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4c",
-              "id": "074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4c",
-              "packaging": "zip",
-              "sourceHash": "074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4c",
-              "s3BucketParameter": "AssetParameters074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4cS3BucketFF1638CE",
-              "s3KeyParameter": "AssetParameters074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4cS3VersionKeyB75B8137",
-              "artifactHashParameter": "AssetParameters074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4cArtifactHash4907BB03"
+              "path": "asset.3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151.zip",
+              "id": "3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151",
+              "packaging": "file",
+              "sourceHash": "3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151",
+              "s3BucketParameter": "AssetParameters3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151S3Bucket9A270A3B",
+              "s3KeyParameter": "AssetParameters3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151S3VersionKey43710407",
+              "artifactHashParameter": "AssetParameters3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151ArtifactHash358CD256"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -50,13 +50,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.a7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997ae",
-              "id": "a7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997ae",
-              "packaging": "zip",
-              "sourceHash": "a7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997ae",
-              "s3BucketParameter": "AssetParametersa7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997aeS3Bucket3BBBB905",
-              "s3KeyParameter": "AssetParametersa7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997aeS3VersionKey14ACB06A",
-              "artifactHashParameter": "AssetParametersa7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997aeArtifactHashC66AD228"
+              "path": "asset.5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6.zip",
+              "id": "5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6",
+              "packaging": "file",
+              "sourceHash": "5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6",
+              "s3BucketParameter": "AssetParameters5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6S3BucketE641BE75",
+              "s3KeyParameter": "AssetParameters5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6S3VersionKey32500D87",
+              "artifactHashParameter": "AssetParameters5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6ArtifactHashE829701E"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -66,8 +66,8 @@
               "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
-              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:41:21)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:33:29)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -81,13 +81,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd",
-              "id": "e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd",
-              "packaging": "zip",
-              "sourceHash": "e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd",
-              "s3BucketParameter": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3Bucket218E45F7",
-              "s3KeyParameter": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3VersionKey1E40D280",
-              "artifactHashParameter": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdArtifactHashF16FC760"
+              "path": "asset.5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572d.zip",
+              "id": "5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572d",
+              "packaging": "file",
+              "sourceHash": "5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572d",
+              "s3BucketParameter": "AssetParameters5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572dS3Bucket85BE1D59",
+              "s3KeyParameter": "AssetParameters5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572dS3VersionKey97D4CEB1",
+              "artifactHashParameter": "AssetParameters5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572dArtifactHash274A49C7"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -97,8 +97,8 @@
               "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
-              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:61:30)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:39:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -112,13 +112,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3",
-              "id": "ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3",
+              "path": "asset.6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8",
+              "id": "6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8",
               "packaging": "zip",
-              "sourceHash": "ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3",
-              "s3BucketParameter": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3BucketC8C394E0",
-              "s3KeyParameter": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3VersionKeyCA9F365C",
-              "artifactHashParameter": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3ArtifactHash835A0130"
+              "sourceHash": "6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8",
+              "s3BucketParameter": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3Bucket1DCC8E82",
+              "s3KeyParameter": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3VersionKeyB4F83D65",
+              "artifactHashParameter": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8ArtifactHash4EEFA021"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -129,7 +129,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:106:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:47:21)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -143,13 +143,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec",
-              "id": "3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec",
+              "path": "asset.e0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015d",
+              "id": "e0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015d",
               "packaging": "zip",
-              "sourceHash": "3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec",
-              "s3BucketParameter": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3BucketB5E6D262",
-              "s3KeyParameter": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3VersionKeyC1795E2F",
-              "artifactHashParameter": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecArtifactHashB3170C42"
+              "sourceHash": "e0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015d",
+              "s3BucketParameter": "AssetParameterse0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015dS3BucketAF8089F6",
+              "s3KeyParameter": "AssetParameterse0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015dS3VersionKeyBE2EF2F4",
+              "artifactHashParameter": "AssetParameterse0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015dArtifactHash1FC4D901"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -160,7 +160,69 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:151:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:67:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1",
+              "id": "18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1",
+              "packaging": "zip",
+              "sourceHash": "18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1",
+              "s3BucketParameter": "AssetParameters18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1S3Bucket108D5DC5",
+              "s3KeyParameter": "AssetParameters18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1S3VersionKey1A64D506",
+              "artifactHashParameter": "AssetParameters18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1ArtifactHashF0DB7608"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:175:29)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:112:33)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.b3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fd",
+              "id": "b3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fd",
+              "packaging": "zip",
+              "sourceHash": "b3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fd",
+              "s3BucketParameter": "AssetParametersb3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fdS3BucketFB4A2A38",
+              "s3KeyParameter": "AssetParametersb3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fdS3VersionKey3793D233",
+              "artifactHashParameter": "AssetParametersb3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fdArtifactHashF506506E"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:175:29)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:167:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -191,7 +253,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:197:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:231:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -205,13 +267,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.efb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30",
-              "id": "efb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30",
+              "path": "asset.6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456",
+              "id": "6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456",
               "packaging": "zip",
-              "sourceHash": "efb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30",
-              "s3BucketParameter": "AssetParametersefb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30S3Bucket802F8743",
-              "s3KeyParameter": "AssetParametersefb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30S3VersionKeyE1C945AA",
-              "artifactHashParameter": "AssetParametersefb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30ArtifactHashD0690412"
+              "sourceHash": "6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456",
+              "s3BucketParameter": "AssetParameters6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456S3BucketD2E0A2A4",
+              "s3KeyParameter": "AssetParameters6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456S3VersionKey43FA3AA8",
+              "artifactHashParameter": "AssetParameters6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456ArtifactHash82B390D4"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -222,7 +284,38 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:241:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:275:26)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c",
+              "id": "2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c",
+              "packaging": "zip",
+              "sourceHash": "2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c",
+              "s3BucketParameter": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3Bucket91D063DF",
+              "s3KeyParameter": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3VersionKeyB4EE7FEA",
+              "artifactHashParameter": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cArtifactHashE68DF8C8"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:175:29)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:322:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -290,10 +383,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/PSGNewscast/moment-tz-layer/Resource": [
+        "/PsgNewscastCdkStack/PSGNewscast/momentlayer/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "PSGNewscastmomenttzlayer25BDAE27",
+            "data": "PSGNewscastmomentlayer73D461E6",
             "trace": [
               "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:64:26)",
               "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:27:31)",
@@ -326,6 +419,24 @@
             ]
           }
         ],
+        "/PsgNewscastCdkStack/PSGNewscast/sharp-lambda-layer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PSGNewscastsharplambdalayerD94B3C56",
+            "trace": [
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:64:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:39:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
         "/PsgNewscastCdkStack/PSGNewscast/PSGNewscast/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -333,7 +444,7 @@
             "trace": [
               "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:80:35)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:41:21)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:47:21)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -351,7 +462,7 @@
             "data": "PSGNewscast892BE789",
             "trace": [
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:136:26)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:41:21)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:47:21)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -368,7 +479,7 @@
             "type": "aws:cdk:logicalId",
             "data": "PSGNewscastalexatolambda15B349DF",
             "trace": [
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:53:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:59:26)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -387,7 +498,7 @@
             "trace": [
               "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:80:35)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:61:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:67:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -407,7 +518,7 @@
               "new Policy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
               "Role.addToPrincipalPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
               "Function.addToRolePolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:60:19)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:73:22)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:79:22)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -425,7 +536,7 @@
             "data": "PSGNewscastlambdadispatcher6DF5A2D7",
             "trace": [
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:136:26)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:61:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:67:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -444,7 +555,7 @@
             "trace": [
               "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:80:35)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:106:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:112:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -464,7 +575,7 @@
               "new Policy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
               "Role.addToPrincipalPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
               "Function.addToRolePolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:60:19)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:116:25)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:123:25)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -482,7 +593,7 @@
             "data": "PSGNewscastlambdalastresultsscore981E2CC1",
             "trace": [
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:136:26)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:106:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:112:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -501,7 +612,7 @@
             "trace": [
               "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:80:35)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:151:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:167:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -521,7 +632,7 @@
               "new Policy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
               "Role.addToPrincipalPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
               "Function.addToRolePolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:60:19)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:162:22)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:179:22)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -539,7 +650,7 @@
             "data": "PSGNewscastlambdanextgame8C34E176",
             "trace": [
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:136:26)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:151:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:167:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -558,7 +669,7 @@
             "trace": [
               "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:80:35)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:197:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:231:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -578,7 +689,7 @@
               "new Policy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
               "Role.addToPrincipalPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
               "Function.addToRolePolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:60:19)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:207:25)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:241:25)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -596,7 +707,7 @@
             "data": "PSGNewscastlambdaleaderboard2DA7209C",
             "trace": [
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:136:26)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:197:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:231:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -615,7 +726,27 @@
             "trace": [
               "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:80:35)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:241:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:275:26)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/PSGNewscast/lambda-twit/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PSGNewscastlambdatwitServiceRoleDefaultPolicy30DFE032",
+            "trace": [
+              "new Policy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
+              "Role.addToPrincipalPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
+              "Function.addToRolePolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:60:19)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:288:18)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -633,7 +764,64 @@
             "data": "PSGNewscastlambdatwitB65D67CF",
             "trace": [
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:136:26)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:241:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:275:26)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/PSGNewscast/lambda-livegame/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PSGNewscastlambdalivegameServiceRoleBC07ADA4",
+            "trace": [
+              "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:80:35)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:322:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/PSGNewscast/lambda-livegame/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PSGNewscastlambdalivegameServiceRoleDefaultPolicy63D470C9",
+            "trace": [
+              "new Policy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
+              "Role.addToPrincipalPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
+              "Function.addToRolePolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:60:19)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:334:22)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/PSGNewscast/lambda-livegame/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PSGNewscastlambdalivegame99A9EEF9",
+            "trace": [
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:136:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:322:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -651,7 +839,7 @@
             "data": "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardrole600EFED4",
             "trace": [
               "new Role (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:255:32)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:377:32)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -671,7 +859,7 @@
               "new Policy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
               "Role.addToPrincipalPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
               "Role.addToPolicy (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-iam/lib/role.js:221:21)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:260:24)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:382:24)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -688,7 +876,7 @@
             "type": "aws:cdk:logicalId",
             "data": "PSGNewscastStatesARNF584D477",
             "trace": [
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:268:25)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:390:25)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -705,7 +893,7 @@
             "type": "aws:cdk:logicalId",
             "data": "PSGNewscastCDKPSGNewscastMyStateMachineStandard8046FD1F",
             "trace": [
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:274:23)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:396:23)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -717,10 +905,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4c/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4cS3BucketFF1638CE",
+            "data": "AssetParameters3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151S3Bucket9A270A3B",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -742,10 +930,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4c/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4cS3VersionKeyB75B8137",
+            "data": "AssetParameters3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151S3VersionKey43710407",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -767,10 +955,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4c/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters074fd595294d38dc414f003173e62ccecffeea1887bf78229205642f417acd4cArtifactHash4907BB03",
+            "data": "AssetParameters3ad256ca7537b075af091372a6c6ad6a19b941f1629a0c814187f7755d214151ArtifactHash358CD256",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -792,10 +980,160 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/a7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997ae/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersa7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997aeS3Bucket3BBBB905",
+            "data": "AssetParameters5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6S3BucketE641BE75",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:33:29)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6S3VersionKey32500D87",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:33:29)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5e4b852395d2d6acbcb45efd6fc6db130665494d4bca368f24de565dbe9491e6ArtifactHashE829701E",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:33:29)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572d/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572dS3Bucket85BE1D59",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:39:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572d/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572dS3VersionKey97D4CEB1",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:39:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572d/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572dArtifactHash274A49C7",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new LayerVersion (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/layers.js:57:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:39:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3Bucket1DCC8E82",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -805,7 +1143,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:41:21)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:47:21)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -817,10 +1155,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/a7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997ae/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersa7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997aeS3VersionKey14ACB06A",
+            "data": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3VersionKeyB4F83D65",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -830,7 +1168,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:41:21)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:47:21)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -842,10 +1180,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/a7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997ae/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersa7d680dddd0009d14dd6538f41d15aaae13cf4d324d76b20de6507746b4997aeArtifactHashC66AD228",
+            "data": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8ArtifactHash4EEFA021",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -855,7 +1193,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:41:21)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:47:21)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -867,10 +1205,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/e0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015d/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3Bucket218E45F7",
+            "data": "AssetParameterse0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015dS3BucketAF8089F6",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -880,7 +1218,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:61:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:67:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -892,10 +1230,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/e0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015d/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdS3VersionKey1E40D280",
+            "data": "AssetParameterse0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015dS3VersionKeyBE2EF2F4",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -905,7 +1243,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:61:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:67:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -917,10 +1255,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/e3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fd/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/e0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015d/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameterse3163a0a151339145f2dc3961cf3b074d016216f4e365a0a0c55c6ccf58269fdArtifactHashF16FC760",
+            "data": "AssetParameterse0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015dArtifactHash1FC4D901",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -930,7 +1268,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:61:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:67:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -942,10 +1280,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3BucketC8C394E0",
+            "data": "AssetParameters18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1S3Bucket108D5DC5",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -955,7 +1293,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:106:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:112:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -967,10 +1305,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3S3VersionKeyCA9F365C",
+            "data": "AssetParameters18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1S3VersionKey1A64D506",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -980,7 +1318,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:106:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:112:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -992,10 +1330,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/ea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersea8e3890d5269b6844440ce72a38cc523d52c6af5c60024bec66a350e52589e3ArtifactHash835A0130",
+            "data": "AssetParameters18f61efc5a2d9c61743efcb6cddc14f8dc59250f1cfbd47855c6ad2d312053f1ArtifactHashF0DB7608",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1005,7 +1343,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:106:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:112:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1017,10 +1355,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/b3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fd/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3BucketB5E6D262",
+            "data": "AssetParametersb3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fdS3BucketFB4A2A38",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1030,7 +1368,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:151:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:167:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1042,10 +1380,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/b3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fd/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecS3VersionKeyC1795E2F",
+            "data": "AssetParametersb3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fdS3VersionKey3793D233",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1055,7 +1393,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:151:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:167:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1067,10 +1405,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ec/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/b3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fd/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters3e043d61599861dd83ab1e25ab4f5e12938e55bf230bc50b38e6a69a57b399ecArtifactHashB3170C42",
+            "data": "AssetParametersb3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fdArtifactHashF506506E",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1080,7 +1418,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:151:30)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:167:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1105,7 +1443,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:197:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:231:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1130,7 +1468,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:197:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:231:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1155,7 +1493,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:197:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:231:33)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1167,10 +1505,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/efb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersefb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30S3Bucket802F8743",
+            "data": "AssetParameters6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456S3BucketD2E0A2A4",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1180,7 +1518,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:241:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:275:26)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1192,10 +1530,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/efb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersefb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30S3VersionKeyE1C945AA",
+            "data": "AssetParameters6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456S3VersionKey43FA3AA8",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1205,7 +1543,7 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:241:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:275:26)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",
@@ -1217,10 +1555,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/efb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParametersefb092ec4dc94ffe662e3e7073a1bc221bb1999f972f1abaf926bb3b271a7b30ArtifactHashD0690412",
+            "data": "AssetParameters6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456ArtifactHash82B390D4",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1230,7 +1568,82 @@
               "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
               "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
               "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
-              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:241:26)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:275:26)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3Bucket91D063DF",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:322:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3VersionKeyB4EE7FEA",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:322:30)",
+              "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
+              "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
+              "Module._compile (node:internal/modules/cjs/loader:1101:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)",
+              "Module.load (node:internal/modules/cjs/loader:981:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:822:12)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:79:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/PsgNewscastCdkStack/AssetParameters/2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cArtifactHashE68DF8C8",
+            "trace": [
+              "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:83:25)",
+              "PsgNewscastCdkStack.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack.js:425:33)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:87:31)",
+              "new Asset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-s3-assets/lib/asset.js:40:44)",
+              "AssetCode.bind (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/code.js:258:26)",
+              "new Function (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/aws-lambda/lib/function.js:98:33)",
+              "new psgService (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psgnewscast_service.js:322:30)",
               "new PsgNewscastCdkStack (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/lib/psg-newscast-cdk-stack.js:16:5)",
               "Object.<anonymous> (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/bin/psg-newscast-cdk.js:7:1)",
               "Module._compile (node:internal/modules/cjs/loader:1101:14)",

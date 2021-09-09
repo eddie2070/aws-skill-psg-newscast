@@ -21,7 +21,9 @@ const APLHomeCardRequestInterceptor = {
                             "journey": JSON.parse(cardContent).journey,
                             "jsoncompetition": JSON.parse(cardContent).jsoncompetition,
                             "jsongamedate": JSON.parse(cardContent).jsongamedate,
-                            "jsongamestadium": JSON.parse(cardContent).jsongamestadium
+                            "jsongamestadium": JSON.parse(cardContent).jsongamestadium,
+                            "jsongamenexthome": JSON.parse(cardContent).jsongamenexthome,
+                            "jsongamenextaway": JSON.parse(cardContent).jsongamenextaway
                         },
                         templateData: {
                             "header": cardTitle,
@@ -168,7 +170,36 @@ const APLDoc =
                                 "imageBlurredBackground": false
                             }
                         ],
-                        "height": "50%",
+                        "height": "45%",
+                        "width": "100%",
+                        "direction": "row",
+                        "wrap": "noWrap"
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "Text",
+                                "textAlign": "center",
+                                "text": "${score.jsongamenexthome}",
+                                "paddingTop": "0vh",
+                                "paddingBottom": "10vh",
+                                "height": "4dp",
+                                "width": "50vw",
+                                "fontSize": "4vh"
+                            },
+                            {
+                                "type": "Text",
+                                "textAlign": "center",
+                                "text": "${score.jsongamenextaway}",
+                                "paddingTop": "0vh",
+                                "paddingBottom": "10vh",
+                                "height": "4",
+                                "width": "50vw",
+                                "fontSize": "4vh"
+                            }
+                        ],
+                        "height": "10%",
                         "width": "100%",
                         "direction": "row",
                         "wrap": "noWrap"

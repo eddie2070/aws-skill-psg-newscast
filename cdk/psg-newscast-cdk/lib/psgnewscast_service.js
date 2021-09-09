@@ -24,15 +24,21 @@ class psgService extends core.Construct {
         exportName: 'DDBTablePSGNewscastARN'
       });
 
-    const lambdamomentlayer = new lambda.LayerVersion(this, "moment-tz-layer", {
+    const lambdamomentlayer = new lambda.LayerVersion(this, "momentlayer", {
       compatibleRuntimes: [lambda.Runtime.NODEJS_10_X,lambda.Runtime.NODEJS_12_X],
-      code: lambda.Code.asset("resources"),
+      code: lambda.Code.asset("resources/Lambda/momentlayer.zip"),
       description: 'A layer with moment timezone'
     })
 
     const lambdaxraylayer = new lambda.LayerVersion(this, "lambda-layer-xray", {
         compatibleRuntimes: [lambda.Runtime.NODEJS_8_10,lambda.Runtime.NODEJS_12_X,lambda.Runtime.NODEJS_14_X],
-        code: lambda.Code.asset("resources"),
+        code: lambda.Code.asset("resources/Lambda/lambda-layer-xray.zip"),
+        description: 'A layer with xray'
+      })
+
+    const lambdasharplayer = new lambda.LayerVersion(this, "sharp-lambda-layer", {
+        compatibleRuntimes: [lambda.Runtime.NODEJS_10_X,lambda.Runtime.NODEJS_12_X],
+        code: lambda.Code.asset("resources/Lambda/sharp-lambda-layer.zip"),
         description: 'A layer with xray'
       })
 
@@ -110,7 +116,8 @@ class psgService extends core.Construct {
         environment: {
           //BUCKET: bucket.bucketName
         },
-        timeout: core.Duration.seconds(6)
+        layers: [lambdamomentlayer,lambdasharplayer],
+        timeout: core.Duration.seconds(10)
       });
 
       lambdalastresults.addToRolePolicy(new iam.PolicyStatement({
@@ -141,6 +148,15 @@ class psgService extends core.Construct {
       lambdalastresults.addToRolePolicy(new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         actions: [
+            "s3:PutObject",
+            "s3:PutObjectAcl"
+        ],
+        resources: ['arn:aws:s3:::psgnewscast-skill2021/*']
+      }));
+
+      lambdalastresults.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
             "xray:PutTraceSegments",
             "xray:PutTelemetryRecords"
         ],
@@ -150,12 +166,13 @@ class psgService extends core.Construct {
 
       const lambdanextgame = new lambda.Function(this, "lambda-nextgame", {
         runtime: lambda.Runtime.NODEJS_10_X, //
+        functionName: "PSGNewscast-nextgame",
         code: lambda.Code.asset("resources/Lambda/PSGNewscast-nextgame"),
         handler: "index.handler",
         environment: {
           //BUCKET: bucket.bucketName
         },
-        layers: [lambdamomentlayer],
+        layers: [lambdamomentlayer,lambdasharplayer],
         timeout: core.Duration.seconds(10)
       });
 
@@ -182,6 +199,23 @@ class psgService extends core.Construct {
             "dynamodb:*"
         ],
         resources: [table.tableArn]
+      }));
+
+      lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "s3:PutObject",
+            "s3:PutObjectAcl"
+        ],
+        resources: ['arn:aws:s3:::psgnewscast-skill2021/*']
+      }));
+
+      lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "s3:ListBucket"
+        ],
+        resources: ['arn:aws:s3:::psgnewscast-skill2021/']
       }));
 
       lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
@@ -250,7 +284,95 @@ class psgService extends core.Construct {
         environment: {"twit": "PSGTalk"},
         timeout: core.Duration.seconds(10)
       });
+
+      lambdatwit.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:ListContributorInsights",
+            "dynamodb:DescribeReservedCapacityOfferings",
+            "dynamodb:ListGlobalTables",
+            "dynamodb:ListTables",
+            "dynamodb:DescribeReservedCapacity",
+            "dynamodb:ListBackups",
+            "dynamodb:PurchaseReservedCapacityOfferings",
+            "dynamodb:DescribeLimits",
+            "dynamodb:ListExports",
+            "dynamodb:ListStreams"
+        ],
+        resources: ['*']
+      }));
+
+      lambdatwit.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:*"
+        ],
+        resources: [table.tableArn]
+      }));
+
+      lambdatwit.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "xray:PutTraceSegments",
+            "xray:PutTelemetryRecords"
+        ],
+        resources: ['*']
+      }));
       
+      const lambdalivegame = new lambda.Function(this, "lambda-livegame", {
+        runtime: lambda.Runtime.NODEJS_10_X, //
+        functionName: "PSGNewscast-livegame",
+        code: lambda.Code.asset("resources/Lambda/PSGNewscast-livegame"),
+        handler: "index.handler",
+        environment: {
+          //BUCKET: bucket.bucketName
+        },
+        layers: [lambdamomentlayer,lambdasharplayer],
+        timeout: core.Duration.seconds(10)
+      });
+
+      lambdalivegame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:ListContributorInsights",
+            "dynamodb:DescribeReservedCapacityOfferings",
+            "dynamodb:ListGlobalTables",
+            "dynamodb:ListTables",
+            "dynamodb:DescribeReservedCapacity",
+            "dynamodb:ListBackups",
+            "dynamodb:PurchaseReservedCapacityOfferings",
+            "dynamodb:DescribeLimits",
+            "dynamodb:ListExports",
+            "dynamodb:ListStreams"
+        ],
+        resources: ['*']
+      }));
+
+      lambdalivegame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:*"
+        ],
+        resources: [table.tableArn]
+      }));
+
+      lambdalivegame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "s3:PutObject",
+            "s3:PutObjectAcl"
+        ],
+        resources: ['arn:aws:s3:::psgnewscast-skill2021/*']
+      }));
+
+      lambdalivegame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "xray:PutTraceSegments",
+            "xray:PutTelemetryRecords"
+        ],
+        resources: ['*']
+      }));
 
       const rolestepfunction = new iam.Role(this, 'StepFunctions-PSGNewscast-MyStateMachineStandard-role', {
         assumedBy: new iam.ServicePrincipal('states.amazonaws.com'),

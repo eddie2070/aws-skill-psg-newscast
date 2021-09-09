@@ -2,16 +2,57 @@ const axios = require('axios');
 const jp = require('jsonpath');
 const converter = require('number-to-words');
 const AWS = require('aws-sdk');
-var dynamodb = new AWS.DynamoDB();
 var documentClient = new AWS.DynamoDB.DocumentClient();
 const moment = require('moment-timezone');
+const sharp = require("sharp");
+var s3 = new AWS.S3();
 
-const url = 'http://api.football-data.org/v2/teams/524/matches?status=SCHEDULED'
+
+const url = 'http://api.football-data.org/v2/teams/524/matches?status=SCHEDULED';
 const headers = {
   Accept: 'application/json',
   'Accept-Charset': 'utf-8',
   'X-Auth-Token': 'a9bc952d181c47268446a51dafc83286'
-}
+};
+
+var logo = async (teamid) => {
+    
+    var paramss3logocheck = {
+    Bucket: "psgnewscast-skill2021", 
+    Key: "teamlogo/"+teamid+".png"
+    };
+        
+    try {
+        await s3.headObject(paramss3logocheck).promise();
+        console.log("File Found in S3");
+    } catch (err) {
+        console.log("File not Found ERROR : " + err.code +". Uploading image in S3");
+
+         //4. convert from a remote file
+        //var hometeamlogo = "https://crests.football-data.org/"+jsongamecurhomeid+".png";
+        const input = (await axios({ url: 'https://crests.football-data.org/'+teamid+'.svg', responseType: "arraybuffer" })).data;
+        console.log("input: ",input);  
+    
+        var teamlogo = await sharp(input)
+            .toFormat('png')
+            .toBuffer();
+        
+        console.log("teamlogo: ",teamlogo);
+            
+        var paramss3logo = {
+            Body: teamlogo, 
+            Bucket: "psgnewscast-skill2021", 
+            Key: "teamlogo/"+teamid+".png",
+            ACL: "public-read",
+            ServerSideEncryption: "AES256", 
+            StorageClass: "STANDARD_IA"
+            };
+    
+            const teamlogoput = await s3.putObject(paramss3logo).promise();
+            console.log("teamlogoput: ",teamlogoput);
+            return teamlogoput.ETag;
+    }
+};
 
 exports.handler = async (event, context, callback) => {
   var params = {
@@ -21,9 +62,9 @@ exports.handler = async (event, context, callback) => {
             TableName: "PSGNewscast"
         };
     var ddbcheck  = await documentClient.get(params).promise();
-  console.log('ddbcheck: ', ddbcheck)
+  console.log('ddbcheck: ', ddbcheck);
   if (JSON.stringify(ddbcheck) === '{}') {
-    const response = await axios.get(url, { headers })
+    const response = await axios.get(url, { headers });
     var jsongamescheduled = jp.query(response.data, '$.matches[?(@.status==="SCHEDULED")]');
     var jsongamenextgame = jsongamescheduled[0];
     console.log("jsongamenextgame:", jsongamenextgame);
@@ -58,14 +99,23 @@ exports.handler = async (event, context, callback) => {
             //Leaderboard The position of PSG in League One is first, with 9 points.
             //Angers SCO is second with 7 points. Clermont Foot 63 is third with 7 points. You can ask for the last results, , next game, position in the leaderboard, latest news, or music.
             //The PSG next game will be on Sunday August 29th 2021 at 2:45 pm East Coast time, with Stade Brestois 29, playing versus Paris Saint-Germain FC for the fourth journey of Ligue 1 . Would you like to know more?
-    var conc = "The PSG next game will be on ".concat(dateformat ,", with ", jsongamenexthome," playing versus ", jsongamenextaway," for the ", converter.toWordsOrdinal(jsonday), " journey of ", jsoncompetition, ". Would you like to know more?");
+    var conc = "The PSG next game will be on ".concat(dateformat ,", with ", jsongamenexthome," playing versus ", jsongamenextaway," for the ", converter.toWordsOrdinal(jsonday), " journey of ", jsoncompetition, ".");
     //var conc = str1.concat(positaway, strmid, str2, pointsaway, strfin)
     //var jsonb = JSON.parse(conc);
     console.log("conc: ", conc);
     
-    var hometeamlogo = "https://crests.football-data.org/"+jsongamecurhomeid+".png";
-    console.log("hometeamlogo: ",hometeamlogo);  
-    var awayteamlogo = "https://crests.football-data.org/"+jsongamecurawayid+".png";
+    //4. convert from a remote file
+    var homelogo = await logo(jsongamecurhomeid);
+    console.log("homelogo: ",homelogo);
+    var awaylogo = await logo(jsongamecurawayid);
+    console.log("awaylogo: ",awaylogo);
+    
+
+
+    //var hometeamlogo = "https://crests.football-data.org/"+jsongamecurhomeid+".png";
+    var hometeamlogo = "https://psgnewscast-skill2021.s3.amazonaws.com/teamlogo/"+jsongamecurhomeid+".png";
+    var awayteamlogo = "https://psgnewscast-skill2021.s3.amazonaws.com/teamlogo/"+jsongamecurawayid+".png";
+    // "https://crests.football-data.org/"+jsongamecurawayid+".png";
     console.log("awayteamlogo: ",awayteamlogo);    
             
     var nextgamedata = {
@@ -74,7 +124,9 @@ exports.handler = async (event, context, callback) => {
             "journey": jsonday[0],
             "jsoncompetition": jsoncompetition[0],
             "jsongamedate": dateformat,
-            "jsongamestadium": jsongamestadium
+            "jsongamestadium": jsongamestadium,
+            "jsongamenexthome": jsongamenexthome[0],
+            "jsongamenextaway": jsongamenextaway[0]
         };
     var paramsddb = {
                 Item: {
@@ -106,7 +158,9 @@ exports.handler = async (event, context, callback) => {
                        "journey": jsonday[0],
                        "jsoncompetition": jsoncompetition[0],
                        "jsongamedate": dateformat,
-                       "jsongamestadium": jsongamestadium
+                       "jsongamestadium": jsongamestadium,
+                       "jsongamenexthome": jsongamenexthome[0],
+                       "jsongamenextaway": jsongamenextaway[0]
                     }
                 }
             };
