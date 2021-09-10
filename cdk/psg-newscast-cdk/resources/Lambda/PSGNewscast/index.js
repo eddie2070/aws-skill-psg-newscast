@@ -179,28 +179,38 @@ const StandingsIntentHandler = {
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
-            var paramslbd = {
-                FunctionName: 'PSGNewscast-dispatcher', /* required */
-                Payload: JSON.stringify({'sessionState': {'intent': {'name': 'StandingsIntent'}}})
-            };
-            console.log("track001");
-            var displast = await lambda.invoke(paramslbd).promise();
-            console.log("displast: ",JSON.parse(displast.Payload));
-            console.log("displast2: ",JSON.parse(displast.Payload).messages[0].content);
-            console.log("displast3: ",JSON.parse(displast.Payload).messages[0].content.standings);
-            var posit = JSON.parse(displast.Payload).messages[0].content.standings.positioncard;
-            var points = JSON.parse(displast.Payload).messages[0].content.standings.points;
-            var jsonteamaheadname = JSON.parse(displast.Payload).messages[0].content.standings.teamaheadname;
-            var jsonteamaheadposition = JSON.parse(displast.Payload).messages[0].content.standings.teamaheadposition;
-            var jsonteamaheadpoints = JSON.parse(displast.Payload).messages[0].content.standings.teamaheadpoints;
-            var jsonteambehindname = JSON.parse(displast.Payload).messages[0].content.standings.teambehindname;
-            var jsonteambehindposition = JSON.parse(displast.Payload).messages[0].content.standings.teambehindposition;
-            var jsonteambehindpoints = JSON.parse(displast.Payload).messages[0].content.standings.teambehindpoints;
-            var plot3 = JSON.parse(displast.Payload).messages[0].content.standings.standingsdata;
-            console.log("plot3: ",plot3);
+            var checkddbstand = await ddbcheckfn("standings");
+            console.log("checkddbstand: ",checkddbstand);
+             if (JSON.stringify(checkddbstand) === "{}") {
+                    var paramslbd = {
+                        FunctionName: 'PSGNewscast-dispatcher', /* required */
+                        Payload: JSON.stringify({'sessionState': {'intent': {'name': 'StandingsIntent'}}})
+                    };
+                    console.log("track001");
+                    var displast = await lambda.invoke(paramslbd).promise();
+                    console.log("displast: ",JSON.parse(displast.Payload));
+                    console.log("displast2: ",JSON.parse(displast.Payload).messages[0].content);
+                    console.log("displast3: ",JSON.parse(displast.Payload).messages[0].content.standings);
+                    var plot3 = JSON.parse(displast.Payload).messages[0].content.standings.standingsdata.substring(1).slice(0, -1);
+                    console.log("plot3: ",plot3);
+                    var plot4 = JSON.parse(displast.Payload).messages[0].content.fullstandings.fullstandingdataparse.substring(1).slice(0, -1);
+                    console.log("plot4: ",plot4);
+                    var plotmerge = [plot3,plot4]
+                    console.log("plotmerge: ",plotmerge);
+                    var speak = JSON.parse(displast.Payload).messages[0].content.conc;
+             } else {
+                    var plot3 = checkddbstand.Item.standings.standingsdata.substring(1).slice(0, -1);
+                    console.log("plot3: ",plot3);
+                    var plot4 = checkddbstand.Item.fullstandings.fullstandingdataparse.substring(1).slice(0, -1);
+                    console.log("plot4: ",plot4);
+                    var plotmerge = [plot3,plot4];
+                    console.log("plotmerge: ",plotmerge);
+                    var speak = checkddbstand.Item.output.conc;
+             }
         
         return handlerInput.responseBuilder
-            .withStandingsCard('PSG News','{"listdata":'+plot3+'}')
+            .withStandingsCard('PSG News','{"listdata": ['+plot3+','+plot4+']}')
+            //.withStandingsCard('PSG News','{"listdata":'+plot3+'}')
             //.withStandingsCard('PSG News','{"listdata": [ {"score": 12, "listItemIdentifier": "1, "ordinalNumber": "1", "text": "Paris SG", "position": 1, "token": "1"}]}')
             //'+plot3+'}') // <--
             //.withSimpleCard('PSG News', lexresp.messages[0].content) // <--
@@ -208,8 +218,8 @@ const StandingsIntentHandler = {
             //.withStandingsCard('PSG News','{"listdata": '+JSON.stringify(JSON.parse(displast.Payload).messages[0].content.standings)+'}') // <--
             //.withStandingsCard('PSG News','{"listdata": '+JSON.parse(displast.Payload).messages[0].content.standings+'}') // <--
             //.withStandingsCard('PSG News','"listTemplate1ListData": {"listId": "lt1Sample","type": "list","listPage": {"listItems": [{"score": 15,"listItemIdentifier": "1","ordinalNumber": 1,"text": "PSG","position": 1,"token": "1"}]},"totalNumberOfItems": 1}')
-            .speak(JSON.parse(displast.Payload).messages[0].content.conc)
-            .reprompt(JSON.parse(displast.Payload).messages[0].content.conc)
+            .speak(speak)
+            .reprompt(speak)
             .getResponse();
     }
 };
@@ -246,29 +256,58 @@ const TwitIntentHandler = {
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
-            var paramslbd = {
-                FunctionName: 'PSGNewscast-dispatcher', /* required */
-                Payload: JSON.stringify({'sessionState': {'intent': {'name': 'TwitIntent'}}})
-            };
-            console.log("track001");
-            var displast = await lambda.invoke(paramslbd).promise();
-            console.log("displast: ",JSON.parse(displast.Payload));
-            console.log("displast: ",JSON.parse(displast.Payload).messages[0].content);
-            var plot3 = JSON.parse(displast.Payload).messages[0].content.livetweet.tweetslist;
-            console.log("plot3: ",plot3);
+            var checkddbtwit = await ddbcheckfn("news");
+            console.log("checkddbtwit: ",checkddbtwit);
+            if (JSON.stringify(checkddbtwit) === "{}") {
+                var paramslbd = {
+                    FunctionName: 'PSGNewscast-dispatcher', /* required */
+                    Payload: JSON.stringify({'sessionState': {'intent': {'name': 'TwitIntent'}}})
+                };
+                console.log("track001");
+                var displast = await lambda.invoke(paramslbd).promise();
+                console.log("displast: ",JSON.parse(displast.Payload));
+                console.log("displast: ",JSON.parse(displast.Payload).messages[0].content);
+                var plot3 = JSON.parse(displast.Payload).messages[0].content.livetweet.tweetslist;
+                console.log("plot3: ",plot3);
+                var speak = JSON.parse(displast.Payload).messages[0].content.conc;
+            } else {
+                var plot3 = checkddbtwit.Item.livetweet.tweetslist;
+                var speak = checkddbtwit.Item.output.conc;
+            }
             
             //return WelcomeIntentHandler.handle(handlerInput);
 
         return handlerInput.responseBuilder
 
             .withNewsCard('PSG News','{"listdata":'+plot3+'}')            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
-            .speak(JSON.parse(displast.Payload).messages[0].content.conc)
-            .reprompt(JSON.parse(displast.Payload).messages[0].content.conc)
+            .speak(speak)
+            .reprompt(speak)
             .getResponse();
         
     }
 };
 
+const EggIntentHandler = {
+    canHandle(handlerInput) {
+        console.log("handlerInput2: ", handlerInput.requestEnvelope.request);
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name === 'EggIntent';
+    },
+    async handle(handlerInput) {
+            console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
+            const repromptText = '';
+            
+            //return WelcomeIntentHandler.handle(handlerInput);
+
+        return handlerInput.responseBuilder
+            .withEggCard('E. D. D. I. E.', "Eddie2070") // <--
+            //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
+            .speak("Eddie Twenty Seventy ")
+            .reprompt("E. D. D. I. E. ")
+            .getResponse();
+        
+    }
+};
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -381,6 +420,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         StandingsIntentHandler,
         MusicIntentHandler,
         TwitIntentHandler,
+        EggIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
@@ -391,6 +431,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestInterceptors(require('./nextcard').APLHomeCardRequestInterceptor) // <---
     .addRequestInterceptors(require('./standingscard').APLHomeCardRequestInterceptor) // <---
     .addRequestInterceptors(require('./newscard').APLHomeCardRequestInterceptor) // <---
+    .addRequestInterceptors(require('./eggcard').APLHomeCardRequestInterceptor) // <---
     .addErrorHandlers(
         ErrorHandler)
     .lambda();

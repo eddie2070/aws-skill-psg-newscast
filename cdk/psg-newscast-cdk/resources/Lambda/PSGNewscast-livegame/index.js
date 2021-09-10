@@ -32,12 +32,8 @@ if (JSON.stringify(ddbcheck) === "{}") {
         var paramsddb = {
           Item: {
               "ID": "livegame",
-              "output": {
-                conc
-              },
-              "livegame":{
-                gameinfo
-              },
+              "output": "conc",
+              "livegame":"gameinfo",
               'UpdateTime': Math.floor(Date.now() /1000) ,
               'TTL':  Math.floor(Date.now()/1000 + 600) ,
           }, 
@@ -49,16 +45,12 @@ if (JSON.stringify(ddbcheck) === "{}") {
         //if (err) console.log(err, err.stack); // an error occurred
         //else     console.log(data);           // successful response
         //});
-        console.log("ddbput: ",ddbput);
+        //console.log("ddbput: ",ddbput);
 
         return {
-          "lastresults": {
-              conc,
-              "livegame":{
-                gameinfo
-              }
+          "lastresults": "conc",
+              "livegame": "gameinfo"
           }
-      }; 
 
     //console.log("conc2: ",tweetfind);
     //return tweetfind;

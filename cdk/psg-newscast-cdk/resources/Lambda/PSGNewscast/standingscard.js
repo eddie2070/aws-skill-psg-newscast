@@ -4,9 +4,15 @@ const APLHomeCardRequestInterceptor = {
         console.log("payload: ",handlerInput);
         console.log("payload2: ",handlerInput.context.succeed);
         function withStandingsAPLCard(cardTitle, cardContent){
-            console.log("cardContent: ",cardContent);
-            var sourcingdata = JSON.stringify(cardContent).toString().replace(/\\/g, "").substring(1).slice(0, -1);
+            console.log("cardContent1: ",JSON.parse(cardContent));
+            var cardContent2 = JSON.parse(cardContent).listdata;
+            console.log("cardContent2: ",cardContent2.slice(0,3));
+            console.log("cardContent3: ",JSON.parse(cardContent).listdata);
+            //var sourcingdata = JSON.stringify(cardContent).toString().replace(/\\/g, "").substring(1).slice(0, -1);
+            var sourcingdata = JSON.stringify('{"listdata": ['+JSON.stringify(cardContent2.slice(0,3)).toString().replace(/\\/g, "").substring(1).slice(0, -1)+']}').toString().replace(/\\/g, "").substring(1).slice(0, -1);
             console.log("sourcingdata: ",sourcingdata);
+            var sourcingdata2 = JSON.stringify('{"listdata": ['+JSON.stringify(cardContent2.slice(3,25)).toString().replace(/\\/g, "").substring(1).slice(0, -1)+']}').toString().replace(/\\/g, "").replace(/"Paris Saint-Germain FC"/g, '"Paris SG"').substring(1).slice(0, -1);
+            console.log("sourcingdata2: ",sourcingdata2);
             //console.log("JSON.parse(cardContent).hometeamlogo: ",JSON.parse(cardContent).hometeamlogo);
             if(supportsAPL(handlerInput)){
                 var toto = handlerInput.responseBuilder.addDirective({
@@ -28,7 +34,8 @@ const APLHomeCardRequestInterceptor = {
                         //     "teambehindposition": JSON.parse(cardContent).teambehindposition,
                         //     "teambehindpoints": JSON.parse(cardContent).teambehindpoints
                          },
-                        "sourcing": JSON.parse(sourcingdata)
+                        "sourcing": JSON.parse(sourcingdata2),
+                        "sourcingfull": JSON.parse(sourcingdata),
                         //{"listdata": [ {"score": 12, "listItemIdentifier": "1", "ordinalNumber": "1", "text": "Paris SG", "position": 1, "token": "1"},{"score": 12, "listItemIdentifier": "1", "ordinalNumber": "1", "text": "Paris SG", "position": 1, "token": "1"}]}
                         //{ "listdata":
 //                          [
@@ -118,9 +125,165 @@ const APLDoc =
     "mainTemplate": {
         "parameters": [
             "payload",
-            "sourcing"
+            "sourcing",
+            "sourcingfull"
         ],
         "items": [
+             {
+                    "type": "Pager",
+                    "id": "fisrtpager",
+                    "width": "100%",
+                    "height": "100%",
+                    "items": [
+            {
+                "type": "Container",
+                "items": [
+                    {
+                        "type": "AlexaBackground",
+                        "colorOverlay": "True",
+                        "backgroundImageSource": "https://w0.peakpx.com/wallpaper/26/11/HD-wallpaper-psg-french-football-club-logo-blue-fabric-background-t-shirt-emblem-paris-saint-germain-france-football.jpg"
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "Frame",
+                                "item": {
+                                    "type": "Container",
+                                    "width": "100vw",
+                                    "height": "100vh",
+                                    "direction": "column",
+                                    "items": [
+                                        {
+                                            "type": "AlexaBackground",
+                                            "colorOverlay": "True",
+                                            "backgroundImageSource": "https://w0.peakpx.com/wallpaper/26/11/HD-wallpaper-psg-french-football-club-logo-blue-fabric-background-t-shirt-emblem-paris-saint-germain-france-football.jpg"
+                                        },
+                                        {
+                                            "type": "AlexaHeader",
+                                            "headerTitle": "Position in the leaderboard - Direct opponents",
+                                            "headerAttributionImage": "${logo}",
+                                            "headerBackButton": true,
+                                            "headerBackButtonCommand": [	
+                                                {"type":"SendEvent","arguments":["goBack"],
+                                                "components": [ "idForTheTextComponent"]
+                                                }
+                                            ],
+                                        },
+                                        {
+                                            "direction": "row",
+                                            "items": [
+                                                {
+                                                    "text": "#",
+                                                    "maxLines": 1,
+                                                    "fontSize": "${@viewportProfile == @hubLandscapeLarge ? '50dp' : '50dp'}",
+                                                    "textAlign": "left",
+                                                    "color": "#AADDAA",
+                                                    "textAlignVertical": "Center",
+                                                    "type": "Text",
+                                                    "width": "15vw",
+                                                    "paddingTop": "30",
+                                                    "paddingLeft": "0",
+                                                    "paddingBottom": "50"
+                                                },
+                                                {
+                                                    "text": "Teams",
+                                                    "maxLines": 1,
+                                                    "fontSize": "${@viewportProfile == @hubLandscapeLarge ? '50dp' : '50dp'}",
+                                                    "textAlign": "left",
+                                                    "color": "#AADDAA",
+                                                    "textAlignVertical": "center",
+                                                    "type": "Text",
+                                                    "width": "45vw",
+                                                    "paddingTop": "30",
+                                                    "paddingLeft": "130",
+                                                    "paddingBottom": "50"
+                                                },
+                                                {
+                                                    "text": "Points",
+                                                    "fontSize": "${@viewportProfile == @hubLandscapeLarge ? '50dp' : '50dp'}",
+                                                    "color": "#AADDAA",
+                                                    "textAlign": "left",
+                                                    "textAlignVertical": "center",
+                                                    "type": "Text",
+                                                    "paddingLeft": "0",
+                                                    "paddingTop": "30",
+                                                    "paddingBottom": "50"
+                                                }
+                                            ],
+                                            "type": "Container",
+                                            "when": "${viewport.shape != 'round'}",
+                                            "paddingLeft": "${@viewportProfile == @hubLandscapeLarge ? '150' : '150'}"
+                                        },
+                                        {
+                                            "type": "Sequence",
+                                            "data": "${sourcingfull.listdata}",
+                                            "scrollDirection": "vertical",
+                                            "numbered": true,
+                                            "grow": 1,
+                                            "shrink": 1,
+                                            "item": {
+                                                "type": "TouchWrapper",
+                                                "item": {
+                                                    "type": "Container",
+                                                    "direction": "row",
+                                                    "height": 100,
+                                                    "alignItems": "start",
+                                                    "items": [
+                                                        {
+                                                            "type": "Text"
+                                                        },
+                                                        {
+                                                            "type": "Text",
+                                                            "text": "${data.position}",
+                                                            "style": "textStylePrimary2",
+                                                            "grow": 1,
+                                                            "shrink": 1,
+                                                            "spacing": 150
+                                                        },
+                                                        {
+                                                            "type": "Text",
+                                                            "text": "${data.text}",
+                                                            "style": "textStylePrimary2",
+                                                            "textAlign": "left",
+                                                            "width": "12vw",
+                                                            "grow": 1,
+                                                            "shrink": 1,
+                                                            "spacing": 24
+                                                        },
+                                                        {
+                                                            "type": "Text",
+                                                            "text": "${data.score}",
+                                                            "style": "textStylePrimary2",
+                                                            "textAlign": "left",
+                                                            "grow": 1,
+                                                            "shrink": 1,
+                                                            "spacing": 40
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "Text",
+                                            "when": "${viewport.shape == 'round'}",
+                                            "height": "80dp"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "height": "100%",
+                        "width": "100%",
+                        "direction": "row",
+                        "wrap": "noWrap"
+                    }
+                ],
+                "height": "100%",
+                "width": "100%",
+                "direction": "column",
+                "wrap": "noWrap"
+            },
             {
                 "type": "Container",
                 "items": [
@@ -270,7 +433,18 @@ const APLDoc =
                 "direction": "column",
                 "wrap": "noWrap"
             }
+        ],
+                    "navigation": "none",
+                    "onMount": [
+                        {
+                            "type": "AutoPage",
+                            "componentId": "fisrtpager",
+                            "duration": 10000,
+                            "delay": 10000
+                        }
         ]
+             }
+             ]
     }
 }
 

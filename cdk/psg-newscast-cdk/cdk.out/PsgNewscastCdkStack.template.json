@@ -230,7 +230,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3Bucket1DCC8E82"
+            "Ref": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3Bucket02745C83"
           },
           "S3Key": {
             "Fn::Join": [
@@ -243,7 +243,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3VersionKeyB4F83D65"
+                          "Ref": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3VersionKey5B4B5AEC"
                         }
                       ]
                     }
@@ -256,7 +256,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3VersionKeyB4F83D65"
+                          "Ref": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3VersionKey5B4B5AEC"
                         }
                       ]
                     }
@@ -287,7 +287,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscast/Resource",
-        "aws:asset:path": "asset.6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8",
+        "aws:asset:path": "asset.a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248",
         "aws:asset:property": "Code"
       }
     },
@@ -873,7 +873,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3Bucket7C9C9036"
+            "Ref": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3Bucket42AB8BCD"
           },
           "S3Key": {
             "Fn::Join": [
@@ -886,7 +886,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B"
+                          "Ref": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3VersionKeyF4D32982"
                         }
                       ]
                     }
@@ -899,7 +899,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B"
+                          "Ref": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3VersionKeyF4D32982"
                         }
                       ]
                     }
@@ -925,7 +925,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-leaderboard/Resource",
-        "aws:asset:path": "asset.9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe",
+        "aws:asset:path": "asset.676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459",
         "aws:asset:property": "Code"
       }
     },
@@ -1188,7 +1188,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3Bucket91D063DF"
+            "Ref": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3Bucket7D8AD6F1"
           },
           "S3Key": {
             "Fn::Join": [
@@ -1201,7 +1201,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3VersionKeyB4EE7FEA"
+                          "Ref": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3VersionKey5D049F70"
                         }
                       ]
                     }
@@ -1214,7 +1214,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3VersionKeyB4EE7FEA"
+                          "Ref": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3VersionKey5D049F70"
                         }
                       ]
                     }
@@ -1249,7 +1249,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-livegame/Resource",
-        "aws:asset:path": "asset.2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c",
+        "aws:asset:path": "asset.dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a",
         "aws:asset:property": "Code"
       }
     },
@@ -1402,17 +1402,17 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"5d4e8bd7f05c131417e208996fd4ef8dd399a3738d28ad82be457b3e0111572d\""
     },
-    "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3Bucket1DCC8E82": {
+    "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3Bucket02745C83": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8\""
+      "Description": "S3 bucket for asset \"a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248\""
     },
-    "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3VersionKeyB4F83D65": {
+    "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3VersionKey5B4B5AEC": {
       "Type": "String",
-      "Description": "S3 key for asset version \"6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8\""
+      "Description": "S3 key for asset version \"a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248\""
     },
-    "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8ArtifactHash4EEFA021": {
+    "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248ArtifactHash53252083": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8\""
+      "Description": "Artifact hash for asset \"a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248\""
     },
     "AssetParameterse0f124a9b3ee5f6c92bb664e1a39d54dd2b7c13820f58351a08ef2655ed6015dS3BucketAF8089F6": {
       "Type": "String",
@@ -1450,17 +1450,17 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"b3ce94e75f2a7727adf4cd093293e0880b2ee42ba19e01e37c5545daf59a26fd\""
     },
-    "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3Bucket7C9C9036": {
+    "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3Bucket42AB8BCD": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe\""
+      "Description": "S3 bucket for asset \"676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459\""
     },
-    "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B": {
+    "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3VersionKeyF4D32982": {
       "Type": "String",
-      "Description": "S3 key for asset version \"9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe\""
+      "Description": "S3 key for asset version \"676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459\""
     },
-    "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feArtifactHash2964C13C": {
+    "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459ArtifactHash3EE22674": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe\""
+      "Description": "Artifact hash for asset \"676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459\""
     },
     "AssetParameters6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456S3BucketD2E0A2A4": {
       "Type": "String",
@@ -1474,17 +1474,17 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"6b53f038484a211f378b957ed8740e889c47987b10ea52eea97668559b36e456\""
     },
-    "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3Bucket91D063DF": {
+    "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3Bucket7D8AD6F1": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c\""
+      "Description": "S3 bucket for asset \"dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a\""
     },
-    "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3VersionKeyB4EE7FEA": {
+    "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3VersionKey5D049F70": {
       "Type": "String",
-      "Description": "S3 key for asset version \"2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c\""
+      "Description": "S3 key for asset version \"dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a\""
     },
-    "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cArtifactHashE68DF8C8": {
+    "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aArtifactHash3C51D697": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c\""
+      "Description": "Artifact hash for asset \"dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a\""
     }
   },
   "Conditions": {

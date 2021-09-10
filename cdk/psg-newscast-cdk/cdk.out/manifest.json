@@ -112,13 +112,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8",
-              "id": "6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8",
+              "path": "asset.a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248",
+              "id": "a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248",
               "packaging": "zip",
-              "sourceHash": "6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8",
-              "s3BucketParameter": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3Bucket1DCC8E82",
-              "s3KeyParameter": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3VersionKeyB4F83D65",
-              "artifactHashParameter": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8ArtifactHash4EEFA021"
+              "sourceHash": "a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248",
+              "s3BucketParameter": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3Bucket02745C83",
+              "s3KeyParameter": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3VersionKey5B4B5AEC",
+              "artifactHashParameter": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248ArtifactHash53252083"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -236,13 +236,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe",
-              "id": "9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe",
+              "path": "asset.676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459",
+              "id": "676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459",
               "packaging": "zip",
-              "sourceHash": "9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe",
-              "s3BucketParameter": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3Bucket7C9C9036",
-              "s3KeyParameter": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B",
-              "artifactHashParameter": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feArtifactHash2964C13C"
+              "sourceHash": "676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459",
+              "s3BucketParameter": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3Bucket42AB8BCD",
+              "s3KeyParameter": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3VersionKeyF4D32982",
+              "artifactHashParameter": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459ArtifactHash3EE22674"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -298,13 +298,13 @@
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c",
-              "id": "2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c",
+              "path": "asset.dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a",
+              "id": "dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a",
               "packaging": "zip",
-              "sourceHash": "2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c",
-              "s3BucketParameter": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3Bucket91D063DF",
-              "s3KeyParameter": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3VersionKeyB4EE7FEA",
-              "artifactHashParameter": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cArtifactHashE68DF8C8"
+              "sourceHash": "dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a",
+              "s3BucketParameter": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3Bucket7D8AD6F1",
+              "s3KeyParameter": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3VersionKey5D049F70",
+              "artifactHashParameter": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aArtifactHash3C51D697"
             },
             "trace": [
               "ConstructNode.addMetadata (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/construct-compat.js:405:62)",
@@ -1130,10 +1130,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3Bucket1DCC8E82",
+            "data": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3Bucket02745C83",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1155,10 +1155,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8S3VersionKeyB4F83D65",
+            "data": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248S3VersionKey5B4B5AEC",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1180,10 +1180,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/a5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters6fde989d3dfbc260201f99c25037b0792155ef10c098a418a153728ee1580ce8ArtifactHash4EEFA021",
+            "data": "AssetParametersa5fa4b72fe2d3b1fcd992e9e20143eeeb212b854905d3b0c466ca652996fb248ArtifactHash53252083",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1430,10 +1430,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3Bucket7C9C9036",
+            "data": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3Bucket42AB8BCD",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1455,10 +1455,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feS3VersionKey7149751B",
+            "data": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459S3VersionKeyF4D32982",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1480,10 +1480,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752fe/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters9130c076ec11fd175b6217cb51a76e08eeb2559f222e2fdbcd379d65149752feArtifactHash2964C13C",
+            "data": "AssetParameters676aa2c33145bc02d8ee84f3d6e18a419d92b246f3a9739e9fed5909f270e459ArtifactHash3EE22674",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1580,10 +1580,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c/S3Bucket": [
+        "/PsgNewscastCdkStack/AssetParameters/dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3Bucket91D063DF",
+            "data": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3Bucket7D8AD6F1",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:12:36)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1605,10 +1605,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c/S3VersionKey": [
+        "/PsgNewscastCdkStack/AssetParameters/dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cS3VersionKeyB4EE7FEA",
+            "data": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aS3VersionKey5D049F70",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:16:35)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",
@@ -1630,10 +1630,10 @@
             ]
           }
         ],
-        "/PsgNewscastCdkStack/AssetParameters/2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446c/ArtifactHash": [
+        "/PsgNewscastCdkStack/AssetParameters/dd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3a/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters2347a881a400268e439bc8bfce26bb18b91d10b74ba2915bfc845ee61b13446cArtifactHashE68DF8C8",
+            "data": "AssetParametersdd3b303231382ceb6473221c920970deafa5bcd39de04326e16249f3347fbc3aArtifactHash3C51D697",
             "trace": [
               "new FileAssetParameters (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/private/asset-parameters.js:20:38)",
               "LegacyStackSynthesizer.doAddFileAsset (/Users/kedouard/Documents/SA/Labs/psgnewscast/psg-newscast-dev/cdk/psg-newscast-cdk/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.js:162:22)",

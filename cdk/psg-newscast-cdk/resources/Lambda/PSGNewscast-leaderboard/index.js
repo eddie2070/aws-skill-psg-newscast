@@ -25,6 +25,7 @@ exports.handler = async (event, context, callback) => {
   if (JSON.stringify(ddbcheck) === '{}') {
     const response = await axios.get(url, { headers });
     console.log("Classement:", response.data);
+    console.log("Classement standings:", response.data.standings[0].table);
     var jsonq = jp.query(response.data.standings[0], '$.table[?(@.team.id==524)].position');
     console.log("test:", jsonq);
     var posit = converter.toWordsOrdinal(jsonq);
@@ -55,13 +56,39 @@ exports.handler = async (event, context, callback) => {
             var standingsdata = '[{"score":' +jsonteamaheadpoints[0]+ ',"listItemIdentifier": "2","ordinalNumber": "1","text":' +jsonteamaheadname[0]+',"position":'+ a +',"token": "1"},{"score":' +points[0]+',"listItemIdentifier": "2","ordinalNumber": 2,"text":"Paris SG","position":' +jsonq+',"token": "2"},{"score":' +jsonteambehindpoints[0]+',"listItemIdentifier": "2","ordinalNumber": 2,"text":"' +jsonteambehindname[0]+'","position":' +b+',"token": "2"}]';
 
         }
+        
+    var fullstandings =  JSON.stringify(response.data.standings[0].table);
+    console.log("fullstandings: ", fullstandings);
+    //console.log("test2: ", jp.query(response.data.standings[0], '$.table[?(@.position)]'))
+    console.log("test2position: ", jp.query(response.data.standings[0], '$..position'));
+    console.log("test2name: ", jp.query(response.data.standings[0], '$..name'));
+    console.log("test2points: ", jp.query(response.data.standings[0], '$..points'));
+    
+    var fullstandingspos = jp.query(response.data.standings[0], '$..position');
+    var fullstandingsname = jp.query(response.data.standings[0], '$..name');
+    var fullstandingspoints = jp.query(response.data.standings[0], '$..points');
+    var fullstandingdata = [];
+    
+    for (var i = 0; i < 20; i++) {
+        fullstandingdata[i]= {
+                    "listItemIdentifier": fullstandingspos[i],
+                    "ordinalNumber": fullstandingspos[i],
+                    "text": fullstandingsname[i],
+                    "score": fullstandingspoints[i],
+                    "position": fullstandingspos[i],
+                    "token": "1"
+                };
+    }
+    
+    console.log("fullstandingdata: ", fullstandingdata);
+    var fullstandingdataparse = JSON.stringify(fullstandingdata);
 
     //console.log("dateformat:", dateformat);
                 //in the game of the x journey of league 1, with XX playin YY, XX won 1 to 2, would you like to know more.
             //Leaderboard The position of PSG in League One is first, with 9 points.
             //Angers SCO is second with 7 points. Clermont Foot 63 is third with 7 points. You can ask for the last results, , next game, position in the leaderboard, latest news, or music.
             //The PSG next game will be on Sunday August 29th 2021 at 2:45 pm East Coast time, with Stade Brestois 29, playing versus Paris Saint-Germain FC for the fourth journey of Ligue 1 . Would you like to know more?
-    var conc = "The position of PSG in Ligue 1 is ".concat(posit ,", with ", points," points");
+    var conc = "The position of PSG in Ligue 1 is ".concat(posit ,", with ", points," points. <audio src='https://psgnewscast-skill2021.s3.amazonaws.com/music-leaderboard2.mp3'/>. Here is also the complete Ligue 1 leaderboard.");
     console.log("conc: ", conc);
     
     // var standingsdata = {
@@ -87,6 +114,9 @@ exports.handler = async (event, context, callback) => {
             "standings": {
                 standingsdata
             },
+            "fullstandings": {
+                "fullstandingdataparse": fullstandingdataparse
+            },
             'UpdateTime': Math.floor(Date.now() /1000) ,
             'TTL':  Math.floor(Date.now()/1000 + 600) ,
         }, 
@@ -101,6 +131,10 @@ exports.handler = async (event, context, callback) => {
             conc,
             "standings":{
                standingsdata
+            },
+            "fullstandings": {
+                "fullstandingdataparse":
+                fullstandingdataparse
             }
         }
     };
@@ -110,7 +144,10 @@ exports.handler = async (event, context, callback) => {
             return {
                 "lastresults": {
                     "conc": ddbcheck.Item.output.conc,
-                    "standings" : ddbcheck.Item.standings
+                    "standings" : ddbcheck.Item.standings,
+                    "fullstandings": {
+                    "fullstandingdataparse": ddbcheck.Item.fullstandings
+                    }
             }
         };
     }
