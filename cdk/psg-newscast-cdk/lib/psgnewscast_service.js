@@ -4,6 +4,7 @@ const iam = require("@aws-cdk/aws-iam");
 const dynamodb = require("@aws-cdk/aws-dynamodb");
 const stepfunction = require("@aws-cdk/aws-stepfunctions");
 const custom = require("@aws-cdk/custom-resources");
+const eventsources = require('@aws-cdk/aws-lambda-event-sources');
 
 const layerArnAsk = "arn:aws:lambda:us-east-1:173334852312:layer:ask-sdk-for-nodejs:4";
 
@@ -15,7 +16,8 @@ class psgService extends core.Construct {
     const table = new dynamodb.Table(this, 'PSGNewscastddb', {
         partitionKey: { name: 'ID', type: dynamodb.AttributeType.STRING },
         timeToLiveAttribute: 'TTL',
-        tableName: 'AlexaSkillPSG'
+        tableName: 'AlexaSkillPSG',
+        stream: dynamodb.StreamViewType.KEYS_ONLY
       });
   
       const ddbarn = new core.CfnOutput(this, "DDBTablePSGNewscastARN",{
@@ -176,6 +178,13 @@ class psgService extends core.Construct {
         timeout: core.Duration.seconds(10)
       });
 
+      lambdanextgame.addEventSource(new eventsources.DynamoEventSource(table, {
+        startingPosition: lambda.StartingPosition.TRIM_HORIZON,
+        batchSize: 5,
+        bisectBatchOnError: true,
+        retryAttempts: 10
+      }));
+
       lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         actions: [
@@ -199,6 +208,17 @@ class psgService extends core.Construct {
             "dynamodb:*"
         ],
         resources: [table.tableArn,"arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast"]
+      }));
+
+      lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:ListStreams",
+            "dynamodb:GetRecords",
+            "dynamodb:GetShardIterator",
+            "dynamodb:DescribeStream"
+        ],
+        resources: ["arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast/*"]
       }));
 
       lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
@@ -353,9 +373,24 @@ class psgService extends core.Construct {
             "dynamodb:PurchaseReservedCapacityOfferings",
             "dynamodb:DescribeLimits",
             "dynamodb:ListExports",
-            "dynamodb:ListStreams"
+            "dynamodb:ListStreams",
+            "dynamodb:GetRecords",
+            "dynamodb:GetShardIterator",
+            "dynamodb:DescribeStream",
+            "dynamodb:ListShards"
         ],
         resources: ['*']
+      }));
+
+      lambdalivegame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:ListStreams",
+            "dynamodb:GetRecords",
+            "dynamodb:GetShardIterator",
+            "dynamodb:DescribeStream"
+        ],
+        resources: ["arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast/*"]
       }));
 
       lambdalivegame.addToRolePolicy(new iam.PolicyStatement({

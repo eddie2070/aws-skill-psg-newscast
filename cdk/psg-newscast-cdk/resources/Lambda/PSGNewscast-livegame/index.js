@@ -8,8 +8,8 @@ const moment = require('moment-timezone');
 const sharp = require("sharp");
 var s3 = new AWS.S3();
 
-//const url = 'http://api.football-data.org/v2/teams/524/matches/?status=LIVE'
-const url = "https://api.football-data.org/v2/matches/?status=";
+const url = 'http://api.football-data.org/v2/teams/524/matches/?status=LIVE'
+//const url = "https://api.football-data.org/v2/teams/524/matches/?status=FINISHED";
 const headers = {
   Accept: 'application/json',
   'Accept-Charset': 'utf-8',
@@ -56,6 +56,7 @@ var logo = async (teamid) => {
 };
 
 exports.handler = async (event, context, callback) => {
+  console.log("event: ",event);
   var params = {
     Key: {
         "ID": "livemarker"
@@ -88,7 +89,7 @@ if (ddbcheck.Item.gameinfo === "notstarted") {
         jsoncompetitionstage
     }
     var jsongamelivedate = jp.query(jsongamelive, '$.utcDate');
-    var jsongamelivedatestart = mom("2021-09-11T23:45:00Z","YYYY-MM-DDTHH:mm:ssZ");
+    var jsongamelivedatestart = mom(jsongamelivedate,"YYYY-MM-DDTHH:mm:ssZ");
     console.log("jsongamelivedatestart: ", jsongamelivedatestart);
     var jsongamelivedatenow = mom(mom().format(), "YYYY-MM-DDTHH:mm:ssZ");
     console.log("datwnow", jsongamelivedatenow);

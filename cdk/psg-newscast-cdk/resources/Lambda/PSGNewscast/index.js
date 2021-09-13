@@ -39,9 +39,23 @@ const LaunchRequestHandler = {
     async handle(handlerInput) {
         var livespeak = "";
         var checkddblivgam = await ddbcheckfn("livemarker");
-        if (checkddblivgam.Item.current === "true") {
+        try { if (checkddblivgam.Item.current === "true") {
             livespeak = "Paris is playing right now, say <phoneme alphabet='ipa' ph='laɪv'> live </phoneme> to learn about the current game.";
+            if (checkddblivgam.Item.gameinfo != "notstarted") {
+            var footer = "<span color='red' fontSize='20dp'>Game in progress:</span> <span color='black'>. </span>  <span fontSize='30dp'>" +checkddblivgam.Item.gameinfo.jsongamelivehome+ " "+checkddblivgam.Item.gameinfo.jsongamelivehomescore+" - " + checkddblivgam.Item.gameinfo.jsongameliveawayscore+ " " +checkddblivgam.Item.gameinfo.jsongameliveaway+ "("+checkddblivgam.Item.gameinfo.jsongameliveclock+"') </span><span fontSize='18dp'><i>  <span color='black'> . . . . . . . . . </span> *Say live to know more</i></span> ";
+            footer = footer.replace("Paris Saint-Germain FC","Paris\-SG")
+            } else {
+                footer = "";
+            }
+            const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, next game, position in the leaderboard, latest news, or music.';
+
+            return handlerInput.responseBuilder
+                .withSimpleCard('PSG Newscast', "Welcome to PSG Newscast",footer) // <--
+                .speak("Welcome to PSG newscast. What would you like to know today? Ask for the last results, next game, position in the leaderboard, latest news, or music. "+livespeak)
+                .reprompt(repromptText)
+                .getResponse();
         } else {console.log("no live marker in ddb")}
+        } catch(err) {console.log(err)}
         console.log("livespeak:", livespeak);
       const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, next game, position in the leaderboard, latest news, or music.';
         return handlerInput.responseBuilder

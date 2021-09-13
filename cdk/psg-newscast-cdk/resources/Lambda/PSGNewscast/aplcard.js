@@ -4,7 +4,7 @@ const APLHomeCardRequestInterceptor = {
         const withStandardCard = handlerInput.responseBuilder.withStandardCard;
         console.log("payload: ",handlerInput);
         console.log("payload2: ",handlerInput.context.succeed);
-        function withSimpleAPLCard(cardTitle, cardContent){
+        function withSimpleAPLCard(cardTitle, cardContent, footContent){
             if(supportsAPL(handlerInput)){
                 handlerInput.responseBuilder.addDirective({
                     type: 'Alexa.Presentation.APL.RenderDocument',
@@ -14,6 +14,7 @@ const APLHomeCardRequestInterceptor = {
                         templateData: {
                             "header": cardTitle,
                             "text": cardContent,
+                            "footer": footContent,
                             // default background for simple card
                             "backgroundSmall": "",
                             //"backgroundLarge": "https://i.etsystatic.com/11598164/r/il/a180b4/824313786/il_1588xN.824313786_qt51.jpg",
@@ -98,7 +99,7 @@ const APLDoc =
                 "headerBackButton": false,
                 "headerAttributionImage": "${payload.templateData.headerAttributionImage}",
                 "headerAttributionPrimacy": true,
-                "footerHintText": "${payload.headlineTemplateData.properties.hintText}",
+                "footerHintText": "${payload.templateData.footer}",
                 "backgroundImageSource": "${viewport.shape == 'round' || !payload.templateData.backgroundLarge ? payload.templateData.backgroundSmall : payload.templateData.backgroundLarge}",
                 "backgroundColorOverlay": true,
                 "speech": "${payload.headlineTemplateData.properties.welcomeSpeech}"

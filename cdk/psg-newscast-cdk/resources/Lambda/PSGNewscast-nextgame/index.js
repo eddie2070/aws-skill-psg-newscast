@@ -11,12 +11,6 @@ var eventbridge = new AWS.EventBridge();
 
 var livegamemarker = (date) => {
     console.log("livegamemarker: ", date);
-    // var mins=date.getMinutes();
-    // var hour=date.getHours();
-    // var dayofmonth=date.getDate();
-    // var month=date.getMonth();
-    // var year=date.getYear();
-    //var cronexp = "cron("+mins+" "+hour+" "+dayofmonth+" "+month+" ? "+year+")";
     var cronexp = moment(date[0]).format("m H D M [?] YYYY");
     console.log("cronexp: ",cronexp);
     
@@ -45,13 +39,46 @@ var livegamemarker = (date) => {
         Id: "Lambdalivemarker", 
         Input: '{"marker": "playingnow"}'
         }]
-    }
+    };
     eventbridge.putTargets(paramseventtarget, function(err, data) {
       if (err) console.log(err, err.stack); // an error occurred
       else     console.log(data);           // successful response
 });
 
-}
+};
+
+var liverefresh = (state) => {
+    console.log("liverefresh: ", state);
+
+     var paramseventrule = {
+                Name: 'PSGNewscast-liverefresh', /* required */
+                Description: 'refreshes score every 5 minutes when game is occuring',
+                ScheduleExpression: 'rate(5 minutes)',
+                State: state,
+                Tags: [
+                    {
+                    Key: 'Name', /* required */
+                    Value: 'PSGNewscast' /* required */
+                    },
+                    ]
+            };
+            eventbridge.putRule(paramseventrule, function(err, data) {
+            if (err) console.log(err, err.stack); // an error occurred
+            else     console.log(data);           // successful response
+            });
+    
+            var paramseventtarget = {
+                Rule: "PSGNewscast-liverefresh",
+                Targets: [{Arn: "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-livegame", 
+                Id: "Lambdaliverefresh"
+                }]
+            };
+            eventbridge.putTargets(paramseventtarget, function(err, data) {
+              if (err) console.log(err, err.stack); // an error occurred
+              else     console.log(data);           // successful response
+            });
+
+};
 
 
 const url = 'http://api.football-data.org/v2/teams/524/matches?status=SCHEDULED';
@@ -59,6 +86,18 @@ const headers = {
   Accept: 'application/json',
   'Accept-Charset': 'utf-8',
   'X-Auth-Token': 'a9bc952d181c47268446a51dafc83286'
+};
+
+var axiosreq = async (urlparam) => {
+    var urlv = urlparam;
+    var headers = {
+      Accept: 'application/json',
+      'Accept-Charset': 'utf-8',
+      'X-Auth-Token': 'a9bc952d181c47268446a51dafc83286'
+    };
+    var axiosresp = await axios.get(urlv, { headers });
+    console.log("axiosresp:",axiosresp);
+    return axiosresp;
 };
 
 var logo = async (teamid) => {
@@ -102,6 +141,7 @@ var logo = async (teamid) => {
 
 exports.handler = async (event, context, callback) => {
     console.log("event: ", event);
+    try {console.log("event: ", event.Records[0].dynamodb);} catch (err) {console.log(err)}
     try {
         if (event.marker == "playingnow") {
             console.log("marker for live game detected");
@@ -118,7 +158,16 @@ exports.handler = async (event, context, callback) => {
             };
             var ddbputmarker = await documentClient.put(paramsddb).promise();
             console.log("ddbputmarker: ", ddbputmarker);
+            liverefresh("ENABLED");
+           
         } else {console.log("event marker not at true")}
+        
+        console.log('event.Records[0].eventName :' , event.Records[0].eventName);
+        console.log('event.Records[0].dynamodb.Keys.ID :' , event.Records[0].dynamodb.Keys.ID);
+        if (event.Records[0].eventName == "REMOVE" && event.Records[0].dynamodb.Keys.ID.S === 'livemarker') {
+            liverefresh("DISABLED");
+            console.log("Disabled Eventbridge Rule");
+        } else {console.log("game still playing or not started")}
         
     } catch {console.log("no live game marker")}
     console.log("context: ", context);
@@ -153,7 +202,10 @@ exports.handler = async (event, context, callback) => {
     if (jsongamenexthome == "Paris Saint-Germain FC") {
         var jsongamestadium = "Parc des Princes";
     }  else {
-        var jsongamestadium = jsongamenextaway;
+        var jsongamestadiumquery = await axiosreq('http://api.football-data.org/v2/teams/'+jsongamecurhomeid);
+        console.log("jsongamestadiumquery: ",jsongamestadiumquery);
+        var jsongamestadium = jp.query(jsongamestadiumquery.data, '$.venue');
+        //var jsongamestadium = jsongamenextaway;
     }
     var jsongamedate = jp.query(jsongamenextgame, '$.utcDate');
     //console.log("jsongamenexthome:", jsongamenexthome);
