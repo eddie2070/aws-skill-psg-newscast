@@ -37,12 +37,16 @@ const LaunchRequestHandler = {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     async handle(handlerInput) {
-      //var lexresp = await lexruntimev2.recognizeText(params).promise();
-      const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.';
-      //console.log("lexresp: ", lexresp.messages[0].content);
+        var livespeak = "";
+        var checkddblivgam = await ddbcheckfn("livemarker");
+        if (checkddblivgam.Item.current === "true") {
+            livespeak = "Paris is playing right now, say <phoneme alphabet='ipa' ph='laɪv'> live </phoneme> to learn about the current game.";
+        } else {console.log("no live marker in ddb")}
+        console.log("livespeak:", livespeak);
+      const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, next game, position in the leaderboard, latest news, or music.';
         return handlerInput.responseBuilder
             .withSimpleCard('PSG Newscast', "Welcome to PSG Newscast") // <--
-            .speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.")
+            .speak("Welcome to PSG newscast. What would you like to know today? Ask for the last results, next game, position in the leaderboard, latest news, or music. "+livespeak)
             .reprompt(repromptText)
             .getResponse();
     }
@@ -55,13 +59,18 @@ const WelcomeIntentHandler = {
         && handlerInput.requestEnvelope.request.intent.name === 'WelcomeIntent';
     },
     async handle(handlerInput) {
+        var livespeak = "";
+        var checkddblivgam = await ddbcheckfn("livemarker");
+        if (JSON.parse(checkddblivgam).current === "true") {
+            livespeak = "Say live to learn about the current live game.";
+        }
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
-            const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.';
+            const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, next game, position in the leaderboard, latest news, or music.';
 
         return handlerInput.responseBuilder
             .withSimpleCard('PSG News', "Welcome to PSG Newscast") // <--
             //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")
-            .speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.")
+            .speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, next game, position in the leaderboard, latest news, or music."+livespeak)
             .reprompt(repromptText)
             .getResponse();
     }
@@ -75,8 +84,7 @@ const LastResultsIntentHandler = {
     },
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
-            //var lexresp = await lexruntimev2.recognizeText({botAliasId: 'TSTALIASID', botId: 'CXEPMHBC6Z', localeId: 'en_US', sessionId: Math.floor(Date.now() /1000).toString(),text: handlerInput.requestEnvelope.request.intent.name }).promise();
-            //var lexresp = await lexruntimev2.recognizeText({botAliasId: 'TSTALIASID', botId: 'CXEPMHBC6Z', localeId: 'en_US', sessionId: '123456',text: handlerInput.requestEnvelope.request.intent.name }).promise();
+
             const repromptText = '';
             var checkddblast = await ddbcheckfn("lastresults");
             console.log("checkddblast: ",checkddblast);
@@ -97,7 +105,7 @@ const LastResultsIntentHandler = {
                 console.log("homescore: ",homescore);
                 console.log("awayscore: ",awayscore);
                 var speak = JSON.parse(displast.Payload).messages[0].content.conc
-            //console.log("lexresp2: ", lexresp);
+
             } else {
                 var homescore = checkddblast.Item.score.scoredata.homescore;
                 console.log("eeee: ", homescore);
@@ -112,7 +120,6 @@ const LastResultsIntentHandler = {
 
         
         return handlerInput.responseBuilder
-            //.withSimpleCard('PSG News', lexresp.messages[0].content) // <--
             .withResultsCard('PSG News','{"homescore": "'+homescore+'", "awayscore": "'+awayscore+'", "hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'"}') // <--
             .speak(speak)
             .reprompt(speak)
@@ -211,13 +218,6 @@ const StandingsIntentHandler = {
         return handlerInput.responseBuilder
             .withStandingsCard('PSG News','{"listdata": ['+plot3+','+plot4+']}')
             //.withStandingsCard('PSG News','{"listdata":'+plot3+'}')
-            //.withStandingsCard('PSG News','{"listdata": [ {"score": 12, "listItemIdentifier": "1, "ordinalNumber": "1", "text": "Paris SG", "position": 1, "token": "1"}]}')
-            //'+plot3+'}') // <--
-            //.withSimpleCard('PSG News', lexresp.messages[0].content) // <--
-            //.withStandingsCard('PSG News','{"posit": "'+posit+'","points": "'+points+'","jsonteamaheadname": "'+jsonteamaheadname+'","jsonteamaheadposition": "'+jsonteamaheadposition+'","jsonteamaheadpoints": "'+jsonteamaheadpoints+'"}') // <--
-            //.withStandingsCard('PSG News','{"listdata": '+JSON.stringify(JSON.parse(displast.Payload).messages[0].content.standings)+'}') // <--
-            //.withStandingsCard('PSG News','{"listdata": '+JSON.parse(displast.Payload).messages[0].content.standings+'}') // <--
-            //.withStandingsCard('PSG News','"listTemplate1ListData": {"listId": "lt1Sample","type": "list","listPage": {"listItems": [{"score": 15,"listItemIdentifier": "1","ordinalNumber": 1,"text": "PSG","position": 1,"token": "1"}]},"totalNumberOfItems": 1}')
             .speak(speak)
             .reprompt(speak)
             .getResponse();
@@ -234,8 +234,6 @@ const MusicIntentHandler = {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
             
-            //return WelcomeIntentHandler.handle(handlerInput);
-
         return handlerInput.responseBuilder
 
             .withSimpleCard('PSG News', "PSG Intro") // <--
@@ -275,7 +273,6 @@ const TwitIntentHandler = {
                 var speak = checkddbtwit.Item.output.conc;
             }
             
-            //return WelcomeIntentHandler.handle(handlerInput);
 
         return handlerInput.responseBuilder
 
@@ -297,7 +294,6 @@ const EggIntentHandler = {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
             
-            //return WelcomeIntentHandler.handle(handlerInput);
 
         return handlerInput.responseBuilder
             .withEggCard('E. D. D. I. E.', "Eddie2070") // <--
@@ -379,7 +375,6 @@ const GoBackHandler = {
         && handlerInput.requestEnvelope.request.arguments[0] === 'goBack';
     },
     async handle(handlerInput) {
-            //console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
          return handlerInput.responseBuilder
             .withSimpleCard('PSG News', "Welcome to PSG Newscast") // <--
             //.speak("Welcome to PSG newscast. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music.<audio src='soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01'/>")

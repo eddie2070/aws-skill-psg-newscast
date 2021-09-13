@@ -7,6 +7,52 @@ const moment = require('moment-timezone');
 const sharp = require("sharp");
 var s3 = new AWS.S3();
 
+var eventbridge = new AWS.EventBridge();
+
+var livegamemarker = (date) => {
+    console.log("livegamemarker: ", date);
+    // var mins=date.getMinutes();
+    // var hour=date.getHours();
+    // var dayofmonth=date.getDate();
+    // var month=date.getMonth();
+    // var year=date.getYear();
+    //var cronexp = "cron("+mins+" "+hour+" "+dayofmonth+" "+month+" ? "+year+")";
+    var cronexp = moment(date[0]).format("m H D M [?] YYYY");
+    console.log("cronexp: ",cronexp);
+    
+    var paramseventrule = {
+      Name: 'PSGNewscast-livemarker', /* required */
+      Description: 'adds live game marker',
+      //RoleArn: 'STRING_VALUE',
+      ScheduleExpression: 'cron('+cronexp+')',
+      State: "ENABLED",
+      Tags: [
+        {
+          Key: 'Name', /* required */
+          Value: 'PSGNewscast' /* required */
+        },
+        /* more items */
+  ]
+};
+    eventbridge.putRule(paramseventrule, function(err, data) {
+      if (err) console.log(err, err.stack); // an error occurred
+      else     console.log(data);           // successful response
+    });
+    
+    var paramseventtarget = {
+        Rule: "PSGNewscast-livemarker",
+        Targets: [{Arn: "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-nextgame", 
+        Id: "Lambdalivemarker", 
+        Input: '{"marker": "playingnow"}'
+        }]
+    }
+    eventbridge.putTargets(paramseventtarget, function(err, data) {
+      if (err) console.log(err, err.stack); // an error occurred
+      else     console.log(data);           // successful response
+});
+
+}
+
 
 const url = 'http://api.football-data.org/v2/teams/524/matches?status=SCHEDULED';
 const headers = {
@@ -55,6 +101,27 @@ var logo = async (teamid) => {
 };
 
 exports.handler = async (event, context, callback) => {
+    console.log("event: ", event);
+    try {
+        if (event.marker == "playingnow") {
+            console.log("marker for live game detected");
+            var paramsddb = {
+                Item: {
+                    "ID": "livemarker",
+                    "current": "true",
+                    "gameinfo": "notstarted",
+                    'UpdateTime': Math.floor(Date.now() /1000) ,
+                    'TTL':  Math.floor(Date.now()/1000 + 6500) ,
+                }, 
+                ReturnConsumedCapacity: "TOTAL",
+                TableName: "PSGNewscast"
+            };
+            var ddbputmarker = await documentClient.put(paramsddb).promise();
+            console.log("ddbputmarker: ", ddbputmarker);
+        } else {console.log("event marker not at true")}
+        
+    } catch {console.log("no live game marker")}
+    console.log("context: ", context);
   var params = {
             Key: {
                 "ID": "nextgame"
@@ -103,6 +170,8 @@ exports.handler = async (event, context, callback) => {
     //var conc = str1.concat(positaway, strmid, str2, pointsaway, strfin)
     //var jsonb = JSON.parse(conc);
     console.log("conc: ", conc);
+    
+    livegamemarker(jsongamedate);
     
     //4. convert from a remote file
     var homelogo = await logo(jsongamecurhomeid);

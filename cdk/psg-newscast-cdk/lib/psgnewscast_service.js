@@ -198,7 +198,7 @@ class psgService extends core.Construct {
         actions: [
             "dynamodb:*"
         ],
-        resources: [table.tableArn]
+        resources: [table.tableArn,"arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast"]
       }));
 
       lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
@@ -223,6 +223,16 @@ class psgService extends core.Construct {
         actions: [
             "xray:PutTraceSegments",
             "xray:PutTelemetryRecords"
+        ],
+        resources: ['*']
+      }));
+
+      lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "events:PutRule",
+            "events:TagResource",
+            "events:PutTargets"
         ],
         resources: ['*']
       }));
@@ -353,7 +363,7 @@ class psgService extends core.Construct {
         actions: [
             "dynamodb:*"
         ],
-        resources: [table.tableArn]
+        resources: [table.tableArn,"arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast"]
       }));
 
       lambdalivegame.addToRolePolicy(new iam.PolicyStatement({
