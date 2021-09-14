@@ -5,6 +5,8 @@ const dynamodb = require("@aws-cdk/aws-dynamodb");
 const stepfunction = require("@aws-cdk/aws-stepfunctions");
 const custom = require("@aws-cdk/custom-resources");
 const eventsources = require('@aws-cdk/aws-lambda-event-sources');
+const events = require('@aws-cdk/aws-events');
+const targets = require('@aws-cdk/aws-events-targets');
 
 const layerArnAsk = "arn:aws:lambda:us-east-1:173334852312:layer:ask-sdk-for-nodejs:4";
 
@@ -418,6 +420,13 @@ class psgService extends core.Construct {
         ],
         resources: ['*']
       }));
+
+      const updatenextgamelive = new events.Rule(this, 'PSGNewscast-update-next-game-live',{
+        ruleName: 'PSGNewscast-update-next-game-live',
+        enabled: true,
+        schedule: events.Schedule.rate(core.Duration.days(3)),
+        targets: [new targets.LambdaFunction(lambdanextgame)]
+      })
 
       const rolestepfunction = new iam.Role(this, 'StepFunctions-PSGNewscast-MyStateMachineStandard-role', {
         assumedBy: new iam.ServicePrincipal('states.amazonaws.com'),

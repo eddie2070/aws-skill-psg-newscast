@@ -165,8 +165,9 @@ exports.handler = async (event, context, callback) => {
         console.log('event.Records[0].eventName :' , event.Records[0].eventName);
         console.log('event.Records[0].dynamodb.Keys.ID :' , event.Records[0].dynamodb.Keys.ID);
         if (event.Records[0].eventName == "REMOVE" && event.Records[0].dynamodb.Keys.ID.S === 'livemarker') {
-            liverefresh("DISABLED");
+            var refreshoff = liverefresh("DISABLED");
             console.log("Disabled Eventbridge Rule");
+            return refreshoff;
         } else {console.log("game still playing or not started")}
         
     } catch {console.log("no live game marker")}

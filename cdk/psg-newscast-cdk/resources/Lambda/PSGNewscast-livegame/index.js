@@ -6,6 +6,7 @@ var documentClient = new AWS.DynamoDB.DocumentClient();
 const mom = require('moment');
 const moment = require('moment-timezone');
 const sharp = require("sharp");
+const { JsonPath } = require('@aws-cdk/aws-stepfunctions');
 var s3 = new AWS.S3();
 
 const url = 'http://api.football-data.org/v2/teams/524/matches/?status=LIVE'
@@ -86,7 +87,7 @@ if (ddbcheck.Item.gameinfo === "notstarted") {
     if (jsoncompetition == "UEFA Champions League") {
         jsoncompetitionstage = "in the " + jp.query(jsongamelive, '$.group');
     } else {
-        jsoncompetitionstage
+        jsoncompetitionstage;
     }
     var jsongamelivedate = jp.query(jsongamelive, '$.utcDate');
     var jsongamelivedatestart = mom(jsongamelivedate,"YYYY-MM-DDTHH:mm:ssZ");
@@ -96,6 +97,9 @@ if (ddbcheck.Item.gameinfo === "notstarted") {
     console.log("jsongamelivedatenow: ", jsongamelivedatenow);
     var jsongameliveclock = jsongamelivedatenow.diff(jsongamelivedatestart, 'minutes');
     console.log("jsongameliveclock: ", jsongameliveclock);
+    if (45<jsongameliveclock<=60) {jsongameliveclock="45' Half Time"}
+    if (jsongameliveclock>60) {jsongameliveclock = jsongameliveclock-15}
+    if (jsongameliveclock>105) {jsongameliveclock = "90' Extended Time"}
     
     var homelogo = await logo(jsongamelivehomeid);
     console.log("homelogo: ",homelogo);
@@ -135,12 +139,12 @@ if (ddbcheck.Item.gameinfo === "notstarted") {
         //if (err) console.log(err, err.stack); // an error occurred
         //else     console.log(data);           // successful response
         //});
-        //console.log("ddbput: ",ddbput);
+        console.log("ddbput: ",ddbput);
 
         return {
           "lastresults": conc,
               "livegame": "gameinfo"
-          }
+          };
 
     //console.log("conc2: ",tweetfind);
     //return tweetfind;
@@ -155,4 +159,4 @@ if (ddbcheck.Item.gameinfo === "notstarted") {
   };
 }
 
-}
+};
