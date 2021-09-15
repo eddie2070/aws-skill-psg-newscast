@@ -1,77 +1,160 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "psg newscast",
-            "modelConfiguration": {
-                "fallbackIntentSensitivity": {
-                    "level": "LOW"
-                }
-            },
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "HelloWorldIntent",
-                    "slots": [],
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.FallbackIntent",
-                    "samples": []
-                },
-                {
-                    "name": "temperature",
-                    "slots": [],
-                    "samples": [
-                        "temperature inside",
-                        "What is the temperature inside"
-                    ]
-                },
-                {
-                    "name": "LastResultsIntent",
-                    "slots": [],
-                    "samples": [
-                        "last results"
-                    ]
-                },
-                {
-                    "name": "NextGameIntent",
-                    "slots": [],
-                    "samples": [
-                        "Next game"
-                    ]
-                },
-                {
-                    "name": "WelcomeIntent",
-                    "slots": [],
-                    "samples": [
-                        "open psg newscast"
-                    ]
-                },
-                {
-                    "name": "StandingsIntent",
-                    "slots": [],
-                    "samples": [
-                        "leaderboard",
-                        "position in leaderboard"
-                    ]
-                }
-            ],
-            "types": []
+  "Comment": "Example of a workflow which invokes your Lambda function, implements retries, and catches errors. Learn more at https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-creating-lambda-state-machine.html",
+  "StartAt": "Choice",
+  "States": {
+    "Choice": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.intentname",
+          "StringEquals": "LastResultsIntent",
+          "Next": "Step 1: Invoke Lambda function"
+        },
+        {
+          "Variable": "$.intentname",
+          "StringEquals": "NextGameIntent",
+          "Next": "Lambda Invoke"
+        },
+        {
+          "Variable": "$.intentname",
+          "StringEquals": "Welcome",
+          "Next": "Pass"
+        },
+        {
+          "Variable": "$.intentname",
+          "StringEquals": "StandingsIntent",
+          "Next": "Lambda Invoke Standings"
+        },
+        {
+          "Variable": "$.intentname",
+          "StringEquals": "TwitIntent",
+          "Next": "Lambda Invoke twit"
         }
+      ],
+      "Default": "Step 3"
+    },
+    "Lambda Invoke": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-nextgame",
+        "Payload": {
+          "Input.$": "$"
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 6,
+          "BackoffRate": 2
+        }
+      ],
+      "End": true
+    },
+    "Pass": {
+      "Type": "Pass",
+      "End": true,
+      "Result": {
+        "Payload": {
+          "lastresults": "Welcome to PSG news. What would you like to know today? You can ask for the last results, live, next game, position in the leaderboard, latest news, or music."
+        }
+      }
+    },
+    "Step 1: Invoke Lambda function": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-lastresults-score",
+        "Payload": {
+          "Input.$": "$"
+        }
+      },
+      "Retry": [
+        {
+          "Comment": "Use Retry fields to retry a Lambda function after an error occurs. Learn more at https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-retrying-after-an-error",
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.TooManyRequestsException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 6,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "Comment": "Use Catch fields to catch errors and revert to fallback states. https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-fallback-states",
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "Next": "Fallback state"
+        }
+      ],
+      "End": true
+    },
+    "Step 3": {
+      "Comment": "Use Pass states as placeholders for future states",
+      "Type": "Pass",
+      "End": true
+    },
+    "Fallback state": {
+      "Comment": "Handle Lambda exceptions here",
+      "Type": "Pass",
+      "Next": "Fail"
+    },
+    "Fail": {
+      "Type": "Fail"
+    },
+    "Lambda Invoke Standings": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-leaderboard",
+        "Payload": {
+          "Input.$": "$"
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 6,
+          "BackoffRate": 2
+        }
+      ],
+      "End": true
+    },
+    "Lambda Invoke twit": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-livetweet:$LATEST"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 6,
+          "BackoffRate": 2
+        }
+      ],
+      "End": true
     }
+  }
 }
