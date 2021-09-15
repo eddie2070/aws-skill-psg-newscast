@@ -169,6 +169,12 @@ exports.handler = async (event, context, callback) => {
             console.log("Disabled Eventbridge Rule");
             return refreshoff;
         } else {console.log("game still playing or not started")}
+
+        if (event.Records[0].eventName == "REMOVE" && event.Records[0].dynamodb.Keys.ID.S != 'livemarker') {
+            console.log("Triggered by REMOVE on nextgame or anything else than livemarker. Not doing anything");
+            return "Exit. Triggered by REMOVE on nextgame or anything else than livemarker. Not doing anything";
+        }
+        
         
     } catch {console.log("no live game marker")}
     console.log("context: ", context);
