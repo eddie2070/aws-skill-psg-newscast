@@ -262,7 +262,7 @@ class psgService extends core.Construct {
       lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         actions: [
-            "lambda:AddPermission"*
+            "lambda:AddPermission"
         ],
         resources: ['*']
       }));
