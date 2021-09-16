@@ -42,7 +42,7 @@ const LaunchRequestHandler = {
         try { if (checkddblivgam.Item.current === "true") {
             livespeak = "Paris is playing right now, say <phoneme alphabet='ipa' ph='laɪv'> live </phoneme> to learn about the current game.";
             if (checkddblivgam.Item.gameinfo != "notstarted") {
-            var footer = "<span color='red' fontSize='20dp'>Game in progress:</span> <span color='black'>. </span>  <span fontSize='30dp'>" +checkddblivgam.Item.gameinfo.jsongamelivehome+ " "+checkddblivgam.Item.gameinfo.jsongamelivehomescore+" - " + checkddblivgam.Item.gameinfo.jsongameliveawayscore+ " " +checkddblivgam.Item.gameinfo.jsongameliveaway+ "("+checkddblivgam.Item.gameinfo.jsongameliveclock+"') </span><span fontSize='18dp'><i>  <span color='black'> . . . . . . . . . </span> *Say live to know more</i></span> ";
+            var footer = "<span color='red' fontSize='14dp'>Game in progress:</span> <span color='black'>. </span>  <span fontSize='20dp'>" +checkddblivgam.Item.gameinfo.jsongamelivehome+ " "+checkddblivgam.Item.gameinfo.jsongamelivehomescore+" - " + checkddblivgam.Item.gameinfo.jsongameliveawayscore+ " " +checkddblivgam.Item.gameinfo.jsongameliveaway+ " ("+checkddblivgam.Item.gameinfo.jsongameliveclock+"') </span><span fontSize='10dp'><i>  <span color='black'> . . . . . . . . . </span> *Say live to know more</i></span> ";
             footer = footer.replace("Paris Saint-Germain FC","Paris\-SG")
             } else {
                 footer = "";
@@ -109,6 +109,7 @@ const LastResultsIntentHandler = {
                 };
                 var displast = await lambda.invoke(paramslbd).promise();
                 console.log("displast: ",JSON.parse(displast.Payload));
+                console.log("displast content: ",JSON.parse(displast.Payload).messages[0].content);
                 var homescore = JSON.parse(displast.Payload).messages[0].content.score.homescore;
                 var awayscore = JSON.parse(displast.Payload).messages[0].content.score.awayscore;
                 var hometeamlogo = JSON.parse(displast.Payload).messages[0].content.score.hometeamlogo;
@@ -116,9 +117,12 @@ const LastResultsIntentHandler = {
                 var journey = JSON.parse(displast.Payload).messages[0].content.score.journey;
                 var jsoncompetition = JSON.parse(displast.Payload).messages[0].content.score.jsoncompetition;
                 var jsongamedate = JSON.parse(displast.Payload).messages[0].content.score.jsongamedate;
+                var jsonstageUEFA = JSON.parse(displast.Payload).messages[0].content.score.jsonstageUEFA;
+                var jsongroupUEFA = JSON.parse(displast.Payload).messages[0].content.score.jsongroupUEFA;
                 console.log("homescore: ",homescore);
                 console.log("awayscore: ",awayscore);
-                var speak = JSON.parse(displast.Payload).messages[0].content.conc
+                var speak = JSON.parse(displast.Payload).messages[0].content.conc;
+                console.log("speak: ",speak);
 
             } else {
                 var homescore = checkddblast.Item.score.scoredata.homescore;
@@ -129,12 +133,14 @@ const LastResultsIntentHandler = {
                 var journey = checkddblast.Item.score.scoredata.journey;
                 var jsoncompetition = checkddblast.Item.score.scoredata.jsoncompetition;
                 var jsongamedate = checkddblast.Item.score.scoredata.jsongamedate;
+                var jsonstageUEFA = checkddblast.Item.score.scoredata.jsonstageUEFA;
+                var jsongroupUEFA = checkddblast.Item.score.scoredata.jsongroupUEFA;
                 var speak = checkddblast.Item.output.conc;
             }
 
         
         return handlerInput.responseBuilder
-            .withResultsCard('PSG News','{"homescore": "'+homescore+'", "awayscore": "'+awayscore+'", "hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'"}') // <--
+            .withResultsCard('PSG News','{"homescore": "'+homescore+'", "awayscore": "'+awayscore+'", "hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'", "jsonstageUEFA": "'+jsonstageUEFA+'", "jsongroupUEFA": "'+jsongroupUEFA+'"}') // <--
             .speak(speak)
             .reprompt(speak)
             .getResponse();

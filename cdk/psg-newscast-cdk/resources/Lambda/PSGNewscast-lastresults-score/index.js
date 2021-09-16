@@ -34,7 +34,9 @@ const headers= {
     
              //4. convert from a remote file
             //var hometeamlogo = "https://crests.football-data.org/"+jsongamecurhomeid+".png";
-            const input = (await axios({ url: 'https://crests.football-data.org/'+teamid+'.svg', responseType: "arraybuffer" })).data;
+            if (teamid == "champions") {
+                var input = (await axios({ url: 'https://upload.wikimedia.org/wikipedia/en/b/bf/UEFA_Champions_League_logo_2.svg', responseType: "arraybuffer" })).data;
+            } else { input = (await axios({ url: 'https://crests.football-data.org/'+teamid+'.svg', responseType: "arraybuffer" })).data;}
             console.log("input: ",input);  
         
             var teamlogo = await sharp(input)
@@ -82,6 +84,7 @@ const headers= {
             var jsongamedateUTC = jp.query(jsongamelastgame, '$.utcDate');
             console.log("jsongamedateUTC:", jsongamedateUTC[0]);
             var jsongamedate = jsongamedateUTC[0].split("T")[0];
+            console.log("jsongamedate:", jsongamedate);
             var jsongamecurhome = jp.query(jsongamelastgame, '$.homeTeam.name');
             console.log("jsongamecurhome:", jsongamecurhome);
             var jsongamecurhomeid = jp.query(jsongamelastgame, '$.homeTeam.id');
@@ -104,8 +107,21 @@ const headers= {
             var jsongamecurawayscore = jp.query(jsongamelastgame, '$.score.fullTime.awayTeam');
             console.log("cjsongamecurwinnername:", jsongamecurawayscore);
             var date = new Date(jsongamedate);
-            var dateformat = moment(date).tz("America/New_York").format('dddd MMMM Do YYYY');
-            console.log("dateformat: ",dateformat);
+            console.log("date:", date);
+            var dateformat = moment(jsongamedate).format('dddd MMMM Do YYYY');
+            console.log("dateformat2: ",dateformat);
+            var jsonstageUEFA = "";
+            var jsongroupUEFA = "";
+            if (jsoncompetition == "UEFA Champions League") {
+                jsonstageUEFA = jp.query(jsongamelastgame, '$.stage');
+                var logoUEFA = await logo("champions");
+                console.log("logoUEFA: ",logoUEFA);
+                var logoUEFApng = "https://psgnewscast-skill2021.s3.amazonaws.com/teamlogo/champions.png";
+                if (jsonstageUEFA == "GROUP_STAGE") {
+                    jsonstageUEFA = "Group stage";
+                    jsongroupUEFA = "- "+jp.query(jsongamelastgame, '$.group');
+                } else jsongroupUEFA = "";
+            } 
             //in the game of the x journey of league 1, with XX playin YY, XX won 1 to 2, would you like to know more.
             //Leaderboard The position of PSG in League One is first, with 9 points.
             //Angers SCO is second with 7 points. Clermont Foot 63 is third with 7 points. You can ask for the last results, , next game, position in the leaderboard, latest news, or music.
@@ -136,7 +152,10 @@ const headers= {
                         "awayteamlogo": awayteamlogo,
                         "journey": jsonday[0],
                         "jsoncompetition": jsoncompetition[0],
-                        "jsongamedate": dateformat
+                        "jsongamedate": dateformat,
+                        "jsonstageUEFA": jsonstageUEFA,
+                        "jsongroupUEFA": jsongroupUEFA
+                        
             };
             console.log("scoredata: ",scoredata);
             
@@ -171,7 +190,9 @@ const headers= {
                         "awayteamlogo": awayteamlogo,
                         "journey": jsonday,
                         "jsoncompetition": jsoncompetition,
-                        "jsongamedate": dateformat
+                        "jsongamedate": dateformat,
+                        "jsonstageUEFA": jsonstageUEFA,
+                        "jsongroupUEFA": jsongroupUEFA
                     }
                 }
             };

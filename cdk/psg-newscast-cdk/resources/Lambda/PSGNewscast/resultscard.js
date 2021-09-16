@@ -22,7 +22,9 @@ const APLHomeCardRequestInterceptor = {
                             "awayscore": JSON.parse(cardContent).awayscore,
                             "journey": JSON.parse(cardContent).journey,
                             "jsoncompetition": JSON.parse(cardContent).jsoncompetition,
-                            "jsongamedate": JSON.parse(cardContent).jsongamedate
+                            "jsongamedate": JSON.parse(cardContent).jsongamedate,
+                            "jsonstageUEFA": JSON.parse(cardContent).jsonstageUEFA,
+                            "jsongroupUEFA": JSON.parse(cardContent).jsongroupUEFA
                         },
                         templateData: {
                             "header": cardTitle,
@@ -36,6 +38,10 @@ const APLHomeCardRequestInterceptor = {
                     }
                 });
             }
+            if (JSON.parse(cardContent).jsonstageUEFA != "") {
+                console.log("add champions logo");
+                var championslogo = "https://psgnewscast-skill2021.s3.amazonaws.com/teamlogo/champions.png";
+            } else {championslogo = ""}
             withResultsCard(cardTitle, cardContent);
             return handlerInput.responseBuilder;
         }
@@ -138,6 +144,16 @@ const APLDoc =
                                 "height": "10dp",
                                 "width": "100vw",
                                 "fontSize": "4vh"
+                            },
+                            {
+                                "type": "Text",
+                                "textAlign": "center",
+                                "text": "${score.jsonstageUEFA} ${score.jsongroupUEFA}",
+                                "paddingTop": "0vh",
+                                "paddingBottom": "10vh",
+                                "height": "5dp",
+                                "width": "100vw",
+                                "fontSize": "3vh"
                             }
                         ]
                     },
@@ -169,7 +185,7 @@ const APLDoc =
                         "imageBlurredBackground": false
                             }
                         ],
-                        "height": "50%",
+                        "height": "35%",
                         "width": "100%",
                         "direction": "row",
                         "wrap": "noWrap"
@@ -181,9 +197,9 @@ const APLDoc =
                                 "type": "Text",
                                 "textAlign": "center",
                                 "text": "${score.homescore}",
-                                "paddingTop": "0vh",
+                                "paddingTop": "5vh",
                                 "paddingBottom": "5vh",
-                                "height": "32dp",
+                                "height": "20dp",
                                 "width": "50vw",
                                 "fontSize": "10vh"
                             },
@@ -191,9 +207,9 @@ const APLDoc =
                                 "type": "Text",
                                 "textAlign": "center",
                                 "text": "${score.awayscore}",
-                                "paddingTop": "0vh",
-                                "paddingBottom": "5vh",
-                                "height": "32dp",
+                                "paddingTop": "5vh",
+                                "paddingBottom": "0vh",
+                                "height": "10dp",
                                 "width": "50vw",
                                 "fontSize": "10vh"
                             }
