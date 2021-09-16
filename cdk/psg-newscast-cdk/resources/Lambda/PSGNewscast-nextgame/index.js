@@ -6,6 +6,7 @@ var documentClient = new AWS.DynamoDB.DocumentClient();
 const moment = require('moment-timezone');
 const sharp = require("sharp");
 var s3 = new AWS.S3();
+var lambda = new AWS.Lambda();
 
 var eventbridge = new AWS.EventBridge();
 
@@ -47,36 +48,53 @@ var livegamemarker = (date) => {
 
 };
 
-var liverefresh = (state) => {
+var liverefresh = async (state) => {
     console.log("liverefresh: ", state);
 
-     var paramseventrule = {
+            var paramseventrule = {
                 Name: 'PSGNewscast-liverefresh', /* required */
-                Description: 'refreshes score every 5 minutes when game is occuring',
-                ScheduleExpression: 'rate(5 minutes)',
+                Description: 'refreshes score every 3 minutes, when game is occuring',
+                ScheduleExpression: 'rate(3 minutes)',
                 State: state,
                 Tags: [
                     {
-                    Key: 'Name', /* required */
+                    Key: 'Project', /* required */
                     Value: 'PSGNewscast' /* required */
                     },
                     ]
             };
-            eventbridge.putRule(paramseventrule, function(err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
-            else     console.log(data);           // successful response
-            });
+            console.log("paramseventrule: ", paramseventrule);
+
+            var putrulefresh = await eventbridge.putRule(paramseventrule).promise();
+            console.log("putrulefresh ARN: ", putrulefresh.RuleArn);
+            
+            var paramlambdatrigperm = {
+                Action: 'lambda:InvokeFunction',
+                FunctionName: 'PSGNewscast-livegame',
+                Principal: 'events.amazonaws.com', 
+                StatementId: 'Event'+Date.now(),
+                SourceArn: putrulefresh.RuleArn
+            };
+            var lambdatrigperm = await lambda.addPermission(paramlambdatrigperm).promise();
+            console.log("lambdatrigperm: ",lambdatrigperm);
+            
+            // var paramsedd = {
+            //      FunctionName: 'PSGNewscast-livegame' /* required */
+            // }
+            // var lbdeventsource = await lambda.createEventSourceMapping(paramsedd).promise();
+            // console.log("lbdeventsource: ",lbdeventsource);
     
             var paramseventtarget = {
                 Rule: "PSGNewscast-liverefresh",
                 Targets: [{Arn: "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-livegame", 
-                Id: "Lambdaliverefresh"
+                Id: "Lambdaliverefresh"+Date.now()
                 }]
             };
-            eventbridge.putTargets(paramseventtarget, function(err, data) {
-              if (err) console.log(err, err.stack); // an error occurred
-              else     console.log(data);           // successful response
-            });
+
+            var liveputtarget = await eventbridge.putTargets(paramseventtarget).promise();
+            console.log("liveputtarget: ",liveputtarget);
+            console.log("target added to Eventbridge rule");
+            // return liveputtarget;
 
 };
 
@@ -158,25 +176,28 @@ exports.handler = async (event, context, callback) => {
             };
             var ddbputmarker = await documentClient.put(paramsddb).promise();
             console.log("ddbputmarker: ", ddbputmarker);
-            liverefresh("ENABLED");
+            var refreshactivation = await liverefresh("ENABLED");
+            console.log("refreshactivation: ", refreshactivation);
            
         } else {console.log("event marker not at true")}
         
-        console.log('event.Records[0].eventName :' , event.Records[0].eventName);
-        console.log('event.Records[0].dynamodb.Keys.ID :' , event.Records[0].dynamodb.Keys.ID);
+        try {
+            console.log('event.Records[0].eventName :' , event.Records[0].eventName);
+            console.log('event.Records[0].dynamodb.Keys.ID :' , event.Records[0].dynamodb.Keys.ID);
+        
         if (event.Records[0].eventName == "REMOVE" && event.Records[0].dynamodb.Keys.ID.S === 'livemarker') {
             var refreshoff = liverefresh("DISABLED");
             console.log("Disabled Eventbridge Rule");
             return refreshoff;
         } else {console.log("game still playing or not started")}
-
+        } catch {console.log("no ddb event stream")}
+        
         if (event.Records[0].eventName == "REMOVE" && event.Records[0].dynamodb.Keys.ID.S != 'livemarker') {
             console.log("Triggered by REMOVE on nextgame or anything else than livemarker. Not doing anything");
             return "Exit. Triggered by REMOVE on nextgame or anything else than livemarker. Not doing anything";
         }
         
-        
-    } catch {console.log("no live game marker")}
+    } catch(err) {console.log("no live game marker or err: ",err)}
     console.log("context: ", context);
   var params = {
             Key: {

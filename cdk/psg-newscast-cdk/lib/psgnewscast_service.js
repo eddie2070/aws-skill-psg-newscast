@@ -114,7 +114,7 @@ class psgService extends core.Construct {
 
 
       const lambdalastresults = new lambda.Function(this, "lambda-lastresults-score", {
-        runtime: lambda.Runtime.NODEJS_10_X, //
+        runtime: lambda.Runtime.NODEJS_14_X, //
         code: lambda.Code.asset("resources/Lambda/PSGNewscast-lastresults-score"),
         handler: "index.handler",
         environment: {
@@ -169,7 +169,7 @@ class psgService extends core.Construct {
 
 
       const lambdanextgame = new lambda.Function(this, "lambda-nextgame", {
-        runtime: lambda.Runtime.NODEJS_10_X, //
+        runtime: lambda.Runtime.NODEJS_14_X, //
         functionName: "PSGNewscast-nextgame",
         code: lambda.Code.asset("resources/Lambda/PSGNewscast-nextgame"),
         handler: "index.handler",
@@ -259,9 +259,17 @@ class psgService extends core.Construct {
         resources: ['*']
       }));
 
+      lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "lambda:AddPermission"*
+        ],
+        resources: ['*']
+      }));
+
 
       const lambdaleaderboard = new lambda.Function(this, "lambda-leaderboard", {
-        runtime: lambda.Runtime.NODEJS_10_X, //
+        runtime: lambda.Runtime.NODEJS_14_X, //
         code: lambda.Code.asset("resources/Lambda/PSGNewscast-leaderboard"),
         handler: "index.handler",
         environment: {
@@ -305,7 +313,7 @@ class psgService extends core.Construct {
       }));
 
       const lambdatwit = new lambda.Function(this, "lambda-twit", {
-        runtime: lambda.Runtime.NODEJS_10_X, //
+        runtime: lambda.Runtime.NODEJS_14_X, //
         functionName: "PSGNewscast-livetweet",
         code: lambda.Code.asset("resources/Lambda/PSGNewscast-livetweet"),
         handler: "index.handler",
@@ -352,7 +360,7 @@ class psgService extends core.Construct {
       }));
       
       const lambdalivegame = new lambda.Function(this, "lambda-livegame", {
-        runtime: lambda.Runtime.NODEJS_10_X, //
+        runtime: lambda.Runtime.NODEJS_14_X, //
         functionName: "PSGNewscast-livegame",
         code: lambda.Code.asset("resources/Lambda/PSGNewscast-livegame"),
         handler: "index.handler",

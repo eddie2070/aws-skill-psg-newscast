@@ -6,7 +6,6 @@ var documentClient = new AWS.DynamoDB.DocumentClient();
 const mom = require('moment');
 const moment = require('moment-timezone');
 const sharp = require("sharp");
-const { JsonPath } = require('@aws-cdk/aws-stepfunctions');
 var s3 = new AWS.S3();
 
 const url = 'http://api.football-data.org/v2/teams/524/matches/?status=LIVE'
@@ -67,10 +66,12 @@ exports.handler = async (event, context, callback) => {
 //var ddbcheck = await dynamodb.getItem(params).promise();
 var ddbcheck  = await documentClient.get(params).promise();
 console.log("ddbcheck: ", ddbcheck);
-if (ddbcheck.Item.gameinfo === "notstarted") {
+//if (ddbcheck.Item.gameinfo === "notstarted") {
   const response = await axios.get(url, { headers });
   console.log("response: ", response);
   var jsongamelivear = jp.query(response.data, '$.matches[0]');
+  console.log("jsongamelivear: ", jsongamelivear.toString());
+  if (jsongamelivear.toString() == "") {console.log("jsongamelivear is empty")}
   var jsongamelive = jsongamelivear[0];
   console.log("jsongamelive: ", jsongamelive);
   var jsongameliveid = jp.query(response.data, 'id');
@@ -97,9 +98,10 @@ if (ddbcheck.Item.gameinfo === "notstarted") {
     console.log("jsongamelivedatenow: ", jsongamelivedatenow);
     var jsongameliveclock = jsongamelivedatenow.diff(jsongamelivedatestart, 'minutes');
     console.log("jsongameliveclock: ", jsongameliveclock);
-    if (45<jsongameliveclock<=60) {jsongameliveclock="45' Half Time"}
-    if (jsongameliveclock>60) {jsongameliveclock = jsongameliveclock-15}
-    if (jsongameliveclock>105) {jsongameliveclock = "90' Extended Time"}
+    if (jsongameliveclock > 45 && jsongameliveclock <= 60) {jsongameliveclock="45' Half Time"}
+    if (jsongameliveclock > 60 && jsongameliveclock <= 105) {jsongameliveclock = jsongameliveclock-15}
+    if (jsongameliveclock > 105) {jsongameliveclock = "90' Extended Time"}
+    if (jsongameliveclock > 105 && jp.query(jsongamelive, '$.status') != "IN_PLAY") {jsongameliveclock = "Full Time"}
     
     var homelogo = await logo(jsongamelivehomeid);
     console.log("homelogo: ",homelogo);
@@ -145,18 +147,5 @@ if (ddbcheck.Item.gameinfo === "notstarted") {
           "lastresults": conc,
               "livegame": "gameinfo"
           };
-
-    //console.log("conc2: ",tweetfind);
-    //return tweetfind;
-} else {
-  console.log("output from ddbcheck: ", ddbcheck.Item);
-  //console.log("tweetslist from ddbcheck: ", ddbcheck.Item.livegame.gameinfo);
-  return {
-      'lastresults': {
-          'conc': ddbcheck.Item.output.conc,
-          'livetweet': ddbcheck.Item.livegame
-      }
-  };
-}
 
 };
