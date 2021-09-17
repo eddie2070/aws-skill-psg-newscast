@@ -28,8 +28,21 @@ class psgService extends core.Construct {
         exportName: 'DDBTablePSGNewscastARN'
       });
 
+      const tablerefresh = new dynamodb.Table(this, 'PSGNewscastrefreshddb', {
+        partitionKey: { name: 'ID', type: dynamodb.AttributeType.STRING },
+        timeToLiveAttribute: 'TTL',
+        tableName: 'PSGNewscast-refresher',
+        stream: dynamodb.StreamViewType.KEYS_ONLY
+      });
+  
+      const ddbrefresharn = new core.CfnOutput(this, "DDBTablePSGNewscastrefreshARN",{
+        value: tablerefresh.tableArn,
+        description: 'DynamoDB Table ARN',
+        exportName: 'DDBTablePSGNewscastrefreshARN'
+      });
+
     const lambdamomentlayer = new lambda.LayerVersion(this, "momentlayer", {
-      compatibleRuntimes: [lambda.Runtime.NODEJS_10_X,lambda.Runtime.NODEJS_12_X],
+      compatibleRuntimes: [lambda.Runtime.NODEJS_10_X,lambda.Runtime.NODEJS_12_X,lambda.Runtime.NODEJS_14_X],
       code: lambda.Code.asset("resources/Lambda/momentlayer.zip"),
       description: 'A layer with moment timezone'
     })
@@ -41,7 +54,7 @@ class psgService extends core.Construct {
       })
 
     const lambdasharplayer = new lambda.LayerVersion(this, "sharp-lambda-layer", {
-        compatibleRuntimes: [lambda.Runtime.NODEJS_10_X,lambda.Runtime.NODEJS_12_X],
+        compatibleRuntimes: [lambda.Runtime.NODEJS_10_X,lambda.Runtime.NODEJS_12_X,lambda.Runtime.NODEJS_14_X],
         code: lambda.Code.asset("resources/Lambda/sharp-lambda-layer.zip"),
         description: 'A layer with xray'
       })
@@ -249,23 +262,23 @@ class psgService extends core.Construct {
         resources: ['*']
       }));
 
-      lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        actions: [
-            "events:PutRule",
-            "events:TagResource",
-            "events:PutTargets"
-        ],
-        resources: ['*']
-      }));
+      // lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
+      //   effect: iam.Effect.ALLOW,
+      //   actions: [
+      //       "events:PutRule",
+      //       "events:TagResource",
+      //       "events:PutTargets"
+      //   ],
+      //   resources: ['*']
+      // }));
 
-      lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        actions: [
-            "lambda:AddPermission"
-        ],
-        resources: ['*']
-      }));
+      // lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
+      //   effect: iam.Effect.ALLOW,
+      //   actions: [
+      //       "lambda:AddPermission"
+      //   ],
+      //   resources: ['*']
+      // }));
 
 
       const lambdaleaderboard = new lambda.Function(this, "lambda-leaderboard", {
@@ -429,11 +442,90 @@ class psgService extends core.Construct {
         resources: ['*']
       }));
 
+      const lambdalivegamerefresher = new lambda.Function(this, "lambda-livegame-refresher", {
+        runtime: lambda.Runtime.NODEJS_14_X, //
+        functionName: "PSGNewscast-livegame-refresher",
+        code: lambda.Code.asset("resources/Lambda/PSGNewscast-livegame-refresher"),
+        handler: "index.handler",
+        environment: {
+          //BUCKET: bucket.bucketName
+        },
+        layers: [lambdamomentlayer,lambdasharplayer],
+        timeout: core.Duration.seconds(10)
+      });
+
+      lambdalivegamerefresher.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:ListContributorInsights",
+            "dynamodb:DescribeReservedCapacityOfferings",
+            "dynamodb:ListGlobalTables",
+            "dynamodb:ListTables",
+            "dynamodb:DescribeReservedCapacity",
+            "dynamodb:ListBackups",
+            "dynamodb:PurchaseReservedCapacityOfferings",
+            "dynamodb:DescribeLimits",
+            "dynamodb:ListExports",
+            "dynamodb:ListStreams",
+            "dynamodb:GetRecords",
+            "dynamodb:GetShardIterator",
+            "dynamodb:DescribeStream",
+            "dynamodb:ListShards"
+        ],
+        resources: ['*']
+      }));
+
+      lambdalivegamerefresher.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:ListStreams",
+            "dynamodb:GetRecords",
+            "dynamodb:GetShardIterator",
+            "dynamodb:DescribeStream"
+        ],
+        resources: ["arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast-refresher/*"]
+      }));
+
+      lambdalivegamerefresher.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "dynamodb:*"
+        ],
+        resources: [tablerefresh.tableArn]
+      }));
+
+      lambdalivegamerefresher.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "xray:PutTraceSegments",
+            "xray:PutTelemetryRecords"
+        ],
+        resources: ['*']
+      }));
+
+      lambdalivegamerefresher.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "events:PutRule",
+            "events:TagResource",
+            "events:PutTargets"
+        ],
+        resources: ['*']
+      }));
+
+      lambdalivegamerefresher.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+            "lambda:AddPermission"
+        ],
+        resources: ['*']
+      }));
+
       const updatenextgamelive = new events.Rule(this, 'PSGNewscast-update-next-game-live',{
         ruleName: 'PSGNewscast-update-next-game-live',
         enabled: true,
         schedule: events.Schedule.rate(core.Duration.days(3)),
-        targets: [new targets.LambdaFunction(lambdanextgame)]
+        targets: [new targets.LambdaFunction(lambdalivegamerefresher)]
       })
 
       const rolestepfunction = new iam.Role(this, 'StepFunctions-PSGNewscast-MyStateMachineStandard-role', {

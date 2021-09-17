@@ -10,43 +10,43 @@ var lambda = new AWS.Lambda();
 
 var eventbridge = new AWS.EventBridge();
 
-var livegamemarker = (date) => {
-    console.log("livegamemarker: ", date);
-    var cronexp = moment(date[0]).format("m H D M [?] YYYY");
-    console.log("cronexp: ",cronexp);
+// var livegamemarker = (date) => {
+//     console.log("livegamemarker: ", date);
+//     var cronexp = moment(date[0]).format("m H D M [?] YYYY");
+//     console.log("cronexp: ",cronexp);
     
-    var paramseventrule = {
-      Name: 'PSGNewscast-livemarker', /* required */
-      Description: 'adds live game marker',
-      //RoleArn: 'STRING_VALUE',
-      ScheduleExpression: 'cron('+cronexp+')',
-      State: "ENABLED",
-      Tags: [
-        {
-          Key: 'Name', /* required */
-          Value: 'PSGNewscast' /* required */
-        },
-        /* more items */
-  ]
-};
-    eventbridge.putRule(paramseventrule, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
-    });
+//     var paramseventrule = {
+//       Name: 'PSGNewscast-livemarker', /* required */
+//       Description: 'adds live game marker',
+//       //RoleArn: 'STRING_VALUE',
+//       ScheduleExpression: 'cron('+cronexp+')',
+//       State: "ENABLED",
+//       Tags: [
+//         {
+//           Key: 'Name', /* required */
+//           Value: 'PSGNewscast' /* required */
+//         },
+//         /* more items */
+//   ]
+// };
+//     eventbridge.putRule(paramseventrule, function(err, data) {
+//       if (err) console.log(err, err.stack); // an error occurred
+//       else     console.log(data);           // successful response
+//     });
     
-    var paramseventtarget = {
-        Rule: "PSGNewscast-livemarker",
-        Targets: [{Arn: "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-nextgame", 
-        Id: "Lambdalivemarker", 
-        Input: '{"marker": "playingnow"}'
-        }]
-    };
-    eventbridge.putTargets(paramseventtarget, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
-});
+//     var paramseventtarget = {
+//         Rule: "PSGNewscast-livemarker",
+//         Targets: [{Arn: "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-nextgame", 
+//         Id: "Lambdalivemarker", 
+//         Input: '{"marker": "playingnow"}'
+//         }]
+//     };
+//     eventbridge.putTargets(paramseventtarget, function(err, data) {
+//       if (err) console.log(err, err.stack); // an error occurred
+//       else     console.log(data);           // successful response
+// });
 
-};
+// };
 
 var liverefresh = async (state) => {
     console.log("liverefresh: ", state);
@@ -251,7 +251,7 @@ exports.handler = async (event, context, callback) => {
     //var jsonb = JSON.parse(conc);
     console.log("conc: ", conc);
     
-    livegamemarker(jsongamedate);
+    //livegamemarker(jsongamedate);
     
     //4. convert from a remote file
     var homelogo = await logo(jsongamecurhomeid);
