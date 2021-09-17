@@ -18,8 +18,8 @@ class psgService extends core.Construct {
     const table = new dynamodb.Table(this, 'PSGNewscastddb', {
         partitionKey: { name: 'ID', type: dynamodb.AttributeType.STRING },
         timeToLiveAttribute: 'TTL',
-        tableName: 'AlexaSkillPSG',
-        stream: dynamodb.StreamViewType.KEYS_ONLY
+        tableName: 'PSGNewscast',
+        removalPolicy: core.RemovalPolicy.DESTROY,
       });
   
       const ddbarn = new core.CfnOutput(this, "DDBTablePSGNewscastARN",{
@@ -32,6 +32,7 @@ class psgService extends core.Construct {
         partitionKey: { name: 'ID', type: dynamodb.AttributeType.STRING },
         timeToLiveAttribute: 'TTL',
         tableName: 'PSGNewscast-refresher',
+        removalPolicy: core.RemovalPolicy.DESTROY,
         stream: dynamodb.StreamViewType.KEYS_ONLY
       });
   
@@ -62,7 +63,7 @@ class psgService extends core.Construct {
     const lambdaalexasdklayer = lambda.LayerVersion.fromLayerVersionArn(this, "ask-layer", layerArnAsk)
 
     const handler = new lambda.Function(this, "PSGNewscast", {
-      //functionName: "PSGNewscast",
+      functionName: "PSGNewscast",
       runtime: lambda.Runtime.NODEJS_14_X, //
       code: lambda.Code.asset("resources/Lambda/PSGNewscast"),
       handler: "index.handler",
@@ -83,6 +84,7 @@ class psgService extends core.Construct {
 
     const lambdadispatcher = new lambda.Function(this, "lambdadispatcher", {
       runtime: lambda.Runtime.NODEJS_14_X, //
+      functionName: "PSGNewscast-dispatcher",
       //code: lambda.Code.asset("resources"),
       code: lambda.Code.asset("resources/Lambda/PSGNewscast-dispatcher"),
       handler: "index.handler",
@@ -127,7 +129,8 @@ class psgService extends core.Construct {
 
 
       const lambdalastresults = new lambda.Function(this, "lambda-lastresults-score", {
-        runtime: lambda.Runtime.NODEJS_14_X, //
+        runtime: lambda.Runtime.NODEJS_14_X, //,
+        functionName: "PSGNewscast-lastresults-score",
         code: lambda.Code.asset("resources/Lambda/PSGNewscast-lastresults-score"),
         handler: "index.handler",
         environment: {
@@ -193,12 +196,12 @@ class psgService extends core.Construct {
         timeout: core.Duration.seconds(10)
       });
 
-      lambdanextgame.addEventSource(new eventsources.DynamoEventSource(table, {
-        startingPosition: lambda.StartingPosition.TRIM_HORIZON,
-        batchSize: 5,
-        bisectBatchOnError: true,
-        retryAttempts: 10
-      }));
+      // lambdanextgame.addEventSource(new eventsources.DynamoEventSource(table, {
+      //   startingPosition: lambda.StartingPosition.TRIM_HORIZON,
+      //   batchSize: 5,
+      //   bisectBatchOnError: true,
+      //   retryAttempts: 10
+      // }));
 
       lambdanextgame.addToRolePolicy(new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
@@ -454,6 +457,13 @@ class psgService extends core.Construct {
         timeout: core.Duration.seconds(10)
       });
 
+      lambdalivegamerefresher.addEventSource(new eventsources.DynamoEventSource(tablerefresh, {
+         startingPosition: lambda.StartingPosition.TRIM_HORIZON,
+         batchSize: 5,
+         bisectBatchOnError: true,
+         retryAttempts: 10
+       }));
+
       lambdalivegamerefresher.addToRolePolicy(new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         actions: [
@@ -521,12 +531,18 @@ class psgService extends core.Construct {
         resources: ['*']
       }));
 
-      const updatenextgamelive = new events.Rule(this, 'PSGNewscast-update-next-game-live',{
+      const updatenextgamelive = new events.Rule(this, 'PSGNewscast-RULEupdate-next-game-live',{
         ruleName: 'PSGNewscast-update-next-game-live',
         enabled: true,
         schedule: events.Schedule.rate(core.Duration.days(3)),
         targets: [new targets.LambdaFunction(lambdalivegamerefresher)]
       })
+
+      const eventsrulearn = new core.CfnOutput(this, "RuleARN",{
+        value: updatenextgamelive.ruleArn,
+        description: 'EventBridge rule refresher ARN',
+        exportName: 'EventBridgeRuleARN'
+      });
 
       const rolestepfunction = new iam.Role(this, 'StepFunctions-PSGNewscast-MyStateMachineStandard-role', {
         assumedBy: new iam.ServicePrincipal('states.amazonaws.com'),

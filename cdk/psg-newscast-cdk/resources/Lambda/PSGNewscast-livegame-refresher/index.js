@@ -8,7 +8,7 @@ const axios = require('axios');
 const jp = require('jsonpath');
 
 
-var livegamemarker = (date) => {
+var livegamemarker = async (date) => {
     console.log("livegamemarker: ", date);
     var cronexp = moment(date[0]).format("m H D M [?] YYYY");
     console.log("cronexp: ",cronexp);
@@ -27,10 +27,19 @@ var livegamemarker = (date) => {
         /* more items */
   ]
 };
-    eventbridge.putRule(paramseventrule, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
-    });
+    var putrulefreshmark = await eventbridge.putRule(paramseventrule).promise();
+            console.log("putrulefresh ARN: ", putrulefreshmark.RuleArn);
+    
+    var paramlambdamarktrigperm = {
+        Action: 'lambda:InvokeFunction',
+        FunctionName: 'PSGNewscast-livegame',
+        Principal: 'events.amazonaws.com', 
+        StatementId: 'Event'+Date.now(),
+        SourceArn: putrulefreshmark.RuleArn
+    };
+    
+    var lambdamarktrigperm = await lambda.addPermission(paramlambdamarktrigperm).promise();
+    console.log("lambdamarktrigperm: ",lambdamarktrigperm);
     
     var paramseventtarget = {
         Rule: "PSGNewscast-livemarker",
@@ -39,10 +48,10 @@ var livegamemarker = (date) => {
         Input: '{"marker": "playingnow"}'
         }]
     };
-    eventbridge.putTargets(paramseventtarget, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
-});
+    console.log("paramseventtarget:", paramseventtarget);
+    var livemarkputtarget = await eventbridge.putTargets(paramseventtarget).promise();
+            console.log("livemarkputtarget: ",livemarkputtarget);
+            console.log("livemarkputtarget target added to Eventbridge rule");
 
 };
 
@@ -105,7 +114,7 @@ exports.handler = async (event, context, callback) => {
     var jsongamenextgame = jsongamescheduled[0];
     var jsongamedate = jp.query(jsongamenextgame, '$.utcDate');
 
-    livegamemarker(jsongamedate);
+    await livegamemarker(jsongamedate);
 
 
     try {console.log("event: ", event.Records[0].dynamodb);} catch (err) {console.log(err)}

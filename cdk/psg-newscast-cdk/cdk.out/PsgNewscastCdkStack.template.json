@@ -19,17 +19,14 @@
           "ReadCapacityUnits": 5,
           "WriteCapacityUnits": 5
         },
-        "StreamSpecification": {
-          "StreamViewType": "KEYS_ONLY"
-        },
-        "TableName": "AlexaSkillPSG",
+        "TableName": "PSGNewscast",
         "TimeToLiveSpecification": {
           "AttributeName": "TTL",
           "Enabled": true
         }
       },
-      "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastddb/Resource"
       }
@@ -62,8 +59,8 @@
           "Enabled": true
         }
       },
-      "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscastrefreshddb/Resource"
       }
@@ -311,6 +308,7 @@
             "Arn"
           ]
         },
+        "FunctionName": "PSGNewscast",
         "Handler": "index.handler",
         "Layers": [
           {
@@ -472,6 +470,7 @@
             "Arn"
           ]
         },
+        "FunctionName": "PSGNewscast-dispatcher",
         "Handler": "index.handler",
         "Runtime": "nodejs14.x",
         "Timeout": 10
@@ -628,6 +627,7 @@
             "Arn"
           ]
         },
+        "FunctionName": "PSGNewscast-lastresults-score",
         "Handler": "index.handler",
         "Layers": [
           {
@@ -689,25 +689,6 @@
       "Properties": {
         "PolicyDocument": {
           "Statement": [
-            {
-              "Action": "dynamodb:ListStreams",
-              "Effect": "Allow",
-              "Resource": "*"
-            },
-            {
-              "Action": [
-                "dynamodb:DescribeStream",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "PSGNewscastPSGNewscastddbBE6AF493",
-                  "StreamArn"
-                ]
-              }
-            },
             {
               "Action": [
                 "dynamodb:ListContributorInsights",
@@ -850,27 +831,6 @@
         "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-nextgame/Resource",
         "aws:asset:path": "asset.a7382f654b023de66331baed5eb123a823eac8519b8f91868fa96d1c230d092d",
         "aws:asset:property": "Code"
-      }
-    },
-    "PSGNewscastlambdanextgameDynamoDBEventSourcePsgNewscastCdkStackPSGNewscastPSGNewscastddb48225B07DEF5A6CE": {
-      "Type": "AWS::Lambda::EventSourceMapping",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "PSGNewscastlambdanextgame8C34E176"
-        },
-        "BatchSize": 5,
-        "BisectBatchOnFunctionError": true,
-        "EventSourceArn": {
-          "Fn::GetAtt": [
-            "PSGNewscastPSGNewscastddbBE6AF493",
-            "StreamArn"
-          ]
-        },
-        "MaximumRetryAttempts": 10,
-        "StartingPosition": "TRIM_HORIZON"
-      },
-      "Metadata": {
-        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-nextgame/DynamoDBEventSource:PsgNewscastCdkStackPSGNewscastPSGNewscastddb48225B07/Resource"
       }
     },
     "PSGNewscastlambdaleaderboardServiceRoleD2C5AD00": {
@@ -1402,6 +1362,25 @@
         "PolicyDocument": {
           "Statement": [
             {
+              "Action": "dynamodb:ListStreams",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PSGNewscastPSGNewscastrefreshddb85AE6F7C",
+                  "StreamArn"
+                ]
+              }
+            },
+            {
               "Action": [
                 "dynamodb:ListContributorInsights",
                 "dynamodb:DescribeReservedCapacityOfferings",
@@ -1482,7 +1461,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70S3Bucket3B6FDF62"
+            "Ref": "AssetParametersc9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfdS3Bucket239898ED"
           },
           "S3Key": {
             "Fn::Join": [
@@ -1495,7 +1474,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70S3VersionKeyAB18B1BF"
+                          "Ref": "AssetParametersc9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfdS3VersionKeyCA9B9139"
                         }
                       ]
                     }
@@ -1508,7 +1487,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70S3VersionKeyAB18B1BF"
+                          "Ref": "AssetParametersc9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfdS3VersionKeyCA9B9139"
                         }
                       ]
                     }
@@ -1543,11 +1522,32 @@
       ],
       "Metadata": {
         "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-livegame-refresher/Resource",
-        "aws:asset:path": "asset.ba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70",
+        "aws:asset:path": "asset.c9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfd",
         "aws:asset:property": "Code"
       }
     },
-    "PSGNewscastlambdalivegamerefresherAllowEventRulePsgNewscastCdkStackPSGNewscastPSGNewscastupdatenextgamelive9F50189ECCF81E5F": {
+    "PSGNewscastlambdalivegamerefresherDynamoDBEventSourcePsgNewscastCdkStackPSGNewscastPSGNewscastrefreshddb9CB649FC146A12F9": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PSGNewscastlambdalivegamerefresherBF98D6BE"
+        },
+        "BatchSize": 5,
+        "BisectBatchOnFunctionError": true,
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "PSGNewscastPSGNewscastrefreshddb85AE6F7C",
+            "StreamArn"
+          ]
+        },
+        "MaximumRetryAttempts": 10,
+        "StartingPosition": "TRIM_HORIZON"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-livegame-refresher/DynamoDBEventSource:PsgNewscastCdkStackPSGNewscastPSGNewscastrefreshddb9CB649FC/Resource"
+      }
+    },
+    "PSGNewscastlambdalivegamerefresherAllowEventRulePsgNewscastCdkStackPSGNewscastPSGNewscastRULEupdatenextgameliveBD65BB55FC656899": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
@@ -1560,16 +1560,16 @@
         "Principal": "events.amazonaws.com",
         "SourceArn": {
           "Fn::GetAtt": [
-            "PSGNewscastPSGNewscastupdatenextgameliveB3EA00CB",
+            "PSGNewscastPSGNewscastRULEupdatenextgameliveD792B6A0",
             "Arn"
           ]
         }
       },
       "Metadata": {
-        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-livegame-refresher/AllowEventRulePsgNewscastCdkStackPSGNewscastPSGNewscastupdatenextgamelive9F50189E"
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/lambda-livegame-refresher/AllowEventRulePsgNewscastCdkStackPSGNewscastPSGNewscastRULEupdatenextgameliveBD65BB55"
       }
     },
-    "PSGNewscastPSGNewscastupdatenextgameliveB3EA00CB": {
+    "PSGNewscastPSGNewscastRULEupdatenextgameliveD792B6A0": {
       "Type": "AWS::Events::Rule",
       "Properties": {
         "Name": "PSGNewscast-update-next-game-live",
@@ -1588,7 +1588,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscast-update-next-game-live/Resource"
+        "aws:cdk:path": "PsgNewscastCdkStack/PSGNewscast/PSGNewscast-RULEupdate-next-game-live/Resource"
       }
     },
     "PSGNewscastStepFunctionsPSGNewscastMyStateMachineStandardrole600EFED4": {
@@ -1700,6 +1700,18 @@
       },
       "Export": {
         "Name": "DDBTablePSGNewscastrefreshARN"
+      }
+    },
+    "PSGNewscastRuleARNE58F18C1": {
+      "Description": "EventBridge rule refresher ARN",
+      "Value": {
+        "Fn::GetAtt": [
+          "PSGNewscastPSGNewscastRULEupdatenextgameliveD792B6A0",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "EventBridgeRuleARN"
       }
     },
     "PSGNewscastStatesARNF584D477": {
@@ -1836,17 +1848,17 @@
       "Type": "String",
       "Description": "Artifact hash for asset \"4ae777de7e8c956078afba17188614f3670d521d1af15829dbc486089f1c564d\""
     },
-    "AssetParametersba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70S3Bucket3B6FDF62": {
+    "AssetParametersc9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfdS3Bucket239898ED": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"ba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70\""
+      "Description": "S3 bucket for asset \"c9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfd\""
     },
-    "AssetParametersba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70S3VersionKeyAB18B1BF": {
+    "AssetParametersc9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfdS3VersionKeyCA9B9139": {
       "Type": "String",
-      "Description": "S3 key for asset version \"ba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70\""
+      "Description": "S3 key for asset version \"c9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfd\""
     },
-    "AssetParametersba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70ArtifactHashD6670CB1": {
+    "AssetParametersc9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfdArtifactHashEF1BA448": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"ba997da423037355fc434ee94f4e47c06df6c3b41df26977011ed848f1c63a70\""
+      "Description": "Artifact hash for asset \"c9899b481e8d8131e376e70f8a51897951ce7e627df444e8e22f4da040d8fbfd\""
     }
   },
   "Conditions": {
