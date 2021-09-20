@@ -61,7 +61,7 @@ exports.handler = async (event, context, callback) => {
     Key: {
         "ID": "livemarker"
     }, 
-    TableName: "PSGNewscast"
+    TableName: "PSGNewscast-refresher"
 };
 //var ddbcheck = await dynamodb.getItem(params).promise();
 var ddbcheck  = await documentClient.get(params).promise();
@@ -134,7 +134,7 @@ console.log("ddbcheck: ", ddbcheck);
           }
           }, 
           ReturnConsumedCapacity: "TOTAL",
-          TableName: "PSGNewscast"
+          TableName: "PSGNewscast-refresher"
       };
         console.log("paramsddb: ",paramsddb);
         var ddbput = await documentClient.update(paramsddb).promise();

@@ -208,8 +208,8 @@ const APLDoc =
                                 "textAlign": "center",
                                 "text": "${score.awayscore}",
                                 "paddingTop": "5vh",
-                                "paddingBottom": "0vh",
-                                "height": "10dp",
+                                "paddingBottom": "5vh",
+                                "height": "20dp",
                                 "width": "50vw",
                                 "fontSize": "10vh"
                             }

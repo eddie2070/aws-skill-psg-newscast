@@ -424,7 +424,7 @@ class psgService extends core.Construct {
         actions: [
             "dynamodb:*"
         ],
-        resources: [table.tableArn,"arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast"]
+        resources: [table.tableArn,"arn:aws:dynamodb:us-east-1:753451452012:table/PSGNewscast-refreshers"]
       }));
 
       lambdalivegame.addToRolePolicy(new iam.PolicyStatement({

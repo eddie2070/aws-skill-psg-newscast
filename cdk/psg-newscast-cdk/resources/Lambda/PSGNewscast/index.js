@@ -16,7 +16,7 @@ var ddbcheckfn = async (id) => {
             Key: {
                 "ID": id
             }, 
-            TableName: "PSGNewscast"
+            TableName: "PSGNewscast-refresher"
         };
     var ddbcheck  = await documentClient.get(ddbcheckparams).promise();
     console.log('ddbcheck: ', ddbcheck);

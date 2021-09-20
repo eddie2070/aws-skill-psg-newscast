@@ -32,7 +32,7 @@ var livegamemarker = async (date) => {
     
     var paramlambdamarktrigperm = {
         Action: 'lambda:InvokeFunction',
-        FunctionName: 'PSGNewscast-livegame',
+        FunctionName: 'PSGNewscast-livegame-refresher',
         Principal: 'events.amazonaws.com', 
         StatementId: 'Event'+Date.now(),
         SourceArn: putrulefreshmark.RuleArn
@@ -88,7 +88,8 @@ var liverefresh = async (state) => {
             var paramseventtarget = {
                 Rule: "PSGNewscast-liverefresh",
                 Targets: [{Arn: "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-livegame", 
-                Id: "Lambdaliverefresh"+Date.now()
+                Id: "Lambdaliverefresh"
+                //Id: "Lambdaliverefresh"+Date.now()
                 }]
             };
 
