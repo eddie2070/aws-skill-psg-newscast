@@ -11,12 +11,12 @@ AWSXRay.captureAWSClient(lexruntimev2);
 
 var lambda = new AWS.Lambda();
 
-var ddbcheckfn = async (id) => {
+var ddbcheckfn = async (id,table) => {
     var ddbcheckparams = {
             Key: {
                 "ID": id
             }, 
-            TableName: "PSGNewscast-refresher"
+            TableName: table
         };
     var ddbcheck  = await documentClient.get(ddbcheckparams).promise();
     console.log('ddbcheck: ', ddbcheck);
@@ -38,7 +38,7 @@ const LaunchRequestHandler = {
     },
     async handle(handlerInput) {
         var livespeak = "";
-        var checkddblivgam = await ddbcheckfn("livemarker");
+        var checkddblivgam = await ddbcheckfn("livemarker","PSGNewscast-refresher");
         try { if (checkddblivgam.Item.current === "true") {
             livespeak = "Paris is playing right now, say <phoneme alphabet='ipa' ph='laɪv'> live </phoneme> to learn about the current game.";
             if (checkddblivgam.Item.gameinfo != "notstarted") {
@@ -55,7 +55,10 @@ const LaunchRequestHandler = {
                 .reprompt(repromptText)
                 .getResponse();
         } else {console.log("no live marker in ddb")}
-        } catch(err) {console.log(err)}
+        } catch(err) {
+            console.log(err)
+            console.log("checkddblivgam.Item.current is not defined as there is no live game")
+        }
         console.log("livespeak:", livespeak);
       const repromptText = 'Welcome to PSG newscast. What would you like to know today? You can ask for the last results, next game, position in the leaderboard, latest news, or music.';
         return handlerInput.responseBuilder
@@ -74,7 +77,7 @@ const WelcomeIntentHandler = {
     },
     async handle(handlerInput) {
         var livespeak = "";
-        var checkddblivgam = await ddbcheckfn("livemarker");
+        var checkddblivgam = await ddbcheckfn("livemarker","PSGNewscast-refresher");
         if (JSON.parse(checkddblivgam).current === "true") {
             livespeak = "Say live to learn about the current live game.";
         }
@@ -100,7 +103,7 @@ const LastResultsIntentHandler = {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
 
             const repromptText = '';
-            var checkddblast = await ddbcheckfn("lastresults");
+            var checkddblast = await ddbcheckfn("lastresults","PSGNewscast");
             console.log("checkddblast: ",checkddblast);
             if (JSON.stringify(checkddblast) === "{}") {
                 var paramslbd = {
@@ -119,12 +122,16 @@ const LastResultsIntentHandler = {
                 var jsongamedate = JSON.parse(displast.Payload).messages[0].content.score.jsongamedate;
                 var jsonstageUEFA = JSON.parse(displast.Payload).messages[0].content.score.jsonstageUEFA;
                 var jsongroupUEFA = JSON.parse(displast.Payload).messages[0].content.score.jsongroupUEFA;
+                var jsonshomegoals = JSON.parse(displast.Payload).messages[0].content.score.homegoals;
+                var jsonsawaygoals = JSON.parse(displast.Payload).messages[0].content.score.awaygoals;
                 console.log("homescore: ",homescore);
                 console.log("awayscore: ",awayscore);
                 var speak = JSON.parse(displast.Payload).messages[0].content.conc;
                 console.log("speak: ",speak);
 
             } else {
+                var jsonshomegoals1 = "", jsonshomegoals2 = "",  jsonshomegoals3 = "",  jsonshomegoals4 = "",  jsonshomegoals5 = "";
+                var  jsonsawaygoals1 = "", jsonsawaygoals2 = "", jsonsawaygoals3 = "",  jsonsawaygoals4 = "",  jsonsawaygoals5 = "";
                 var homescore = checkddblast.Item.score.scoredata.homescore;
                 console.log("eeee: ", homescore);
                 var awayscore = checkddblast.Item.score.scoredata.awayscore;
@@ -135,12 +142,23 @@ const LastResultsIntentHandler = {
                 var jsongamedate = checkddblast.Item.score.scoredata.jsongamedate;
                 var jsonstageUEFA = checkddblast.Item.score.scoredata.jsonstageUEFA;
                 var jsongroupUEFA = checkddblast.Item.score.scoredata.jsongroupUEFA;
+                try{jsonshomegoals1 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[0].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[0].scoretime+"')"} catch{console.log("no home goal 1")};
+                try{jsonshomegoals2 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[1].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[1].scoretime+"')"} catch{console.log("no home goal 2")};
+                try{jsonshomegoals3 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[2].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[2].scoretime+"')"} catch{console.log("no home goal 3")};
+                try{jsonshomegoals4 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[3].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[3].scoretime+"')"} catch{console.log("no home goal 4")};
+                try{jsonshomegoals5 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[4].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[4].scoretime+"')"} catch{console.log("no home goal 5")};
+                try{jsonsawaygoals1 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[0].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[0].scoretime+"')"} catch{console.log("no away goal 1")};
+                try{jsonsawaygoals2 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[1].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[1].scoretime+"')"} catch{console.log("no away goal 2")};
+                try{jsonsawaygoals3 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[2].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[2].scoretime+"')"} catch{console.log("no away goal 3")};
+                try{jsonsawaygoals4 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[3].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[3].scoretime+"')"} catch{console.log("no away goal 4")};
+                try{jsonsawaygoals5 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[4].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[4].scoretime+"')"} catch{console.log("no away goal 5")};
                 var speak = checkddblast.Item.output.conc;
             }
 
         
         return handlerInput.responseBuilder
-            .withResultsCard('PSG News','{"homescore": "'+homescore+'", "awayscore": "'+awayscore+'", "hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'", "jsonstageUEFA": "'+jsonstageUEFA+'", "jsongroupUEFA": "'+jsongroupUEFA+'"}') // <--
+            .withResultsCard('PSG News','{"homescore": "'+homescore+'", "awayscore": "'+awayscore+'", "hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'", "jsonstageUEFA": "'+jsonstageUEFA+'", "jsongroupUEFA": "'+jsongroupUEFA+'", "jsonshomegoals1": "'+jsonshomegoals1+'", "jsonshomegoals2": "'+jsonshomegoals2+'", "jsonshomegoals3": "'+jsonshomegoals3+'", "jsonshomegoals4": "'+jsonshomegoals4+'", "jsonshomegoals5": "'+jsonshomegoals5+'", "jsonsawaygoals1": "'+jsonsawaygoals1+'", "jsonsawaygoals2": "'+jsonsawaygoals2+'", "jsonsawaygoals3": "'+jsonsawaygoals3+'", "jsonsawaygoals4": "'+jsonsawaygoals4+'", "jsonsawaygoals5": "'+jsonsawaygoals5+'"}') // <--
+            //.withResultsCard('PSG News','{"homescore": "'+homescore+'", "awayscore": "'+awayscore+'", "hometeamlogo": "'+hometeamlogo+'", "awayteamlogo": "'+awayteamlogo+'", "journey": "'+journey+'", "jsoncompetition": "'+jsoncompetition+'", "jsongamedate": "'+jsongamedate+'", "jsonstageUEFA": "'+jsonstageUEFA+'", "jsongroupUEFA": "'+jsongroupUEFA+'", "jsonshomegoals1": "'+jsonshomegoals1+'", "jsonshomegoals2": "'+jsonshomegoals2+'", "jsonshomegoals3": "'+jsonshomegoals3+'", "jsonshomegoals4": "'+jsonshomegoals4+'", "jsonshomegoals5": "'+jsonshomegoals5+'", "jsonsawaygoals1": "'+jsonsawaygoals1+'", "jsonsawaygoals2": "'+jsonsawaygoals2+'"}') // <--
             .speak(speak)
             .reprompt(speak)
             .getResponse();
@@ -156,7 +174,7 @@ const NextGameIntentHandler = {
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
-            var checkddbnext = await ddbcheckfn("nextgame");
+            var checkddbnext = await ddbcheckfn("nextgame","PSGNewscast");
             console.log("checkddbnext: ",checkddbnext);
              if (JSON.stringify(checkddbnext) === "{}") {
                 var paramslbd = {
@@ -206,7 +224,7 @@ const StandingsIntentHandler = {
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
-            var checkddbstand = await ddbcheckfn("standings");
+            var checkddbstand = await ddbcheckfn("standings","PSGNewscast");
             console.log("checkddbstand: ",checkddbstand);
              if (JSON.stringify(checkddbstand) === "{}") {
                     var paramslbd = {
@@ -274,7 +292,7 @@ const TwitIntentHandler = {
     async handle(handlerInput) {
             console.log("lexreq2: ", handlerInput.requestEnvelope.request.intent.name);
             const repromptText = '';
-            var checkddbtwit = await ddbcheckfn("news");
+            var checkddbtwit = await ddbcheckfn("news","PSGNewscast");
             console.log("checkddbtwit: ",checkddbtwit);
             if (JSON.stringify(checkddbtwit) === "{}") {
                 var paramslbd = {

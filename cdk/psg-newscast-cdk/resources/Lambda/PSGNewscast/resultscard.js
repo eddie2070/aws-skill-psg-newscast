@@ -6,7 +6,7 @@ const APLHomeCardRequestInterceptor = {
         console.log("payload2: ",handlerInput.context.succeed);
         function withResultsAPLCard(cardTitle, cardContent){
             console.log("cardContent: ",cardContent);
-            console.log("JSON.parse(cardContent).hometeamlogo: ",JSON.parse(cardContent).hometeamlogo);
+            //console.log("JSON.parse(cardContent).hometeamlogo: ",JSON.parse(cardContent).hometeamlogo);
             if(supportsAPL(handlerInput)){
                 handlerInput.responseBuilder.addDirective({
                     type: 'Alexa.Presentation.APL.RenderDocument',
@@ -24,7 +24,17 @@ const APLHomeCardRequestInterceptor = {
                             "jsoncompetition": JSON.parse(cardContent).jsoncompetition,
                             "jsongamedate": JSON.parse(cardContent).jsongamedate,
                             "jsonstageUEFA": JSON.parse(cardContent).jsonstageUEFA,
-                            "jsongroupUEFA": JSON.parse(cardContent).jsongroupUEFA
+                            "jsongroupUEFA": JSON.parse(cardContent).jsongroupUEFA,
+                            "jsonhomegoals1": JSON.parse(cardContent).jsonshomegoals1,
+                            "jsonhomegoals2": JSON.parse(cardContent).jsonshomegoals2,
+                            "jsonhomegoals3": JSON.parse(cardContent).jsonshomegoals3,
+                            "jsonhomegoals4": JSON.parse(cardContent).jsonshomegoals4,
+                            "jsonhomegoals5": JSON.parse(cardContent).jsonshomegoals5,
+                            "jsonawaygoals1": JSON.parse(cardContent).jsonsawaygoals1,
+                            "jsonawaygoals2": JSON.parse(cardContent).jsonsawaygoals2,
+                            "jsonawaygoals3": JSON.parse(cardContent).jsonsawaygoals3,
+                            "jsonawaygoals4": JSON.parse(cardContent).jsonsawaygoals4,
+                            "jsonawaygoals5": JSON.parse(cardContent).jsonsawaygoals5
                         },
                         templateData: {
                             "header": cardTitle,
@@ -41,7 +51,10 @@ const APLHomeCardRequestInterceptor = {
             if (JSON.parse(cardContent).jsonstageUEFA != "") {
                 console.log("add champions logo");
                 var championslogo = "https://psgnewscast-skill2021.s3.amazonaws.com/teamlogo/champions.png";
-            } else {championslogo = ""}
+            } else {
+                championslogo = "";
+                console.log("no champions logo");
+            }
             withResultsCard(cardTitle, cardContent);
             return handlerInput.responseBuilder;
         }
@@ -185,7 +198,7 @@ const APLDoc =
                         "imageBlurredBackground": false
                             }
                         ],
-                        "height": "35%",
+                        "height": "25%",
                         "width": "100%",
                         "direction": "row",
                         "wrap": "noWrap"
@@ -198,8 +211,8 @@ const APLDoc =
                                 "textAlign": "center",
                                 "text": "${score.homescore}",
                                 "paddingTop": "5vh",
-                                "paddingBottom": "5vh",
-                                "height": "20dp",
+                                "paddingBottom": "2vh",
+                                "height": "25dp",
                                 "width": "50vw",
                                 "fontSize": "10vh"
                             },
@@ -208,13 +221,44 @@ const APLDoc =
                                 "textAlign": "center",
                                 "text": "${score.awayscore}",
                                 "paddingTop": "5vh",
-                                "paddingBottom": "5vh",
-                                "height": "20dp",
+                                "paddingBottom": "2vh",
+                                "height": "25dp",
                                 "width": "50vw",
                                 "fontSize": "10vh"
                             }
                         ],
-                        "height": "50%",
+                        "height": "40%",
+                        "width": "100%",
+                        "direction": "row",
+                        "wrap": "noWrap"
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "Text",
+                                "textAlign": "center",
+                                "text": "${score.jsonhomegoals1} ${score.jsonhomegoals2}  ${score.jsonhomegoals3}  ${score.jsonhomegoals4}",
+                                //"text": "wapp",
+                                "paddingTop": "-10vh",
+                                "paddingBottom": "15vh",
+                                "height": "4dp",
+                                "width": "50vw",
+                                "fontSize": "3vh"
+                            },
+                            {
+                                "type": "Text",
+                                "textAlign": "center",
+                                "text": "${score.jsonawaygoals1} ${score.jsonawaygoals2} ${score.jsonawaygoals3} ${score.jsonawaygoals4}",
+                                //"text": "woop",
+                                "paddingTop": "-10vh",
+                                "paddingBottom": "15vh",
+                                "height": "4dp",
+                                "width": "50vw",
+                                "fontSize": "3vh"
+                            }
+                        ],
+                        "height": "60%",
                         "width": "100%",
                         "direction": "row",
                         "wrap": "noWrap"
