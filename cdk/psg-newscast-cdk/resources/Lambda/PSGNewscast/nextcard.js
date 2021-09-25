@@ -7,6 +7,7 @@ const APLHomeCardRequestInterceptor = {
         function withNextAPLCard(cardTitle, cardContent){
             console.log("cardContent: ",cardContent);
             console.log("JSON.parse(cardContent).hometeamlogo: ",JSON.parse(cardContent).hometeamlogo);
+            try {
             if(supportsAPL(handlerInput)){
                 handlerInput.responseBuilder.addDirective({
                     type: 'Alexa.Presentation.APL.RenderDocument',
@@ -14,7 +15,7 @@ const APLHomeCardRequestInterceptor = {
                     document: APLDoc,
                     datasources: {
                         "assets": {
-                                "home": JSON.parse(cardContent).hometeamlogo.toString(),//JSON.parse(cardContent).hometeamlogo, //"https://medias.lequipe.fr/logo-football/26/120-2021-2022",
+                                "home": JSON.parse(cardContent).hometeamlogo,//JSON.parse(cardContent).hometeamlogo, //"https://medias.lequipe.fr/logo-football/26/120-2021-2022",
                                 "away": JSON.parse(cardContent).awayteamlogo //"https://medias.lequipe.fr/logo-football/6/120-2021-2022"
                         },
                         "score": {
@@ -37,6 +38,7 @@ const APLHomeCardRequestInterceptor = {
                     }
                 });
             }
+            } catch(err) {console.log("err in nextcard: ", err)}
             withNextCard(cardTitle, cardContent);
             return handlerInput.responseBuilder;
         }

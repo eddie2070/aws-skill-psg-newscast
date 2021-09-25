@@ -105,6 +105,8 @@ const LastResultsIntentHandler = {
             const repromptText = '';
             var checkddblast = await ddbcheckfn("lastresults","PSGNewscast");
             console.log("checkddblast: ",checkddblast);
+            var jsonshomegoals1 = "", jsonshomegoals2 = "",  jsonshomegoals3 = "",  jsonshomegoals4 = "",  jsonshomegoals5 = "";
+            var  jsonsawaygoals1 = "", jsonsawaygoals2 = "", jsonsawaygoals3 = "",  jsonsawaygoals4 = "",  jsonsawaygoals5 = "";
             if (JSON.stringify(checkddblast) === "{}") {
                 var paramslbd = {
                     FunctionName: 'PSGNewscast-dispatcher', /* required */
@@ -122,16 +124,22 @@ const LastResultsIntentHandler = {
                 var jsongamedate = JSON.parse(displast.Payload).messages[0].content.score.jsongamedate;
                 var jsonstageUEFA = JSON.parse(displast.Payload).messages[0].content.score.jsonstageUEFA;
                 var jsongroupUEFA = JSON.parse(displast.Payload).messages[0].content.score.jsongroupUEFA;
-                var jsonshomegoals = JSON.parse(displast.Payload).messages[0].content.score.homegoals;
-                var jsonsawaygoals = JSON.parse(displast.Payload).messages[0].content.score.awaygoals;
+                try{jsonshomegoals1 = JSON.parse(displast.Payload).messages[0].content.score.homegoals[0].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.homegoals[0].scoretime+"')"} catch{console.log("no home goal 1")}
+                try{jsonshomegoals2 = JSON.parse(displast.Payload).messages[0].content.score.homegoals[1].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.homegoals[1].scoretime+"')"} catch{console.log("no home goal 2")}
+                try{jsonshomegoals3 = JSON.parse(displast.Payload).messages[0].content.score.homegoals[2].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.homegoals[2].scoretime+"')"} catch{console.log("no home goal 3")}
+                try{jsonshomegoals4 = JSON.parse(displast.Payload).messages[0].content.score.homegoals[3].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.homegoals[3].scoretime+"')"} catch{console.log("no home goal 4")}
+                try{jsonshomegoals5 = JSON.parse(displast.Payload).messages[0].content.score.homegoals[4].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.homegoals[4].scoretime+"')"} catch{console.log("no home goal 5")}
+                try{jsonsawaygoals1 = JSON.parse(displast.Payload).messages[0].content.score.awaygoals[0].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.awaygoals[0].scoretime+"')"} catch{console.log("no away goal 1")}
+                try{jsonsawaygoals2 = JSON.parse(displast.Payload).messages[0].content.score.awaygoals[1].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.awaygoals[1].scoretime+"')"} catch{console.log("no away goal 2")}
+                try{jsonsawaygoals3 = JSON.parse(displast.Payload).messages[0].content.score.awaygoals[2].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.awaygoals[2].scoretime+"')"} catch{console.log("no away goal 3")}
+                try{jsonsawaygoals4 = JSON.parse(displast.Payload).messages[0].content.score.awaygoals[3].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.awaygoals[3].scoretime+"')"} catch{console.log("no away goal 4")}
+                try{jsonsawaygoals5 = JSON.parse(displast.Payload).messages[0].content.score.awaygoals[4].scoreplayer + " ("+JSON.parse(displast.Payload).messages[0].content.score.awaygoals[4].scoretime+"')"} catch{console.log("no away goal 5")}
                 console.log("homescore: ",homescore);
                 console.log("awayscore: ",awayscore);
                 var speak = JSON.parse(displast.Payload).messages[0].content.conc;
                 console.log("speak: ",speak);
 
             } else {
-                var jsonshomegoals1 = "", jsonshomegoals2 = "",  jsonshomegoals3 = "",  jsonshomegoals4 = "",  jsonshomegoals5 = "";
-                var  jsonsawaygoals1 = "", jsonsawaygoals2 = "", jsonsawaygoals3 = "",  jsonsawaygoals4 = "",  jsonsawaygoals5 = "";
                 var homescore = checkddblast.Item.score.scoredata.homescore;
                 console.log("eeee: ", homescore);
                 var awayscore = checkddblast.Item.score.scoredata.awayscore;
@@ -142,16 +150,16 @@ const LastResultsIntentHandler = {
                 var jsongamedate = checkddblast.Item.score.scoredata.jsongamedate;
                 var jsonstageUEFA = checkddblast.Item.score.scoredata.jsonstageUEFA;
                 var jsongroupUEFA = checkddblast.Item.score.scoredata.jsongroupUEFA;
-                try{jsonshomegoals1 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[0].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[0].scoretime+"')"} catch{console.log("no home goal 1")};
-                try{jsonshomegoals2 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[1].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[1].scoretime+"')"} catch{console.log("no home goal 2")};
-                try{jsonshomegoals3 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[2].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[2].scoretime+"')"} catch{console.log("no home goal 3")};
-                try{jsonshomegoals4 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[3].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[3].scoretime+"')"} catch{console.log("no home goal 4")};
-                try{jsonshomegoals5 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[4].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[4].scoretime+"')"} catch{console.log("no home goal 5")};
-                try{jsonsawaygoals1 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[0].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[0].scoretime+"')"} catch{console.log("no away goal 1")};
-                try{jsonsawaygoals2 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[1].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[1].scoretime+"')"} catch{console.log("no away goal 2")};
-                try{jsonsawaygoals3 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[2].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[2].scoretime+"')"} catch{console.log("no away goal 3")};
-                try{jsonsawaygoals4 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[3].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[3].scoretime+"')"} catch{console.log("no away goal 4")};
-                try{jsonsawaygoals5 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[4].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[4].scoretime+"')"} catch{console.log("no away goal 5")};
+                try{jsonshomegoals1 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[0].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[0].scoretime+"')"} catch{console.log("no home goal 1")}
+                try{jsonshomegoals2 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[1].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[1].scoretime+"')"} catch{console.log("no home goal 2")}
+                try{jsonshomegoals3 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[2].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[2].scoretime+"')"} catch{console.log("no home goal 3")}
+                try{jsonshomegoals4 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[3].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[3].scoretime+"')"} catch{console.log("no home goal 4")}
+                try{jsonshomegoals5 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[4].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.homegoals))[4].scoretime+"')"} catch{console.log("no home goal 5")}
+                try{jsonsawaygoals1 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[0].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[0].scoretime+"')"} catch{console.log("no away goal 1")}
+                try{jsonsawaygoals2 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[1].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[1].scoretime+"')"} catch{console.log("no away goal 2")}
+                try{jsonsawaygoals3 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[2].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[2].scoretime+"')"} catch{console.log("no away goal 3")}
+                try{jsonsawaygoals4 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[3].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[3].scoretime+"')"} catch{console.log("no away goal 4")}
+                try{jsonsawaygoals5 = JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[4].scoreplayer + " ("+JSON.parse(JSON.stringify(checkddblast.Item.score.scoredata.awaygoals))[4].scoretime+"')"} catch{console.log("no away goal 5")}
                 var speak = checkddblast.Item.output.conc;
             }
 
