@@ -84,11 +84,14 @@ var gameevents = async (home) => {
     var fixturegoalstime = jp.query(fixture_events.data, '$.response[?(@.type==="Goal")]..time');
     console.log("fixturegoalstime: ",fixturegoalstime);
     var goals = [];
+    console.log("goals init: ",goals);
     for (let i = 0; i < fixturegoalsteam.length; i++) {
             if (typeof goals[fixturegoalsteam[i].name] !== 'undefined') {
+                console.log("fixturegoalsteam[i].name "+i, fixturegoalsteam[i].name);
                 var a = goals[fixturegoalsteam[i].name];
                 console.log("a: ", a);
                 var b = a.length;
+                console.log("b: ",b);
                 goals[fixturegoalsteam[i].name][b]= {
                 "scoreplayer": fixturegoalsplayer[i].name,
                 "scoretime": fixturegoalstime[i].elapsed,
@@ -100,20 +103,26 @@ var gameevents = async (home) => {
                     "scoretime": fixturegoalstime[i].elapsed,
                     "scoretimeextra": fixturegoalstime[i].extra
                 }];
+                console.log("goals init first input:", goals);
             }
     }
     console.log("goals array: ",typeof goals);
+    console.log("goals filled: ",goals);
     var team1 = Object.keys(goals)[0];
     console.log("team1: ", team1);
     var team2 = Object.keys(goals)[1];
+    console.log("team2: ", team2);
     if (home == 'Paris Saint-Germain FC' && team1 == "Paris Saint Germain") {
         console.log("first loop");
+        console.log("Object.keys(goals): ",Object.keys(goals));
         Object.defineProperty(goals, 'homegoals', Object.getOwnPropertyDescriptor(goals, Object.keys(goals)[0]));
         console.log("Object.keys(goals)[0] AC: ", Object.keys(goals)[0]);
+        if (typeof team2 !== 'undefined'){
         Object.defineProperty(goals, 'awaygoals', Object.getOwnPropertyDescriptor(goals, Object.keys(goals)[1]));
         console.log("Object.keys(goals)[0] AD: ", Object.keys(goals)[1]);
-        delete goals[team1];
         delete goals[team2];
+        } else { goals['awaygoals'] = {} }
+        delete goals[team1];
     } else {
         console.log("second loop");
         Object.defineProperty(goals, 'awaygoals', Object.getOwnPropertyDescriptor(goals, Object.keys(goals)[0]));
