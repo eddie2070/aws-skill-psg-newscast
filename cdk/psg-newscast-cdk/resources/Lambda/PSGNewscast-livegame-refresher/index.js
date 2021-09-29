@@ -28,18 +28,23 @@ var livegamemarker = async (date) => {
   ]
 };
     var putrulefreshmark = await eventbridge.putRule(paramseventrule).promise();
-            console.log("putrulefresh ARN: ", putrulefreshmark.RuleArn);
+            console.log("putrulefresh ARNss: ", putrulefreshmark.RuleArn);
     
+            
     var paramlambdamarktrigperm = {
         Action: 'lambda:InvokeFunction',
         FunctionName: 'PSGNewscast-livegame-refresher',
         Principal: 'events.amazonaws.com', 
-        StatementId: 'Event'+Date.now(),
+        //StatementId: 'Event'+Date.now(),
+        StatementId: 'Event-refresher',
         SourceArn: putrulefreshmark.RuleArn
     };
     
-    var lambdamarktrigperm = await lambda.addPermission(paramlambdamarktrigperm).promise();
-    console.log("lambdamarktrigperm: ",lambdamarktrigperm);
+    try { 
+        var lambdamarktrigperm = await lambda.addPermission(paramlambdamarktrigperm).promise();
+        console.log("lambdamarktrigperm: ",lambdamarktrigperm);
+    } catch (err) {console.log("permissions not added on PSGNewscast-livegame-refresher as already exists: ")} 
+    
     
     var paramseventtarget = {
         Rule: "PSGNewscast-livemarker",
@@ -71,6 +76,13 @@ var liverefresh = async (state) => {
                     ]
             };
             console.log("paramseventrule: ", paramseventrule);
+            
+            var paramscheckperm = {
+                FunctionName: 'PSGNewscast-livegame'
+            };
+            
+            var lambdacheckperm = await lambda.getPolicy(paramscheckperm).promise();
+            console.log("lambdacheckperm: ", lambdacheckperm);
 
             var putrulefresh = await eventbridge.putRule(paramseventrule).promise();
             console.log("putrulefresh ARN: ", putrulefresh.RuleArn);
@@ -79,17 +91,19 @@ var liverefresh = async (state) => {
                 Action: 'lambda:InvokeFunction',
                 FunctionName: 'PSGNewscast-livegame',
                 Principal: 'events.amazonaws.com', 
-                StatementId: 'Event'+Date.now(),
+                StatementId: 'Event-livegame',
                 SourceArn: putrulefresh.RuleArn
             };
-            var lambdatrigperm = await lambda.addPermission(paramlambdatrigperm).promise();
-            console.log("lambdatrigperm: ",lambdatrigperm);
+            
+            try {  
+                var lambdatrigperm = await lambda.addPermission(paramlambdatrigperm).promise();
+                console.log("lambdatrigperm: ",lambdatrigperm);
+            } catch (err) {console.log("permissions not added on PSGNewscast-livegame as already exists: ")}
     
             var paramseventtarget = {
                 Rule: "PSGNewscast-liverefresh",
                 Targets: [{Arn: "arn:aws:lambda:us-east-1:753451452012:function:PSGNewscast-livegame", 
                 Id: "Lambdaliverefresh"
-                //Id: "Lambdaliverefresh"+Date.now()
                 }]
             };
 
